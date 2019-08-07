@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph" app:startDestination="@id/homeList">
+    <fragment android:id="@+id/profile" android:name="com.bringo.dotit.Profile" android:label="fragment_profile"
+              tools:layout="@layout/fragment_profile"/>
+    <fragment android:id="@+id/homeList" android:name="com.bringo.dotit.HomeList" android:label="fragment_home_list"
+              tools:layout="@layout/fragment_home_list">
+        <action android:id="@+id/action_homeList_to_restauMenu" app:destination="@id/restauMenu"/>
+    </fragment>
+    <fragment android:id="@+id/restauMenu" android:name="com.bringo.dotit.RestauMenu"
+              android:label="fragment_restau_menu" tools:layout="@layout/fragment_restau_menu">
+        <action android:id="@+id/action_restauMenu_to_selectedCategory" app:destination="@id/selectedCategory"/>
+    </fragment>
+    <fragment android:id="@+id/selectedCategory" android:name="com.bringo.dotit.SelectedCategory"
+              android:label="fragment_selected_category" tools:layout="@layout/fragment_selected_category">
+        <action android:id="@+id/action_selectedCategory_to_selectedDish" app:destination="@id/selectedDish"/>
+    </fragment>
+    <fragment android:id="@+id/selectedDish" android:name="com.bringo.dotit.SelectedDish"
+              android:label="fragment_selected_dish" tools:layout="@layout/fragment_selected_dish">
+        <action android:id="@+id/action_selectedDish_to_dishCheckOut" app:destination="@id/dishCheckOut"/>
+    </fragment>
+    <fragment android:id="@+id/dishCheckOut" android:name="com.bringo.dotit.DishCheckOut"
+              android:label="fragment_dish_check_out" tools:layout="@layout/fragment_dish_check_out">
+        <action android:id="@+id/action_dishCheckOut_to_deliveryTracking" app:destination="@id/deliveryTracking"/>
+    </fragment>
+    <fragment android:id="@+id/deliveryTracking" android:name="com.bringo.dotit.DeliveryTracking"
+              android:label="fragment_delivery_tracking" tools:layout="@layout/fragment_delivery_tracking">
+        <action android:id="@+id/action_deliveryTracking_to_homeList" app:destination="@id/homeList"/>
+    </fragment>
+    <fragment android:id="@+id/register" android:name="com.bringo.dotit.Register" android:label="fragment_register"
+              tools:layout="@layout/fragment_register">
+        <action android:id="@+id/action_register_to_profile" app:destination="@id/profile"/>
+    </fragment>
+    <fragment android:id="@+id/login" android:name="com.bringo.dotit.Login" android:label="fragment_login"
+              tools:layout="@layout/fragment_login">
+        <action android:id="@+id/action_login_to_register" app:destination="@id/register"/>
+    </fragment>
+    <activity android:id="@+id/splashScreen" android:name="com.bringo.dotit.SplashScreen"
+              android:label="activity_splash_screen" tools:layout="@layout/activity_splash_screen"/>
+</navigation>

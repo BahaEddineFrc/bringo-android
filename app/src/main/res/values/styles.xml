@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TextTheme" parent="TextAppearance.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/page_title</item>
+
+    </style>
+
+    <dimen name="text_button_size">14sp</dimen>
+    <dimen name="text_input_size">16sp</dimen>
+    <dimen name="page_title">20sp</dimen>
+    <dimen name="parag_text">14sp</dimen>
+    <dimen name="list_title">14sp</dimen>
+    <dimen name="padding_text_button">5dp</dimen>
+</resources>
