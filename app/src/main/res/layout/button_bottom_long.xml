@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="wrap_content"
-              android:layout_width="match_parent" android:orientation="vertical">
+              android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                    android:layout_marginTop="20dp">
 
+
+    <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            android:layout_marginStart="220dp"
+            android:elevation="10dp"
+            style="@style/SpinKitView.Small.FadingCircle"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:SpinKit_Color="@color/white" />
 
     <Button
             android:id="@+id/button_bottom_long"
-            android:layout_margin="0dp"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/lato"
             android:text="login"
-
+            android:paddingEnd="60dp"
+            android:paddingStart="60dp"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
             android:textColor="@color/white"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
     <!--
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_bottom_long"

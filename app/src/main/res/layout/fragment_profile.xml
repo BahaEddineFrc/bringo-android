@@ -5,13 +5,27 @@
                   android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-        <include layout="@layout/submittable_textview"
-                 android:id="@+id/mail"/>
-        <include layout="@layout/submittable_textview"
-                 android:id="@+id/pass"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@id/mail"/>
+
+
+        <include layout="@layout/login_fields"
+                 android:id="@+id/login_fields"/>
+
+        <include layout="@layout/register_fields"
+                 android:id="@+id/register_fields"
+                 android:visibility="gone" />
+
+
+
     <include layout="@layout/button_bottom_long" android:id="@+id/btn_login_inc"/>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/no_account_btn"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@color/secondary_text"
+            android:text="i don't have an account"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
