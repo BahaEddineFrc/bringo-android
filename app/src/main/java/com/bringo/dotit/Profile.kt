@@ -22,7 +22,9 @@ import android.util.TypedValue
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.core.animation.doOnEnd
+import androidx.lifecycle.ViewModelProviders
 import com.bringo.dotit.utils.handleButtonLoading
+import com.bringo.dotit.viewmodels.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
@@ -73,7 +75,10 @@ class Profile : Fragment() {
         btnLogin.setOnClickListener {
             handleButtonLoading(progressBar,btnLogin)
         }
-         return view
+
+        val model = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+
+        return view
     }
 
 

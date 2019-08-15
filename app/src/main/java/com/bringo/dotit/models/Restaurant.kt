@@ -1,6 +1,18 @@
 package com.bringo.dotit.models
 
- class Restaurant(id: String, name: String, address: String, email: String, password: String, phone: Int, pic: String) :
-     UserEntity(id, name, address, email, password, phone, pic) {
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-}
+@Entity
+data class Restaurant(    @PrimaryKey(autoGenerate = true)
+                           var id:String,
+                          var  name:String,
+                          var  address:String,
+                          var stars :Float,
+                          var  pic:String){
+
+ }
+
+data class RestaurantsResponse(
+    val results: List<Restaurant>
+)
