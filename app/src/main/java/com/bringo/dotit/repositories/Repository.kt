@@ -16,28 +16,33 @@ import com.bringo.dotit.api.RestauDao
 import android.app.Application
 import android.util.Log
 import com.bringo.dotit.api.ApiServices
+import com.bringo.dotit.models.User
 import com.bringo.dotit.viewmodels.RestaurantViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-class RestauRepository (private val api : ApiServices) : BaseRepository() {
+class Repository (private val api : ApiServices) : BaseRepository() {
 
 
 
-        suspend fun getRestausFromRepo(): MutableLiveData<ArrayList<RestaurantViewModel>> {//MutableList<Restaurant>?{
+        suspend fun getRestausFromRepo(): MutableLiveData<ArrayList<Restaurant>> {//MutableList<Restaurant>?{
 
-            var arrayMutableLiveData = MutableLiveData<ArrayList<RestaurantViewModel>>()
-            var array=ArrayList<RestaurantViewModel>()
+            var arrayMutableLiveData = MutableLiveData<ArrayList<Restaurant>>()
+            var array=ArrayList<Restaurant>()
 
-            var restaurant=Restaurant("id_1","Planet food","Sahloul, sousse",3.5f,"https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
-            var restaurant2=Restaurant("id_2","Planet food 2","Korniche, sousse",3.5f, "https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
+            var restaurant=Restaurant("id_1","Planet food","6 Mn",3.5f,"https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
+            var restaurant2=Restaurant("id_2","El forno","1 Hr",3.5f, "https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
 
-            var homeViewModel= RestaurantViewModel(restaurant)
-            var homeViewModel2= RestaurantViewModel(restaurant2)
+            //var homeViewModel= RestaurantViewModel(restaurant)
+            //var homeViewModel2= RestaurantViewModel(restaurant2)
 
-            array!!.add(homeViewModel)
-            array!!.add(homeViewModel2)
+            array!!.add(restaurant)
+            array!!.add(restaurant2)
+            array!!.add(restaurant2)
+            array!!.add(restaurant2)
+            array!!.add(restaurant2)
+            array!!.add(restaurant2)
 
             withContext(Dispatchers.Main){arrayMutableLiveData.value=array}
 
@@ -52,15 +57,20 @@ class RestauRepository (private val api : ApiServices) : BaseRepository() {
             return restauResponse?.results?.toMutableList()  */
         }
 
-
+    fun getConnectedUser(): MutableLiveData<User> {
+        var user= User("repository","test")
+        lateinit var livedataUser:MutableLiveData<User>
+        livedataUser.value=user
+        return livedataUser
+    }
 
 
     /*
-    private var newsRepository: RestauRepository? = null
+    private var newsRepository: Repository? = null
     lateinit var restauDao: RestauDao
     private lateinit var allRestaus: LiveData<List<Restaurant>>
 
-    fun RestauRepository(application: Application) {
+    fun Repository(application: Application) {
         val database = NoteDatabase.getInstance(application)
         restauDao = database.noteDao()
         allRestaus = restauDao.getAllRestaurants()
@@ -68,7 +78,7 @@ class RestauRepository (private val api : ApiServices) : BaseRepository() {
 
     private var retroApi: RetrofitApi? =null
 
-    fun RestauRepository() {
+    fun Repository() {
         retroApi = cteateService(RetrofitApi::class.java)
     }
 

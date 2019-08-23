@@ -6,18 +6,25 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bringo.dotit.OnCategoryClickListener
 import com.bringo.dotit.R
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.databinding.RestaurantBinding
-import com.bringo.dotit.viewmodels.RestaurantViewModel
 
-class RestaurantsRVAdapter(val context: Context?, val restaurantsArray: ArrayList<RestaurantViewModel>)
+class RestaurantsRVAdapter(val context: Context?)
     : RecyclerView.Adapter<RestaurantsRVAdapter.RestaurantsViewHolder>() {
+    private val restaurantsArray: ArrayList<Restaurant> =ArrayList()
 
+    fun setRestauList(restauList: ArrayList<Restaurant>) {
+        restaurantsArray.addAll(restauList)
+        //notifyItemRangeInserted(0, categoryModel.size)
+        notifyDataSetChanged()
+    }
 
     override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
         val restaurantViewModel = restaurantsArray[position]
         holder.bind(restaurantViewModel)
+        //holder.bind(restaurantViewModel,listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantsViewHolder{
@@ -33,9 +40,11 @@ class RestaurantsRVAdapter(val context: Context?, val restaurantsArray: ArrayLis
 
 
 
+
     inner class RestaurantsViewHolder (val restaurantBinding:RestaurantBinding):RecyclerView.ViewHolder(restaurantBinding.root){
-        fun bind(restaurantViewModel: RestaurantViewModel) {
-            restaurantBinding.restaurantmodel  = restaurantViewModel
+        fun bind( restaurant: Restaurant) {
+            restaurantBinding.restaurantmodel  = restaurant
+
             restaurantBinding.executePendingBindings()
 
         }

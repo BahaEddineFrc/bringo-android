@@ -1,7 +1,8 @@
-package com.bringo.dotit
+package com.bringo.dotit.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bringo.dotit.R
 
 class SplashScreen : AppCompatActivity() {
 

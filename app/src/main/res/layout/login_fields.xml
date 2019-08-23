@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="match_parent">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical" android:layout_height="wrap_content"
+        android:layout_width="match_parent">
     <com.google.android.material.textfield.TextInputLayout
             app:errorEnabled="true"
             android:layout_marginEnd="20dp"
@@ -11,6 +13,7 @@
     <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:hint="Email"
+            android:text="@={}"
             android:inputType="textEmailAddress"
             android:fontFamily="@font/lato"
             android:layout_width="match_parent"
@@ -28,6 +31,7 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:hint="Password"
+                android:text="@={}"
                 android:inputType="textPassword"
                 android:fontFamily="@font/lato"
                 android:layout_width="match_parent"

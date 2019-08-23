@@ -10,8 +10,12 @@ data class Restaurant(    @PrimaryKey(autoGenerate = true)
                           var  address:String,
                           var stars :Float,
                           var  pic:String){
-
+    fun getImageUrl():String {
+        return pic
+    }
  }
+
+
 
 data class RestaurantsResponse(
     val results: List<Restaurant>

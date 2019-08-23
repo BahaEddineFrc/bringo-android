@@ -1,31 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data >
+        <variable
+                name="loginbinding"
+                type="com.bringo.dotit.viewmodels.LoginViewModel" />
+    </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                  android:orientation="vertical"
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp">
+
+        <LinearLayout
+                android:id="@+id/register_fields"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:errorEnabled="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content" >
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fullname"
+                        android:hint="Fullname"
+                        android:text="@={loginbinding.name}"
+                        android:inputType="textPersonName"
+                        android:fontFamily="@font/lato"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                    app:errorEnabled="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone"
+                        android:hint="Phone number"
+                        android:text="@={loginbinding.phone}"
+                        android:inputType="number"
+                        android:fontFamily="@font/lato"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:errorEnabled="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/address"
+                        android:hint="Home address"
+                        android:text="@={loginbinding.address}"
+                        android:inputType="text"
+                        android:fontFamily="@font/lato"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                app:errorEnabled="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
+                    android:hint="Email"
+                    android:text="@={loginbinding.email}"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/lato"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                app:errorEnabled="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:hint="Password"
+                    android:text="@={loginbinding.password}"
+                    android:inputType="textPassword"
+                    android:fontFamily="@font/lato"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <include layout="@layout/login_fields"
-                 android:id="@+id/login_fields"/>
-
-        <include layout="@layout/register_fields"
-                 android:id="@+id/register_fields"
-                 android:visibility="gone" />
-
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp">
 
 
-    <include layout="@layout/button_bottom_long" android:id="@+id/btn_login_inc"/>
+            <com.github.ybq.android.spinkit.SpinKitView
+                    android:id="@+id/spin_kit"
+                    android:layout_marginStart="220dp"
+                    android:elevation="10dp"
+                    style="@style/SpinKitView.Small.FadingCircle"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    app:SpinKit_Color="@color/white" />
+
+
+            <Button
+                    android:id="@+id/button_bottom_long"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/lato"
+                    android:text="login"
+                    android:onClick="@{(v)->loginbinding.onLoginClicked(v,fullname,phone,address,email,password)}"
+                    android:paddingEnd="60dp"
+                    android:paddingStart="60dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </RelativeLayout>
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/no_account_btn"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:textColor="@color/secondary_text"
-            android:text="i don't have an account"
+            android:text="@={loginbinding.account}"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+</layout>

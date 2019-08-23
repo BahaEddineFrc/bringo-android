@@ -12,7 +12,8 @@ object ImageUrlBindingAdapter{
     @JvmStatic
     @BindingAdapter("android:img")
     fun setImageUrl(view: ImageView, url:String){
-        Picasso.get().load(url).error(R.drawable.home).into(view, object :Callback{
+        Picasso.get().load(url).resize(500,200).centerCrop().error(R.drawable.home)
+            .into(view, object :Callback{
             override fun onSuccess() {
                 Log.d("ImageUrlBindingAdapter", "success")
             }

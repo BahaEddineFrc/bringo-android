@@ -1,50 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="RestaurantBinding">
-        <variable name="restaurantmodel" type="com.bringo.dotit.viewmodels.RestaurantViewModel"/>
+      <!--  <variable name="restaurantmodel" type="com.bringo.dotit.viewmodels.RestaurantViewModel"/> -->
+       <variable name="restaurantmodel" type="com.bringo.dotit.models.Restaurant"/>
     </data>
 
 
     <androidx.cardview.widget.CardView
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_margin="3dp"
+            app:cardCornerRadius="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                    android:orientation="horizontal"
-                    android:padding="4dp"
-                    android:layout_width="match_parent" android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                           android:layout_width="130dp" android:layout_height="130dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <ImageView
+                           android:layout_width="match_parent"
+                           android:layout_height="80dp"
                            android:img="@{restaurantmodel.imageUrl}"
                            android:src="@color/colorPrimary"
-                           android:layout_margin="5dp"/>
-                <LinearLayout
+                           android:layout_marginBottom="5dp"/>
+                <RelativeLayout
                         android:layout_margin="5dp"
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content">
-                    <TextView
-                            style="@style/TextAppearance.AppCompat.Large"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="@{restaurantmodel.name}" android:id="@+id/restau_name"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
                     <TextView
                             style="@style/TextAppearance.AppCompat.Medium"
-                            android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              android:text="@{restaurantmodel.address}" android:id="@+id/restau_distance"/>
+                            android:hint="Restau name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{restaurantmodel.name}"
+                            android:id="@+id/restau_name"/>
+                    <TextView
+                            style="@style/TextAppearance.AppCompat.Small"
+                            android:hint="Restau address"
+                            android:layout_below="@+id/restau_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{restaurantmodel.address}"
+                            android:id="@+id/restau_distance"/>
                     <RatingBar
-                            android:layout_width="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/restau_name"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             style="?android:attr/ratingBarStyleSmall"
+
                             android:id="@+id/restau_stars"
-                            android:max="2"
-                            android:progressTintMode="add"
-                            android:numStars="1" />
-                </LinearLayout>
+                            android:stepSize="0.5"
+                            android:isIndicator="false"
+                            android:numStars="5" />
+                </RelativeLayout>
             </LinearLayout>
     </androidx.cardview.widget.CardView>
 

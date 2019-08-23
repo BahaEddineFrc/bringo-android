@@ -17,6 +17,7 @@
             android:layout_centerVertical="true"
             app:SpinKit_Color="@color/white" />
 
+
     <Button
             android:id="@+id/button_bottom_long"
             android:backgroundTint="@color/colorPrimary"
