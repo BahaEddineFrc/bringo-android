@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bringo.dotit.R
@@ -21,49 +22,26 @@ import kotlinx.android.synthetic.main.fragment_profile.view.*
 import java.util.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class Profile : Fragment() {
-
-    lateinit var progressBar:ProgressBar
-    lateinit var btnLogin:Button
-    var loginScreenEnabled:Boolean =true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         var view:View=inflater.inflate(R.layout.fragment_profile, container, false)
+        //binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        val model = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
 
 
-        var registerLayout =view.findViewById<View>(R.id.register_fields)
-
-        view.no_account_btn.setOnClickListener {
-            if(loginScreenEnabled){
-                registerLayout.visibility=View.VISIBLE
-                no_account_btn.text = "you have an account?"
-                btnLogin.text="Register"
-                loginScreenEnabled=false
-            }else{
-                registerLayout.visibility=View.GONE
-                no_account_btn.text = "you don't have an account?"
-                btnLogin.text="Login"
-                loginScreenEnabled=true
-            }
-        }
-
-
-        val model = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-
+        model.getProfileInfo()
         model.userLiveData?.observe(this, Observer { user->
-            handleButtonFinishedLoading(spin_kit,btnLogin)
+            //pic
+            if (user!=null) {
+                fullname.text = user.name
+                email.text = user.email
+                phone.text = user.phone
+                address.text = user.address
+            }
         })
 
         return view

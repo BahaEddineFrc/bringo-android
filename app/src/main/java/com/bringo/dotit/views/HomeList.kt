@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil.inflate
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,9 @@ import com.bringo.dotit.databinding.HomeListBinding
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.viewmodels.RestaurantViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_home_list.*
 import kotlinx.android.synthetic.main.fragment_home_list.view.*
+import kotlinx.android.synthetic.main.fragment_home_list.view.home_logo
 
 
 class HomeList : Fragment(), OnCategoryClickListener {
@@ -51,14 +54,18 @@ class HomeList : Fragment(), OnCategoryClickListener {
             floatingActionButton=view.findViewById(R.id.fab_home)
 
 
-        //load viewModel
+            //load viewModel
             restauViewModel = ViewModelProviders.of(this).get(RestaurantViewModel::class.java)
 
             initRecyclerView()
 
+            view.home_logo.setOnClickListener { v:View ->
+                v.findNavController().navigate(R.id.action_homeList_to_restauMenu)
+            }
 
             return view
     }
+
 
     fun initRecyclerView(){
 

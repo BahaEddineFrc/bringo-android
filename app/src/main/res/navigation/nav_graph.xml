@@ -7,6 +7,9 @@
     <fragment android:id="@+id/homeList" android:name="com.bringo.dotit.views.HomeList" android:label="fragment_home_list"
               tools:layout="@layout/fragment_home_list">
         <action android:id="@+id/action_homeList_to_restauMenu" app:destination="@id/restauMenu"/>
+        <action
+                android:id="@+id/action_homeList_to_login"
+                app:destination="@id/login" />
     </fragment>
     <fragment android:id="@+id/restauMenu" android:name="com.bringo.dotit.views.RestauMenu"
               android:label="fragment_restau_menu" tools:layout="@layout/fragment_restau_menu">
@@ -29,13 +32,18 @@
         <action android:id="@+id/action_deliveryTracking_to_homeList" app:destination="@id/homeList"/>
     </fragment>
     <fragment android:id="@+id/register" android:name="com.bringo.dotit.views.Register" android:label="fragment_register"
-              tools:layout="@layout/fragment_register">
-        <action android:id="@+id/action_register_to_profile" app:destination="@id/profile"/>
-    </fragment>
+              tools:layout="@layout/fragment_register"/>
     <fragment android:id="@+id/login" android:name="com.bringo.dotit.views.Login" android:label="fragment_login"
               tools:layout="@layout/fragment_login">
-        <action android:id="@+id/action_login_to_register" app:destination="@id/register"/>
+        <action
+                android:id="@+id/action_login_to_profile"
+                app:destination="@id/profile" />
     </fragment>
     <activity android:id="@+id/splashScreen" android:name="com.bringo.dotit.views.SplashScreen"
               android:label="activity_splash_screen" tools:layout="@layout/activity_splash_screen"/>
+    <fragment
+            android:id="@+id/restauMenuItems"
+            android:name="com.bringo.dotit.views.RestauMenuItems"
+            android:label="restau_menu_items_fragment"
+            tools:layout="@layout/restau_menu_items_fragment" />
 </navigation>

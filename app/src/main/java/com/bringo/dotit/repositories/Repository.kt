@@ -16,6 +16,7 @@ import com.bringo.dotit.api.RestauDao
 import android.app.Application
 import android.util.Log
 import com.bringo.dotit.api.ApiServices
+import com.bringo.dotit.models.DishModel
 import com.bringo.dotit.models.User
 import com.bringo.dotit.viewmodels.RestaurantViewModel
 import kotlinx.coroutines.Dispatchers
@@ -60,8 +61,25 @@ class Repository (private val api : ApiServices) : BaseRepository() {
     fun getConnectedUser(): MutableLiveData<User> {
         var user= User("repository","test")
         lateinit var livedataUser:MutableLiveData<User>
-        livedataUser.value=user
+        livedataUser.postValue(user)
         return livedataUser
+    }
+
+    suspend fun getConnectedUserProfile(): MutableLiveData<User> {
+        var user= User("id_123","baha ferchichi","baha.ferchichi@aiesec.net","pass",
+            "3835 green pond Rd, bethlehem, PA","+216 99 285 120","https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
+        var livedataUser=MutableLiveData<User>()
+        withContext(Dispatchers.Main){livedataUser!!.value=user}
+        return livedataUser
+    }
+
+    fun getRestauDishes(): MutableLiveData<ArrayList<DishModel>> {
+        var dish= DishModel("id_123","Pizza 4 seasons",12.5f,"Thon, tomato, olives",5,
+            "https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
+        var liveDishesList:MutableLiveData<ArrayList<DishModel>> = MutableLiveData<ArrayList<DishModel>>()
+        var dishes=ArrayList<DishModel>() ; dishes.add(dish);dishes.add(dish);dishes.add(dish);dishes.add(dish);
+        liveDishesList.postValue(dishes)
+        return liveDishesList
     }
 
 

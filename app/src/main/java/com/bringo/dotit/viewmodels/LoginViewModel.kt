@@ -4,8 +4,12 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import com.bringo.dotit.R
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.User
 import com.bringo.dotit.repositories.Repository
@@ -31,16 +35,25 @@ class LoginViewModel : ViewModel() {
 
     init {
         isRegisterScreenOn.postValue(false)
-        account.postValue("you don't have an account?")
+        account.value="you don't have an account?"
+        email.value="you don't have an"
     }
 
 
     fun getUser(): MutableLiveData<User> {
-
         if (userLiveData == null) {
             userLiveData = MutableLiveData<User>()
         }
         return userLiveData as MutableLiveData<User>
+    }
+
+
+    fun onClicked(v:View) {
+        Toast.makeText(v.context,"toast played",Toast.LENGTH_LONG).show()
+        Log.d("LoginViewModel","onClicked")
+
+        v.findNavController().navigate(R.id.action_login_to_profile)
+
     }
 
     /*fun onLoginClicked(btn: Button, fullname: TextInputEditText, phone: TextInputEditText, address: TextInputEditText,

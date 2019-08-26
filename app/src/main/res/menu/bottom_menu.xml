@@ -9,9 +9,9 @@
 
 
     <item
-            android:id="@+id/profile"
-            android:title="Profile"
-            android:icon="@drawable/profile"
+            android:id="@+id/login"
+            android:title="Login"
+            android:icon="@drawable/login"
     />
 
 </menu>
