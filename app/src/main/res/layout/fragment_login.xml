@@ -97,12 +97,13 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
+                app:errorText="@{loginviewmodel.passwordQuality}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:hint="Password"
-                    android:text="@={loginviewmodel.password}"
+                    android:text="@{loginviewmodel.password}"
                     android:inputType="textPassword"
                     android:fontFamily="@font/lato"
                     android:layout_width="match_parent"
@@ -152,7 +153,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:textColor="@color/secondary_text"
-                android:text="@={loginviewmodel.account}"
+                android:text="@{loginviewmodel.account}"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

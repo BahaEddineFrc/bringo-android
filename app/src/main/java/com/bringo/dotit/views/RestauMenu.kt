@@ -31,6 +31,9 @@ class RestauMenu : Fragment(){
          val tabLayout : TabLayout = v.findViewById(R.id.tab_layout)
          tabLayout.setupWithViewPager(mPager)
 
+
+
+
          return v
 
     }

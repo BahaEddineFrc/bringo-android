@@ -20,7 +20,7 @@
             android:id="@+id/dish_pic"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:src="@{dishviewmodel.imageUrl}"
+            android:img="@{dishviewmodel.imageUrl}"
             android:background="@drawable/restau_back"/>
 
     <TextView

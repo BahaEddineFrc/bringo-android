@@ -13,10 +13,67 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-
     <com.google.android.gms.maps.MapView
             android:id="@+id/tracking_map"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-</RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+
+        <RelativeLayout
+                android:layout_margin="15dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <TextView
+                    android:id="@+id/restau_name"
+                    android:text="@{categoryviewmodel.restauName}"
+                    android:layout_above="@+id/estimated_time"
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="restaurant name" />
+
+            <TextView
+                    android:layout_above="@id/estimated_time_text"
+                    android:id="@+id/estimated_time"
+                    android:textSize="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{categoryviewmodel.restauTime}"
+                    android:hint="7:10" />
+            <TextView
+                    android:layout_above="@+id/estimated_time_text"
+                    android:layout_toEndOf="@+id/estimated_time"
+                    android:id="@+id/estimated_time_zone"
+                    android:textSize="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{categoryviewmodel.timeZone}"
+                    android:hint="PM" />
+            <TextView
+                    android:layout_above="@+id/progressBar"
+                    android:id="@+id/estimated_time_text"
+                    android:layout_width="match_parent"
+                    android:textAlignment="textEnd"
+                    android:layout_height="wrap_content"
+                    android:text="Estimated arrival" />
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:progress="@{categoryviewmodel.timeProgress}"
+                    android:layout_alignParentBottom="true"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 </layout>

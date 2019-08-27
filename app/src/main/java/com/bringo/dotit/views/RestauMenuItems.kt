@@ -32,7 +32,6 @@ class RestauMenuItems : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var v:View= inflater.inflate(R.layout.restau_menu_items_fragment, container, false)
-        list=v.findViewById(R.id.list_view)
 
         return v
     }

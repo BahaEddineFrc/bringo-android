@@ -16,7 +16,7 @@
         <ImageView
                 android:id="@+id/restau_background"
                 android:layout_width="match_parent"
-                android:src="@{restaumenuviewmodel.imageUrl}"
+                android:img="@{restaumenuviewmodel.imageUrl}"
                 android:layout_height="200dp"
                 android:background="@drawable/restau_back" />
 

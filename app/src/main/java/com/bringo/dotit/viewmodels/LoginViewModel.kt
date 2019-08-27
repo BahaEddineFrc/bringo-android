@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import com.bringo.dotit.R
+
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.User
 import com.bringo.dotit.repositories.Repository
@@ -17,6 +17,11 @@ import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import androidx.databinding.Bindable
+import androidx.databinding.BaseObservable
+import androidx.databinding.BindingAdapter
+import androidx.databinding.library.baseAdapters.BR
+import com.bringo.dotit.R
 
 
 class LoginViewModel : ViewModel() {
@@ -31,6 +36,10 @@ class LoginViewModel : ViewModel() {
     var isRegisterScreenOn = MutableLiveData<Boolean>()
     var account = MutableLiveData<String>()
 
+
+    var pass : String=""
+    var passError : String=""
+
     var userLiveData: MutableLiveData<User>? = null
 
     init {
@@ -38,6 +47,32 @@ class LoginViewModel : ViewModel() {
         account.value="you don't have an account?"
         email.value="you don't have an"
     }
+
+
+    fun setPassword(pass: String) {
+        this.pass = pass
+        //notifyPropertyChanged(BR.password)
+        //notifyPropertyChanged(BR.passwordQuality)
+    }
+
+    //@Bindable
+    fun getPassword(): String {
+        return pass
+    }
+
+    //@Bindable
+    fun getPasswordQuality(): String {
+        return if (pass == null || pass.isEmpty()) {
+            "Enter a password"
+        } else if (pass.equals("password")) {
+            "Very bad"
+        } else if (pass.length < 6) {
+            "Short"
+        } else {
+            "Okay"
+        }
+    }
+
 
 
     fun getUser(): MutableLiveData<User> {
@@ -56,8 +91,7 @@ class LoginViewModel : ViewModel() {
 
     }
 
-    /*fun onLoginClicked(btn: Button, fullname: TextInputEditText, phone: TextInputEditText, address: TextInputEditText,
-                       email: TextInputEditText, password: TextInputEditText, spin_kit: SpinKitView) {   */
+
     fun onLoginClicked(btnV: View, fullnameV: View, phoneV: View, addressV: View, emailV: View, passwordV: View) {
         //,fullname,phone,address, email,password,spin_kit
         Log.d("LoginViewModel","onLoginClicked")
