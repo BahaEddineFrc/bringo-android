@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".views.RestauMenu">
+
+    <data class="DishBinding">
+        <variable
+                name="dishviewmodel"
+                type="com.bringo.dotit.viewmodels.DishViewModel" />
+    </data>
+
+
+    <RelativeLayout
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".views.SelectedDish">
+             android:layout_height="match_parent">
 
 
     <ImageView
             android:id="@+id/dish_pic"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:src="@{dishviewmodel.imageUrl}"
             android:background="@drawable/restau_back"/>
 
     <TextView
+            android:text="@{dishviewmodel.dishName}"
             android:id="@+id/dish_name"
             android:textAlignment="center"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/dish_pic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dish name"
+            android:hint="Dish name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <View
@@ -34,12 +45,13 @@
             android:background="@color/light_gray" />
 
     <TextView
+            android:text="@{dishviewmodel.dishDescription}"
             android:id="@+id/dish_description"
             android:textAlignment="center"
             android:layout_below="@+id/dish_separator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dish description"
+            android:hint="Dish description"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
@@ -59,6 +71,7 @@
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputEditText
+            android:text="@{dishviewmodel.dishNote}"
             android:id="@+id/order_note"
             android:layout_below="@id/instructionstext"
             android:hint="Add a note (extra sauce, no onions, etc..)"
@@ -79,7 +92,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <TextView
-                android:text="1"
+                android:text="@{dishviewmodel.nbr}"
+                android:hint="1"
                 android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -96,7 +110,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="20dp"
             android:id="@+id/dish_rating"
-            android:numStars="5"
+            android:numStars="@{dishviewmodel.rate}"
             style="?android:attr/ratingBarStyleSmall"
             android:stepSize="0.5"
             android:isIndicator="false"
@@ -104,11 +118,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+    <TextView
+            android:hint="price"
+            android:text="@{dishviewmodel.price}"
+            android:id="@+id/dish_price"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/dish_rating"
+            android:textColor="@color/primary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     <Button
             android:id="@+id/button_bottom_long"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="@font/lato"
-            android:text="login"
+            android:text="order"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_alignParentBottom="true"
@@ -118,3 +142,5 @@
 
 
 </RelativeLayout>
+
+</layout>

@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".views.RestauMenu">
+
+    <data class="TrackingBinding">
+        <variable
+                name="categoryviewmodel"
+                type="com.bringo.dotit.viewmodels.TrackingViewModel" />
+    </data>
+
+    <RelativeLayout
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".views.DeliveryTracking">
+             android:layout_height="match_parent">
 
 
     <com.google.android.gms.maps.MapView
-            android:id="@+id/mapView"
+            android:id="@+id/tracking_map"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 </RelativeLayout>
+</layout>
