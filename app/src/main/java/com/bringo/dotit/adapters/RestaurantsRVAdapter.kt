@@ -16,14 +16,15 @@ class RestaurantsRVAdapter(val context: Context?)
     private val restaurantsArray: ArrayList<Restaurant> =ArrayList()
 
     fun setRestauList(restauList: ArrayList<Restaurant>) {
+        restaurantsArray.clear()
         restaurantsArray.addAll(restauList)
         //notifyItemRangeInserted(0, categoryModel.size)
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
-        val restaurantViewModel = restaurantsArray[position]
-        holder.bind(restaurantViewModel)
+        val restaurant = restaurantsArray[position]
+        holder.bind(restaurant)
         //holder.bind(restaurantViewModel,listener)
     }
 

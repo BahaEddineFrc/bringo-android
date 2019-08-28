@@ -16,6 +16,7 @@ import com.bringo.dotit.api.RestauDao
 import android.app.Application
 import android.util.Log
 import com.bringo.dotit.api.ApiServices
+import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.DishModel
 import com.bringo.dotit.models.User
 import com.bringo.dotit.viewmodels.RestaurantViewModel
@@ -80,6 +81,10 @@ class Repository (private val api : ApiServices) : BaseRepository() {
         var dishes=ArrayList<DishModel>() ; dishes.add(dish);dishes.add(dish);dishes.add(dish);dishes.add(dish);
         liveDishesList.postValue(dishes)
         return liveDishesList
+    }
+
+    fun getCategries(): MutableLiveData<ArrayList<CategoryModel>> {
+        return MutableLiveData<ArrayList<CategoryModel>>()
     }
 
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="CategCardBinding">
+        <variable name="categorymodel"
+                type="com.bringo.dotit.models.CategoryModel"/>
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+            android:layout_margin="3dp"
+            app:cardCornerRadius="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <RelativeLayout
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <TextView
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:hint="Category name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{categorymodel.name}"
+                        android:id="@+id/restau_name"/>
+                <TextView
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:hint="Category time"
+                        android:layout_below="@+id/restau_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{categorymodel.time}"
+                        android:id="@+id/time"/>
+                <TextView
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:hint="Category nbr"
+                        android:layout_below="@+id/restau_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{categorymodel.nbr}"
+                        android:id="@+id/restau_nbr"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

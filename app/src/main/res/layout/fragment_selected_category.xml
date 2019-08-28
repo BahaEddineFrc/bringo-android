@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".views.RestauMenu">
+        xmlns:tools="http://schemas.android.com/tools" >
 
     <data class="CategoryBinding">
         <variable
                 name="categoryviewmodel"
-                type="com.bringo.dotit.viewmodels.CategoryViewModel" />
+                type="com.bringo.dotit.viewmodels.CategoryDishesViewModel" />
     </data>
 
     <LinearLayout
@@ -47,10 +46,10 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/category_rv"
+            android:id="@+id/category_dishes_rv"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
 
 </LinearLayout>

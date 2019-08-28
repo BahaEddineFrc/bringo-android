@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -26,7 +25,6 @@ class RestauMenu : Fragment(){
          mPager = v.findViewById(R.id.pager)  // Instantiate a ViewPager and a PagerAdapter.
          val pagerAdapter = ScreenSlidePagerAdapter(fragmentManager as FragmentManager) // The pager adapter, which provides the pages to the view pager widget.
          mPager.adapter = pagerAdapter
-
 
          val tabLayout : TabLayout = v.findViewById(R.id.tab_layout)
          tabLayout.setupWithViewPager(mPager)
@@ -57,7 +55,7 @@ class RestauMenu : Fragment(){
      */
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         override fun getCount(): Int = 3
-        override fun getItem(position: Int): Fragment = RestauMenuItems()
+        override fun getItem(position: Int): Fragment = MenuCategories()
         override fun getPageTitle(position: Int): CharSequence? { return tabs.get(position) }
     }
 

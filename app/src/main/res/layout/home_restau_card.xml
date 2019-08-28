@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="RestaurantBinding">
-      <!--  <variable name="restaurantmodel" type="com.bringo.dotit.viewmodels.RestaurantViewModel"/> -->
-       <variable name="restaurantmodel" type="com.bringo.dotit.models.Restaurant"/>
+        <variable name="restaurantmodel"
+                type="com.bringo.dotit.models.Restaurant"/>
     </data>
 
 
@@ -58,6 +57,4 @@
                 </RelativeLayout>
             </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
 </layout>

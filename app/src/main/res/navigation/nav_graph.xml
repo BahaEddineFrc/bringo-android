@@ -43,7 +43,7 @@
               android:label="activity_splash_screen" tools:layout="@layout/activity_splash_screen"/>
     <fragment
             android:id="@+id/restauMenuItems"
-            android:name="com.bringo.dotit.views.RestauMenuItems"
+            android:name="com.bringo.dotit.views.MenuCategories"
             android:label="restau_menu_items_fragment"
-            tools:layout="@layout/restau_menu_items_fragment" />
+            tools:layout="@layout/menu_categories_fragment" />
 </navigation>
