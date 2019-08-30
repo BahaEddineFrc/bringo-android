@@ -1,5 +1,6 @@
 package com.bringo.dotit.adapters
 
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bringo.dotit.R
 import com.bringo.dotit.adapters.DishesRVAdapters.DishesViewHolder
 import com.bringo.dotit.databinding.CategoryBinding
+import com.bringo.dotit.databinding.CategoryCardBinding
+import com.bringo.dotit.databinding.DishCardBinding
 import com.bringo.dotit.databinding.RestaurantBinding
 import com.bringo.dotit.models.DishModel
 
@@ -26,8 +29,8 @@ class DishesRVAdapters (val context: Context?)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val catBinding = DataBindingUtil.inflate(layoutInflater, R.layout.category_card, parent,false) as CategCardBinding
-        return DishesViewHolder(catBinding)
+        val dishBinding = DataBindingUtil.inflate(layoutInflater, R.layout.dish_card, parent,false) as DishCardBinding
+        return DishesViewHolder(dishBinding)
 
     }
 
@@ -40,12 +43,13 @@ class DishesRVAdapters (val context: Context?)
         holder.bind(dish)
     }
 
-    class DishesViewHolder(val catBinding: CategCardBinding):RecyclerView.ViewHolder(CategCardBinding.root){
+    class DishesViewHolder(val dishBinding: DishCardBinding):RecyclerView.ViewHolder(dishBinding.root){
         fun bind( dish: DishModel) {
-            catBinding.restaurantmodel  = dish
-            catBinding.executePendingBindings()
+            dishBinding.dishmodel  = dish
+            dishBinding.executePendingBindings()
 
         }
     }
+
 
 }

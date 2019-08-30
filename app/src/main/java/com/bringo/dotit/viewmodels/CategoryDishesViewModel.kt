@@ -19,15 +19,15 @@ class CategoryDishesViewModel : ViewModel(){
 
     var dishesList : MutableLiveData<ArrayList<DishModel>> = MutableLiveData<ArrayList<DishModel>>()
     init {
-        loadCategory()
+        getCategoryDishes()
     }
 
     private val repository : Repository = Repository(ApiFactory.retrofit)
     private val scope = CoroutineScope(GlobalScope.coroutineContext) //used to execute functions in Async mode
 
-    fun loadCategory() {
+    fun getCategoryDishes() {
         scope.launch {
-            //userLiveData!!.postValue(repository.getConnectedUser().value)
+            dishesList!!.postValue(repository.getCategoryDishes().value)
         }
     }
 

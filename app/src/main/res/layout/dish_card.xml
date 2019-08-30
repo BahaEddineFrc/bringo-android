@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="RestaurantBinding">
-        <!--  <variable name="restaurantmodel" type="com.bringo.dotit.viewmodels.RestaurantViewModel"/> -->
-        <variable name="restaurantmodel" type="com.bringo.dotit.models.Restaurant"/>
+    <data class="DishCardBinding">
+        <variable name="dishmodel" type="com.bringo.dotit.models.DishModel"/>
     </data>
 
 
@@ -18,46 +17,37 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:img="@{restaurantmodel.imageUrl}"
-                    android:src="@color/colorPrimary"
-                    android:layout_marginBottom="5dp"/>
+
             <RelativeLayout
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                 <TextView
                         style="@style/TextAppearance.AppCompat.Medium"
-                        android:hint="Restau name"
+                        android:hint="Dish name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{restaurantmodel.name}"
+                        android:text="@{dishmodel.name}"
                         android:id="@+id/restau_name"/>
+
                 <TextView
                         style="@style/TextAppearance.AppCompat.Small"
-                        android:hint="Restau address"
+                        android:hint="Dish description"
                         android:layout_below="@+id/restau_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{restaurantmodel.address}"
-                        android:id="@+id/restau_distance"/>
-                <RatingBar
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/restau_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        style="?android:attr/ratingBarStyleSmall"
+                        android:text="@{dishmodel.description}"
+                        android:id="@+id/restau_desc"/>
 
-                        android:id="@+id/restau_stars"
-                        android:stepSize="0.5"
-                        android:isIndicator="false"
-                        android:numStars="5" />
+                <TextView
+                        android:id="@+id/dish_price"
+                        android:text="@{dishmodel.price"
+                        android:layout_below="@+id/restau_name"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
 </layout>

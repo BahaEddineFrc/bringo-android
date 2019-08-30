@@ -10,6 +10,7 @@ import com.bringo.dotit.OnCategoryClickListener
 import com.bringo.dotit.R
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.databinding.RestaurantBinding
+import com.bringo.dotit.databinding.RestaurantBindingImpl
 
 class RestaurantsRVAdapter(val context: Context?)
     : RecyclerView.Adapter<RestaurantsRVAdapter.RestaurantsViewHolder>() {
@@ -35,7 +36,7 @@ class RestaurantsRVAdapter(val context: Context?)
     }
 
     override fun getItemCount(): Int {
-        Log.d("LIST_SIZE","" + restaurantsArray.size)
+        Log.d("LIST_SIZE"," " + restaurantsArray.size)
         return restaurantsArray.size
     }
 

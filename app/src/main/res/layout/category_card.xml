@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="CategCardBinding">
-        <variable name="categorymodel"
-                type="com.bringo.dotit.models.CategoryModel"/>
+    <data class="CategoryCardBinding">
+        <variable name="categorymodel" type="com.bringo.dotit.models.CategoryModel"/>
+        <variable
+                name="categoriesviewmodel"
+                type="com.bringo.dotit.viewmodels.CategoriesViewModel" />
     </data>
 
 
@@ -15,6 +18,7 @@
             android:layout_height="wrap_content">
         <LinearLayout
                 android:orientation="vertical"
+                android:onClick="@{(view)-> categoriesviewmodel.onCategoryClick()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

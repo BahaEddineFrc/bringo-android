@@ -1,5 +1,6 @@
 package com.bringo.dotit.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 
 class RestauMenuViewModel : ViewModel() {
@@ -13,5 +14,8 @@ class RestauMenuViewModel : ViewModel() {
         return img
     }
 
+    fun onClick(){
+        Log.d("RestauMenuViewModel","RestauMenuViewModel clicked: ")
 
+    }
 }

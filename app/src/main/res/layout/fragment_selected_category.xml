@@ -6,6 +6,7 @@
         <variable
                 name="categoryviewmodel"
                 type="com.bringo.dotit.viewmodels.CategoryDishesViewModel" />
+
     </data>
 
     <LinearLayout

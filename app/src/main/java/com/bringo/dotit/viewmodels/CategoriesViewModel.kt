@@ -20,10 +20,15 @@ class CategoriesViewModel : ViewModel() {
 
     private val scope = CoroutineScope(GlobalScope.coroutineContext) //used to execute functions in Async mode
 
-    fun getCategries() {
+    fun onCategoryClick(){
+        Log.d("CategoriesViewModel","CategoriesViewModel category clicked: ")
+
+    }
+    fun getCategories() {
         scope.launch {
-            categoriesList!!.postValue(repository.getCategries().value)
-            Log.d("getRestauCategries","CategriesList")
+            categoriesList!!.postValue(repository.getCategories().value)
+        }.invokeOnCompletion {
+            //Log.d("CategoriesViewModel",categoriesList.value.toString())
         }
     }
 

@@ -7,17 +7,27 @@
         <variable
                 name="restaumenuviewmodel"
                 type="com.bringo.dotit.viewmodels.RestauMenuViewModel" />
+
     </data>
 
-    <FrameLayout
+    <LinearLayout
+            android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <!-- todo delete btn -->
+        <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v)->restaumenuviewmodel.onClick()}"
+                android:text="test fragment not empty" />
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categories_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-</FrameLayout>
+
+
+    </LinearLayout>
 
 </layout>

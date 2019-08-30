@@ -72,9 +72,9 @@ class SelectedCategory : Fragment() {
 
     private fun subscribeDataCallBack() {
         //listen to data changes in the ViewModel
-        viewModel.loadCategory()
+
         viewModel.dishesList.observe(this, Observer { dishes->
-            Log.d("CategoryDishes","${dishes}")
+            Log.d("CategoryDishes","CategoryDishes subscribeDataCallBack ${dishes}")
             mAdapter.setDishesList(dishes)
         })
 

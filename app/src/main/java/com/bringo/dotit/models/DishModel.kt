@@ -5,13 +5,12 @@ import androidx.room.PrimaryKey
 
 @Entity
 class DishModel() {
-    @PrimaryKey(autoGenerate = true)
-    lateinit var id : String
-    lateinit var  name:String
+    var id : String= ""
+    var  name:String= ""
     var  price:Float = 0f
-    lateinit var  description:String
+    var  description:String= ""
     var stars :Int = 0
-    lateinit var  pic:String
+    var  pic:String= ""
 
     constructor(
         id: String,
@@ -29,10 +28,7 @@ class DishModel() {
         this.pic = pic
     }
 
-
     fun getImageUrl():String {
         return pic
     }
-
-
 }

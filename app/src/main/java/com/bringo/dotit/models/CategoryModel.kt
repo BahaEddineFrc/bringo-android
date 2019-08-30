@@ -7,4 +7,10 @@ class CategoryModel {
      var  name:String= ""
      var  time:String= ""
      var  nbr:String= ""
+
+     constructor(name: String, time: String, nbr: String) {
+          this.name = name
+          this.time = time
+          this.nbr = nbr
+     }
 }

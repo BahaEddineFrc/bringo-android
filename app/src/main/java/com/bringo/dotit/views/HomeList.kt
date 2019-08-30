@@ -20,6 +20,7 @@ import com.bringo.dotit.OnCategoryClickListener
 import com.bringo.dotit.R
 import com.bringo.dotit.adapters.RestaurantsRVAdapter
 import com.bringo.dotit.databinding.HomeListBinding
+import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.viewmodels.RestaurantViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,11 +29,8 @@ import kotlinx.android.synthetic.main.fragment_home_list.view.*
 import kotlinx.android.synthetic.main.fragment_home_list.view.home_logo
 
 
-class HomeList : Fragment(), OnCategoryClickListener {
+class HomeList : Fragment() {
 
-    override fun onCategoryClick(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     //private var listener: OnFragmentInteractionListener? = null
     var restauRecycler : RecyclerView?=null
