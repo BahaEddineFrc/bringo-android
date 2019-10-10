@@ -1,7 +1,6 @@
 package com.bringo.dotit.repositories
 
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 import androidx.databinding.adapters.NumberPickerBindingAdapter.setValue
 import androidx.lifecycle.MutableLiveData
@@ -22,18 +21,45 @@ import com.bringo.dotit.models.User
 import com.bringo.dotit.viewmodels.RestaurantViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.bringo.dotit.api.ApiFactory.retrofit
+import androidx.databinding.adapters.NumberPickerBindingAdapter.setValue
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.bringo.dotit.utils.Hell
+import retrofit2.Callback
+import retrofit2.await
 
 
 class Repository (private val api : ApiServices) : BaseRepository() {
 
 
 
-        suspend fun getRestausFromRepo(): MutableLiveData<ArrayList<Restaurant>> {//MutableList<Restaurant>?{
+    suspend fun getAllRestaurants(): MutableLiveData<ArrayList<Restaurant>> {//MutableList<Restaurant>?{
+
 
             var arrayMutableLiveData = MutableLiveData<ArrayList<Restaurant>>()
             var array=ArrayList<Restaurant>()
 
-            var restaurant=Restaurant("id_1","Planet food","6 Mn",3.5f,"https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
+            retrofit.getAllRestaurants().enqueue(object : Callback<ArrayList<Restaurant>> {
+
+                override fun onResponse( call: Call<ArrayList<Restaurant>>, response: Response<ArrayList<Restaurant>>)
+                {
+                    if(response.isSuccessful){
+                        Hell("getAllRestaurants :"+response.body())
+                        arrayMutableLiveData.value=response.body() as ArrayList<Restaurant>?
+
+                    }
+                    //arrayMutableLiveData.postValue(response.body(). )
+                    //arrayMutableLiveData.setValue(response.body() as ArrayList<Restaurant>?)
+                }
+                override fun onFailure(call: Call<ArrayList<Restaurant>>, t: Throwable) {
+                    Hell("getAllRestaurants err:"+t.message!!)
+                }
+
+            })
+
+
+           /* var restaurant=Restaurant("id_1","Planet food","6 Mn",3.5f,"https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
             var restaurant2=Restaurant("id_2","El forno","1 Hr",3.5f, "https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
 
             //var homeViewModel= RestaurantViewModel(restaurant)
@@ -46,9 +72,8 @@ class Repository (private val api : ApiServices) : BaseRepository() {
             array!!.add(restaurant2)
             array!!.add(restaurant2)
 
-            withContext(Dispatchers.Main){arrayMutableLiveData.value=array}
+            withContext(Dispatchers.Main){arrayMutableLiveData.value=array} */
 
-            return arrayMutableLiveData
 
             /*val restauResponse = safeApiCall(
 
@@ -57,6 +82,7 @@ class Repository (private val api : ApiServices) : BaseRepository() {
             )
 
             return restauResponse?.results?.toMutableList()  */
+        return arrayMutableLiveData
         }
 
     fun getConnectedUser(): MutableLiveData<User> {

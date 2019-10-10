@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,16 +24,14 @@ import com.bringo.dotit.databinding.HomeListBinding
 import com.bringo.dotit.databinding.RestauMenuBinding
 import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.Restaurant
+import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.CategoriesViewModel
 import com.bringo.dotit.viewmodels.RestaurantViewModel
 import kotlinx.android.synthetic.main.fragment_home_list.view.*
 import kotlinx.android.synthetic.main.menu_categories_fragment.view.*
 
 
-class MenuCategories : Fragment(), OnCategoryClickListener {
-    override fun onCategoryClick(category: CategoryModel) {
-        Log.d("MenuCategories","onCategoryClick category: ${category?.toString()}")
-    }
+class MenuCategories : Fragment() {
 
     companion object {
         fun newInstance() = MenuCategories()
@@ -67,7 +67,12 @@ class MenuCategories : Fragment(), OnCategoryClickListener {
 
     fun initRecyclerView(){
 
-        mAdapter = CategoriesRVAdapter(this)
+        mAdapter = CategoriesRVAdapter{category->
+            Hell("MenuCategories: clicked category: ${category}")
+
+            var bundle = bundleOf("categoryId" to category._id)
+            findNavController().navigate(R.id.action_restauMenu_to_selectedCategory,bundle)
+        }
         val layoutManager = LinearLayoutManager(context)
         //layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.root.categories_rv.layoutManager = layoutManager
@@ -78,10 +83,8 @@ class MenuCategories : Fragment(), OnCategoryClickListener {
     }
 
     private fun subscribeDataCallBack() {
-        //listen to data changes in the ViewModel
         viewModel.getCategories()
         viewModel.categoriesList.observe(this, Observer { categories->
-            Log.d("MenuCategories","subscribeDataCallBack MenuCategories: ${categories?.toString()}")
             mAdapter.setRestauList(categories)
 
         })

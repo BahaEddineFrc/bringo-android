@@ -22,6 +22,11 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.BindingAdapter
 import androidx.databinding.library.baseAdapters.BR
 import com.bringo.dotit.R
+import com.bringo.dotit.models.Restaurant
+import com.bringo.dotit.utils.Hell
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginViewModel : ViewModel() {
@@ -115,7 +120,7 @@ class LoginViewModel : ViewModel() {
             password.requestFocus()
         }
         else {
-            Login(user) //correct login -> change view
+            login(user) //correct login -> change view
         }
 
     }
@@ -123,11 +128,23 @@ class LoginViewModel : ViewModel() {
 
     private val scope = CoroutineScope(GlobalScope.coroutineContext) //used to execute functions in Async mode
 
-    fun Login(user:User) {
-        Log.d("LoginViewModel","Login")
-        scope.launch {
-            userLiveData!!.postValue(repository.getConnectedUser().value)
-        }
+    fun login(user:User) {
+        ApiFactory.retrofit.signIn(user.email,user.password).enqueue(object : Callback<User> {
+
+            override fun onResponse(call: Call<User>, response: Response<User>)
+            {
+                if(response.isSuccessful){
+                    Hell("Login -> signIn :"+response.body())
+                    userLiveData?.value=response.body()
+                }else{
+                    Hell("Login -> signIn notSuccessful:"+response.code())
+                }
+            }
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Hell("Login -> signIn err:"+t.message!!)
+            }
+
+        })
     }
 
 

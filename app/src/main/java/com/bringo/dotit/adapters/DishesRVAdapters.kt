@@ -15,8 +15,7 @@ import com.bringo.dotit.databinding.DishCardBinding
 import com.bringo.dotit.databinding.RestaurantBinding
 import com.bringo.dotit.models.DishModel
 
-class DishesRVAdapters (val context: Context?)
-    : RecyclerView.Adapter<DishesViewHolder>() {
+class DishesRVAdapters (private val callback : (DishModel)->Unit) : RecyclerView.Adapter<DishesViewHolder>() {
 
     private val dishesArray: ArrayList<DishModel> =ArrayList()
 
@@ -43,8 +42,11 @@ class DishesRVAdapters (val context: Context?)
         holder.bind(dish)
     }
 
-    class DishesViewHolder(val dishBinding: DishCardBinding):RecyclerView.ViewHolder(dishBinding.root){
+    inner class DishesViewHolder(val dishBinding: DishCardBinding):RecyclerView.ViewHolder(dishBinding.root){
         fun bind( dish: DishModel) {
+            dishBinding.cardLayout.setOnClickListener {
+                callback.invoke(dish)
+            }
             dishBinding.dishmodel  = dish
             dishBinding.executePendingBindings()
 

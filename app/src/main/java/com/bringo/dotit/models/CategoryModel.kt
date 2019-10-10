@@ -4,6 +4,8 @@ import androidx.room.Entity
 
 @Entity
 class CategoryModel {
+
+     var  _id:String= ""
      var  name:String= ""
      var  time:String= ""
      var  nbr:String= ""

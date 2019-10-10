@@ -15,7 +15,7 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
 
 
-class CategoriesRVAdapter (var listener: OnCategoryClickListener) : RecyclerView.Adapter<CategoriesRVAdapter.CategoriesViewHolder>(),
+class CategoriesRVAdapter (private var callback :(CategoryModel)->Unit) : RecyclerView.Adapter<CategoriesRVAdapter.CategoriesViewHolder>(),
      View.OnClickListener{
 
     private val categoriesArray: ArrayList<CategoryModel> =ArrayList()
@@ -39,7 +39,7 @@ class CategoriesRVAdapter (var listener: OnCategoryClickListener) : RecyclerView
 
     override fun onBindViewHolder(holder: CategoriesRVAdapter.CategoriesViewHolder, position: Int) {
         val category = categoriesArray[position]
-        holder.bind(category,listener)
+        holder.bind(category)
     }
 
     override fun onClick(v: View) {
@@ -49,13 +49,12 @@ class CategoriesRVAdapter (var listener: OnCategoryClickListener) : RecyclerView
 
 
     inner class CategoriesViewHolder (var categCardBinding: CategoryCardBinding):RecyclerView.ViewHolder(categCardBinding.root){
-        fun bind( category: CategoryModel,listener: OnCategoryClickListener?) {
+        fun bind( category: CategoryModel) {
 
             //categCardBinding.setVariable(itemBinder.getBindingVariable(item), item);
-            categCardBinding.root.setOnClickListener(View.OnClickListener {view->
-                listener?.onCategoryClick(category)
-                Log.d("MenuCategories","CategoriesViewHolder onClicked ")
-            })
+            categCardBinding.cardLayout.setOnClickListener {
+                callback.invoke(category)
+            }
             categCardBinding.categorymodel  = category
             categCardBinding.executePendingBindings()
 

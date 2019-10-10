@@ -7,18 +7,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bringo.dotit.R
+import com.bringo.dotit.adapters.CategoriesRVAdapter
 import com.bringo.dotit.adapters.DishesRVAdapters
 import com.bringo.dotit.adapters.RestaurantsRVAdapter
 import com.bringo.dotit.databinding.CategoryBinding
 import com.bringo.dotit.databinding.HomeListBinding
 import com.bringo.dotit.models.DishModel
 import com.bringo.dotit.models.Restaurant
+import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.CategoriesViewModel
 import com.bringo.dotit.viewmodels.CategoryDishesViewModel
 import com.bringo.dotit.viewmodels.DishViewModel
@@ -60,7 +64,12 @@ class SelectedCategory : Fragment() {
 
     fun initRecyclerView(){
 
-        mAdapter = DishesRVAdapters(context)
+        mAdapter = DishesRVAdapters{dish->
+            Hell("SelectedCateg: clicked dish: ${dish}")
+
+            var bundle = bundleOf("dishId" to dish._id)
+            findNavController().navigate(R.id.action_selectedCategory_to_selectedDish,bundle)
+        }
         val layoutManager = LinearLayoutManager(context)
         //layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.root.category_dishes_rv.layoutManager = layoutManager

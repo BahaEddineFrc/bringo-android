@@ -11,8 +11,9 @@ import com.bringo.dotit.R
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.databinding.RestaurantBinding
 import com.bringo.dotit.databinding.RestaurantBindingImpl
+import com.bringo.dotit.utils.Hell
 
-class RestaurantsRVAdapter(val context: Context?)
+class RestaurantsRVAdapter(private val callback: (Restaurant) -> Unit)
     : RecyclerView.Adapter<RestaurantsRVAdapter.RestaurantsViewHolder>() {
     private val restaurantsArray: ArrayList<Restaurant> =ArrayList()
 
@@ -43,10 +44,15 @@ class RestaurantsRVAdapter(val context: Context?)
 
 
 
+
     inner class RestaurantsViewHolder (val restaurantBinding:RestaurantBinding):RecyclerView.ViewHolder(restaurantBinding.root){
         fun bind( restaurant: Restaurant) {
-            restaurantBinding.restaurantmodel  = restaurant
 
+            restaurantBinding.cardLayout.setOnClickListener {
+                callback.invoke(restaurant)
+            }
+
+            restaurantBinding.restaurantmodel  = restaurant
             restaurantBinding.executePendingBindings()
 
         }

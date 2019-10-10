@@ -8,12 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.bringo.dotit.R
+import com.bringo.dotit.utils.Hell
+import com.bringo.dotit.viewmodels.RestauMenuViewModel
+import com.bringo.dotit.viewmodels.RestaurantViewModel
 import com.google.android.material.tabs.TabLayout
 
 class RestauMenu : Fragment(){
 
+    private lateinit var restauMenuViewModel: RestauMenuViewModel
     private lateinit var mPager: ViewPager
 
     private var tabs : List<String> = listOf("Breakfast", "Lunch", "Dinner")
@@ -26,16 +32,31 @@ class RestauMenu : Fragment(){
          val pagerAdapter = ScreenSlidePagerAdapter(fragmentManager as FragmentManager) // The pager adapter, which provides the pages to the view pager widget.
          mPager.adapter = pagerAdapter
 
+         //load viewModel
+         restauMenuViewModel = ViewModelProviders.of(this).get(RestauMenuViewModel::class.java)
+
          val tabLayout : TabLayout = v.findViewById(R.id.tab_layout)
          tabLayout.setupWithViewPager(mPager)
 
-
-
+         subscribeDataCallback()
 
          return v
 
     }
 
+    private fun subscribeDataCallback() {
+        var restauId= arguments?.getString("restauId")
+        Hell("clicked restauId : ${restauId}")
+        if(restauId==null) return
+
+        restauMenuViewModel.getRestauById(restauId)
+        restauMenuViewModel.restaurantLiveData.observe(this, Observer { restaurant->
+            if(restaurant!=null) {
+                Hell("restaurantLiveData :" + restaurant)
+            }
+        })
+
+    }
 
 
     fun onBackPressed() {

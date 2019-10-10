@@ -1,6 +1,7 @@
 package com.bringo.dotit.utils
 
 import android.animation.ValueAnimator
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
@@ -34,3 +35,9 @@ import androidx.core.animation.doOnEnd
     fun hideProgressBar(progressBar: ProgressBar){
         progressBar.visibility= View.GONE
     }
+
+
+    fun Hell(msg : String){
+        Log.d("hereeeee",msg)
+    }
+

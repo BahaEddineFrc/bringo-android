@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 class DishModel() {
-    var id : String= ""
+    var _id : String= ""
     var  name:String= ""
     var  price:Float = 0f
     var  description:String= ""
@@ -20,7 +20,7 @@ class DishModel() {
         stars: Int,
         pic: String
     ):this() {
-        this.id = id
+        this._id = id
         this.name = name
         this.price = price
         this.description = description

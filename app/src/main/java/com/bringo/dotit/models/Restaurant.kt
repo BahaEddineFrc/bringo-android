@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Restaurant(    @PrimaryKey(autoGenerate = true)
-                           var id:String,
+                           var _id:String,
                           var  name:String,
                           var  address:String,
                           var stars :Float,
