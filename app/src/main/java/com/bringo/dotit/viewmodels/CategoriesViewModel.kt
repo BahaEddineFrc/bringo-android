@@ -27,8 +27,6 @@ class CategoriesViewModel : ViewModel() {
     fun getCategories() {
         scope.launch {
             categoriesList!!.postValue(repository.getCategories().value)
-        }.invokeOnCompletion {
-            //Log.d("CategoriesViewModel",categoriesList.value.toString())
         }
     }
 

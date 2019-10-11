@@ -2,7 +2,6 @@ package com.bringo.dotit.views
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,24 +9,17 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bringo.dotit.OnCategoryClickListener
 
 import com.bringo.dotit.R
 import com.bringo.dotit.adapters.CategoriesRVAdapter
-import com.bringo.dotit.adapters.RestaurantsRVAdapter
-import com.bringo.dotit.databinding.HomeListBinding
 import com.bringo.dotit.databinding.RestauMenuBinding
 import com.bringo.dotit.models.CategoryModel
-import com.bringo.dotit.models.Restaurant
+import com.bringo.dotit.models.MenuModel
 import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.CategoriesViewModel
-import com.bringo.dotit.viewmodels.RestaurantViewModel
-import kotlinx.android.synthetic.main.fragment_home_list.view.*
 import kotlinx.android.synthetic.main.menu_categories_fragment.view.*
 
 
@@ -53,9 +45,21 @@ class MenuCategories : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.menu_categories_fragment, container, false)
         val view = binding.root
+
         //restauRecycler=view.findViewById(R.id.categories_rv) as RecyclerView
         viewModel = ViewModelProviders.of(this).get(CategoriesViewModel::class.java)
-        initRecyclerView()
+
+        val bundle = this.arguments
+        if (bundle != null) {
+            val titleTD = bundle.getString("title", "empty")
+            val menuPerTitle = bundle.getSerializable("menuPerTitle") as MenuModel
+
+            if(menuPerTitle.sectionCategories!=null){
+                Hell("sectionCategories in MenuCategoriesFrgmnt = ${menuPerTitle.sectionCategories}")
+                initRecyclerView(menuPerTitle.sectionCategories)
+            }
+        }
+
 
         /*view.list_item.setOnClickListener { v:View ->
             v.findNavController().navigate(R.id.action_homeList_to_restauMenu)
@@ -65,7 +69,7 @@ class MenuCategories : Fragment() {
     }
 
 
-    fun initRecyclerView(){
+    fun initRecyclerView(sectionCategories: java.util.ArrayList<CategoryModel>) {
 
         mAdapter = CategoriesRVAdapter{category->
             Hell("MenuCategories: clicked category: ${category}")
@@ -76,7 +80,7 @@ class MenuCategories : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         //layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.root.categories_rv.layoutManager = layoutManager
-        mAdapter.setRestauList(dataList) //delete
+        mAdapter.setRestauList(sectionCategories)
         binding.root.categories_rv.adapter = mAdapter
 
         subscribeDataCallBack()

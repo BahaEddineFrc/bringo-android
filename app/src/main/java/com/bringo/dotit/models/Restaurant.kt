@@ -7,14 +7,18 @@ import androidx.room.PrimaryKey
 data class Restaurant(    @PrimaryKey(autoGenerate = true)
                            var _id:String,
                           var  name:String,
+                          var  email:String,
                           var  address:String,
-                          var stars :Float,
-                          var  pic:String){
+                          var  phone:String,
+                          var stars :Float, //
+                          var menu :ArrayList<MenuModel>,
+                          var  pic:String)
+
+{
     fun getImageUrl():String {
         return pic
     }
  }
-
 
 
 data class RestaurantsResponse(

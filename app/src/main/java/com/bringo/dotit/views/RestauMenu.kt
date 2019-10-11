@@ -12,10 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.bringo.dotit.R
+import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.RestauMenuViewModel
 import com.bringo.dotit.viewmodels.RestaurantViewModel
 import com.google.android.material.tabs.TabLayout
+import java.io.Serializable
+
 
 class RestauMenu : Fragment(){
 
@@ -29,8 +32,6 @@ class RestauMenu : Fragment(){
          var v = inflater.inflate(R.layout.fragment_restau_menu, container, false)
 
          mPager = v.findViewById(R.id.pager)  // Instantiate a ViewPager and a PagerAdapter.
-         val pagerAdapter = ScreenSlidePagerAdapter(fragmentManager as FragmentManager) // The pager adapter, which provides the pages to the view pager widget.
-         mPager.adapter = pagerAdapter
 
          //load viewModel
          restauMenuViewModel = ViewModelProviders.of(this).get(RestauMenuViewModel::class.java)
@@ -53,6 +54,9 @@ class RestauMenu : Fragment(){
         restauMenuViewModel.restaurantLiveData.observe(this, Observer { restaurant->
             if(restaurant!=null) {
                 Hell("restaurantLiveData :" + restaurant)
+
+                val pagerAdapter = ScreenSlidePagerAdapter(fragmentManager as FragmentManager, restaurant) // The pager adapter, which provides the pages to the view pager widget.
+                mPager.adapter = pagerAdapter
             }
         })
 
@@ -74,10 +78,17 @@ class RestauMenu : Fragment(){
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
      */
-    private inner class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-        override fun getCount(): Int = 3
-        override fun getItem(position: Int): Fragment = MenuCategories()
-        override fun getPageTitle(position: Int): CharSequence? { return tabs.get(position) }
+    private inner class ScreenSlidePagerAdapter(fm: FragmentManager, var restau:Restaurant) : FragmentStatePagerAdapter(fm) {
+        override fun getCount(): Int = restau.menu.size
+        override fun getItem(position: Int) : Fragment{
+            val fragment = MenuCategories()
+            val bundle = Bundle()
+            bundle.putString("title", restau.menu[position].sectionTitle)
+            bundle.putSerializable("menuPerTitle", restau.menu[position] as Serializable)
+            fragment.arguments = bundle
+            return fragment
+        }
+        override fun getPageTitle(position: Int): CharSequence? { return restau.menu[position].sectionTitle }
     }
 
 }
