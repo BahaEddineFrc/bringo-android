@@ -1,15 +1,17 @@
 package com.bringo.dotit.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.DishModel
-import com.bringo.dotit.models.User
+import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.repositories.Repository
+import com.bringo.dotit.utils.Hell
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CategoryDishesViewModel : ViewModel(){
 
@@ -18,17 +20,27 @@ class CategoryDishesViewModel : ViewModel(){
     var restauName : String = ""
 
     var dishesList : MutableLiveData<ArrayList<DishModel>> = MutableLiveData<ArrayList<DishModel>>()
-    init {
-        getCategoryDishes()
-    }
 
-    private val repository : Repository = Repository(ApiFactory.retrofit)
+
     private val scope = CoroutineScope(GlobalScope.coroutineContext) //used to execute functions in Async mode
 
-    fun getCategoryDishes() {
-        scope.launch {
-            dishesList!!.postValue(repository.getCategoryDishes().value)
-        }
+    fun getDishesByCategory(restauId: String?, categoryId: String?) {
+        if(restauId!=null && categoryId!=null)
+        ApiFactory.retrofit.getDishesByCategory(restauId,categoryId).enqueue(object : Callback<ArrayList<DishModel>> {
+            override fun onResponse(
+                call: Call<ArrayList<DishModel>>, response: Response<ArrayList<DishModel>> ) {
+                if (response.isSuccessful) {
+                    dishesList.value = response.body()
+                }else{
+                    Hell("getDishesByCategory unSuccessful:" + response.code())
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<DishModel>>, t: Throwable) {
+                Hell("getDishesByCategory err:" + t.message!!)
+            }
+        })
+
     }
 
 }

@@ -20,4 +20,10 @@ class CategoryModel {
           this.pic = pic
           this.nbr = nbr
      }
+
+     override fun toString(): String {
+          return "CategoryModel(_id='$_id', name='$name', time='$time', price='$price', pic='$pic', nbr='$nbr')"
+     }
+
+
 }

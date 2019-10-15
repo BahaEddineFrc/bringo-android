@@ -26,7 +26,7 @@ class CategoriesViewModel : ViewModel() {
     }
     fun getCategories() {
         scope.launch {
-            categoriesList!!.postValue(repository.getCategories().value)
+            //categoriesList!!.postValue(repository.getCategories().value)
         }
     }
 

@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.bringo.dotit.R
+import com.bringo.dotit.models.MenuModel
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.RestauMenuViewModel
@@ -83,7 +84,7 @@ class RestauMenu : Fragment(){
         override fun getItem(position: Int) : Fragment{
             val fragment = MenuCategories()
             val bundle = Bundle()
-            bundle.putString("title", restau.menu[position].sectionTitle)
+            bundle.putString("restauId", restau._id)
             bundle.putSerializable("menuPerTitle", restau.menu[position] as Serializable)
             fragment.arguments = bundle
             return fragment

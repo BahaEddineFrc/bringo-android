@@ -29,8 +29,9 @@ class RestauMenuViewModel : ViewModel() {
                 response: Response<Restaurant>
             ) {
                 if (response.isSuccessful) {
-                    //Hell("getRestauById :" + response.body())
                     restaurantLiveData.value = response.body()
+                }else{
+                    Hell("getRestauById unSuccessful:" + response.code())
                 }
             }
 

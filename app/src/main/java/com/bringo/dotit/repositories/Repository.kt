@@ -101,21 +101,13 @@ class Repository (private val api : ApiServices) : BaseRepository() {
     }
 
     suspend fun getCategoryDishes(): MutableLiveData<ArrayList<DishModel>> {
-        var dish= DishModel("id_123","Pizza 4 seasons",12.5f,"Thon, tomato, olives",5,
-            "https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
         var liveDishesList:MutableLiveData<ArrayList<DishModel>> = MutableLiveData<ArrayList<DishModel>>()
-        var dishes=ArrayList<DishModel>() ; dishes.add(dish);dishes.add(dish);dishes.add(dish);dishes.add(dish);
-        withContext(Dispatchers.Main){liveDishesList!!.value=dishes}
+
         return liveDishesList
     }
 
     suspend fun getCategories(): MutableLiveData<ArrayList<CategoryModel>> {
-        var category= CategoryModel("Pizza","45","15")
         var categoriesMtbList= MutableLiveData<ArrayList<CategoryModel>>()
-        var categoriesList=ArrayList<CategoryModel>()
-        categoriesList.add(category);categoriesList.add(category);categoriesList.add(category);categoriesList.add(category);categoriesList.add(category)
-        withContext(Dispatchers.Main){categoriesMtbList!!.value=categoriesList}
-        //Log.d("Repository","getCategories fl Repo ${categoriesMtbList.value.toString()}")
 
         return categoriesMtbList
     }

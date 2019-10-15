@@ -11,24 +11,14 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bringo.dotit.R
-import com.bringo.dotit.adapters.CategoriesRVAdapter
 import com.bringo.dotit.adapters.DishesRVAdapters
-import com.bringo.dotit.adapters.RestaurantsRVAdapter
 import com.bringo.dotit.databinding.CategoryBinding
-import com.bringo.dotit.databinding.HomeListBinding
 import com.bringo.dotit.models.DishModel
-import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.utils.Hell
-import com.bringo.dotit.viewmodels.CategoriesViewModel
 import com.bringo.dotit.viewmodels.CategoryDishesViewModel
-import com.bringo.dotit.viewmodels.DishViewModel
-import com.bringo.dotit.viewmodels.RestaurantViewModel
-import kotlinx.android.synthetic.main.fragment_home_list.view.*
-import kotlinx.android.synthetic.main.fragment_selected_category.*
 import kotlinx.android.synthetic.main.fragment_selected_category.view.*
 
 
@@ -38,7 +28,6 @@ class SelectedCategory : Fragment() {
     var restauRecycler : RecyclerView?=null
 
     private lateinit var mAdapter: DishesRVAdapters
-    private lateinit var restauViewModel: CategoryDishesViewModel
     private lateinit var binding : CategoryBinding
     var dataList: ArrayList<DishModel> = ArrayList()
 
@@ -81,6 +70,9 @@ class SelectedCategory : Fragment() {
 
     private fun subscribeDataCallBack() {
         //listen to data changes in the ViewModel
+        var restauId=arguments?.getString("restauId")
+        var categoryId=arguments?.getString("categoryId")
+        viewModel.getDishesByCategory(restauId,categoryId)
 
         viewModel.dishesList.observe(this, Observer { dishes->
             Log.d("CategoryDishes","CategoryDishes subscribeDataCallBack ${dishes}")

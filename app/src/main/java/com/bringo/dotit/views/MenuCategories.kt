@@ -30,10 +30,10 @@ class MenuCategories : Fragment() {
     }
 
     private lateinit var viewModel: CategoriesViewModel
-    var restauRecycler : RecyclerView?=null
+    var restauRecycler: RecyclerView? = null
 
     private lateinit var mAdapter: CategoriesRVAdapter
-    private lateinit var binding : RestauMenuBinding
+    private lateinit var binding: RestauMenuBinding
     var dataList: ArrayList<CategoryModel> = ArrayList()
 
 
@@ -43,22 +43,14 @@ class MenuCategories : Fragment() {
     ): View? {
 
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.menu_categories_fragment, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.menu_categories_fragment, container, false)
         val view = binding.root
 
         //restauRecycler=view.findViewById(R.id.categories_rv) as RecyclerView
         viewModel = ViewModelProviders.of(this).get(CategoriesViewModel::class.java)
 
-        val bundle = this.arguments
-        if (bundle != null) {
-            val titleTD = bundle.getString("title", "empty")
-            val menuPerTitle = bundle.getSerializable("menuPerTitle") as MenuModel
-
-            if(menuPerTitle.sectionCategories!=null){
-                Hell("sectionCategories in MenuCategoriesFrgmnt = ${menuPerTitle.sectionCategories}")
-                initRecyclerView(menuPerTitle.sectionCategories)
-            }
-        }
+        initRecyclerView()
 
 
         /*view.list_item.setOnClickListener { v:View ->
@@ -69,27 +61,34 @@ class MenuCategories : Fragment() {
     }
 
 
-    fun initRecyclerView(sectionCategories: java.util.ArrayList<CategoryModel>) {
+    fun initRecyclerView( ) {
 
-        mAdapter = CategoriesRVAdapter{category->
-            Hell("MenuCategories: clicked category: ${category}")
+        val bundle = this.arguments
+        if (bundle != null) {
+            val restauId = bundle.getString("restauId", "0")
+            val menuPerTitle = bundle.getSerializable("menuPerTitle") as MenuModel
 
-            var bundle = bundleOf("categoryId" to category._id)
-            findNavController().navigate(R.id.action_restauMenu_to_selectedCategory,bundle)
+            Hell("sectionCategories in MenuCategoriesFrgmnt = ${menuPerTitle.sectionCategories}")
+
+            mAdapter = CategoriesRVAdapter { category ->
+                Hell("MenuCategories: clicked category: ${category}")
+
+                var bundle = bundleOf("categoryId" to category._id, "restauId" to restauId)
+                findNavController().navigate(R.id.action_restauMenu_to_selectedCategory, bundle)
+            }
+            val layoutManager = LinearLayoutManager(context)
+            //layoutManager.orientation = LinearLayoutManager.VERTICAL
+            binding.root.categories_rv.layoutManager = layoutManager
+            mAdapter.setRestauList(menuPerTitle.sectionCategories)
+            binding.root.categories_rv.adapter = mAdapter
         }
-        val layoutManager = LinearLayoutManager(context)
-        //layoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding.root.categories_rv.layoutManager = layoutManager
-        mAdapter.setRestauList(sectionCategories)
-        binding.root.categories_rv.adapter = mAdapter
-
-        subscribeDataCallBack()
+        //subscribeDataCallBack()
     }
 
     private fun subscribeDataCallBack() {
         viewModel.getCategories()
-        viewModel.categoriesList.observe(this, Observer { categories->
-            mAdapter.setRestauList(categories)
+        viewModel.categoriesList.observe(this, Observer { categories ->
+            //mAdapter.setRestauList(categories)
 
         })
 

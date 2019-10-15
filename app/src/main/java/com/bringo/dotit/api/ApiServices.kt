@@ -2,6 +2,7 @@ package com.bringo.dotit.api
 
 
 import android.database.Observable
+import com.bringo.dotit.models.DishModel
 import retrofit2.Call
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.models.RestaurantsResponse
@@ -110,7 +111,10 @@ interface ApiServices {
     fun getAllDishes(): Call<HashMap<String,String>>
 
     @GET("/dish/{id}")
-    fun getDishById(@Path("id") type: String): Call<HashMap<String,String>>
+    fun getDishById(@Path("id") type: String): Call<DishModel>
+
+    @GET("/dish/{restauId}/{categoryId}")
+    fun getDishesByCategory(@Path("restauId") restauId: String,@Path("categoryId") categoryId: String): Call<ArrayList<DishModel>>
 
     @FormUrlEncoded //todo finish this
     @POST("/dish")
