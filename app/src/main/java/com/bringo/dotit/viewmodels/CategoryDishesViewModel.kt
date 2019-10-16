@@ -32,7 +32,7 @@ class CategoryDishesViewModel : ViewModel(){
                 if (response.isSuccessful) {
                     dishesList.value = response.body()
                 }else{
-                    Hell("getDishesByCategory unSuccessful:" + response.code())
+                    Hell("getDishesByCategory unSuccessful ${response.code()}, msg:" + response.errorBody())
                 }
             }
 

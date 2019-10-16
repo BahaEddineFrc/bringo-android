@@ -7,22 +7,22 @@ class CategoryModel {
 
      var  _id:String= ""
      var  name:String= ""
-     var  time:String= ""
-     var  price:String= ""
+     var  waitTime:String= ""
+     var  averagePrice:String= ""
      var  pic:String= ""
      var  nbr:String= ""//
 
-     constructor(_id: String, name: String, time: String, price: String, pic: String, nbr: String) {
+     constructor(_id: String, name: String, time: String, averagePrice: String, pic: String, nbr: String) {
           this._id = _id
           this.name = name
-          this.time = time
-          this.price = price
+          this.waitTime = time
+          this.averagePrice = averagePrice
           this.pic = pic
           this.nbr = nbr
      }
 
      override fun toString(): String {
-          return "CategoryModel(_id='$_id', name='$name', time='$time', price='$price', pic='$pic', nbr='$nbr')"
+          return "CategoryModel(_id='$_id', name='$name', time='$waitTime', price='$averagePrice', pic='$pic', nbr='$nbr')"
      }
 
 

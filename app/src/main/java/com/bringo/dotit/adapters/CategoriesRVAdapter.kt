@@ -13,14 +13,15 @@ import com.bringo.dotit.models.CategoryModel
 import android.R.attr.onClick
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
+import com.bringo.dotit.models.SectionCategoryModel
 
 
 class CategoriesRVAdapter (private var callback :(CategoryModel)->Unit) : RecyclerView.Adapter<CategoriesRVAdapter.CategoriesViewHolder>(),
      View.OnClickListener{
 
-    private val categoriesArray: ArrayList<CategoryModel> =ArrayList()
+    private val categoriesArray: ArrayList<SectionCategoryModel> =ArrayList()
 
-    fun setRestauList(categList: ArrayList<CategoryModel>) {
+    fun setRestauList(categList: ArrayList<SectionCategoryModel>) {
         categoriesArray.clear()
         categoriesArray.addAll(categList)
         //notifyItemRangeInserted(0, categoryModel.size)
@@ -38,8 +39,8 @@ class CategoriesRVAdapter (private var callback :(CategoryModel)->Unit) : Recycl
     }
 
     override fun onBindViewHolder(holder: CategoriesRVAdapter.CategoriesViewHolder, position: Int) {
-        val category = categoriesArray[position]
-        holder.bind(category)
+        val section = categoriesArray[position]
+        holder.bind(section.cat)
     }
 
     override fun onClick(v: View) {

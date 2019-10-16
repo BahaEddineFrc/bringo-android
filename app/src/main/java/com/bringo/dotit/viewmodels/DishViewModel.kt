@@ -42,7 +42,7 @@ class DishViewModel : ViewModel(){
                     dish.value = response.body()
                     dishName.value = (response.body() as DishModel).name
                 } else {
-                    Hell("getRestauById unSuccessful:" + response.code())
+                    Hell("getRestauById unSuccessful ${response.code()}, msg:" + response.errorBody())
                 }
             }
 

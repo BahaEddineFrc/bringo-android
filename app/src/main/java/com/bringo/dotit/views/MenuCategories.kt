@@ -47,15 +47,9 @@ class MenuCategories : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.menu_categories_fragment, container, false)
         val view = binding.root
 
-        //restauRecycler=view.findViewById(R.id.categories_rv) as RecyclerView
         viewModel = ViewModelProviders.of(this).get(CategoriesViewModel::class.java)
 
         initRecyclerView()
-
-
-        /*view.list_item.setOnClickListener { v:View ->
-            v.findNavController().navigate(R.id.action_homeList_to_restauMenu)
-        }*/
 
         return view
     }
@@ -68,19 +62,21 @@ class MenuCategories : Fragment() {
             val restauId = bundle.getString("restauId", "0")
             val menuPerTitle = bundle.getSerializable("menuPerTitle") as MenuModel
 
-            Hell("sectionCategories in MenuCategoriesFrgmnt = ${menuPerTitle.sectionCategories}")
+            //Hell("sectionCategories in MenuCategoriesFrgmnt = ${menuPerTitle.sectionCategories}")
 
             mAdapter = CategoriesRVAdapter { category ->
-                Hell("MenuCategories: clicked category: ${category}")
+                Hell("MenuCategories: clicked category: ${category._id} and sending restauId ${restauId}")
 
                 var bundle = bundleOf("categoryId" to category._id, "restauId" to restauId)
                 findNavController().navigate(R.id.action_restauMenu_to_selectedCategory, bundle)
             }
-            val layoutManager = LinearLayoutManager(context)
-            //layoutManager.orientation = LinearLayoutManager.VERTICAL
-            binding.root.categories_rv.layoutManager = layoutManager
-            mAdapter.setRestauList(menuPerTitle.sectionCategories)
-            binding.root.categories_rv.adapter = mAdapter
+
+                val layoutManager = LinearLayoutManager(context)
+                //layoutManager.orientation = LinearLayoutManager.VERTICAL
+                binding.root.categories_rv.layoutManager = layoutManager
+                mAdapter.setRestauList(menuPerTitle.sectionCategories)
+                binding.root.categories_rv.adapter = mAdapter
+
         }
         //subscribeDataCallBack()
     }

@@ -19,7 +19,6 @@
         <LinearLayout
                 android:id="@+id/card_layout"
                 android:orientation="vertical"
-                android:onClick="@{(view)-> categoriesviewmodel.onCategoryClick()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -40,14 +39,16 @@
                         android:layout_below="@+id/restau_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{categorymodel.time}"
+                        android:text="@{categorymodel.waitTime}"
                         android:id="@+id/time"/>
                 <TextView
                         style="@style/TextAppearance.AppCompat.Small"
                         android:hint="Category nbr"
+                        android:layout_alignParentEnd="true"
                         android:layout_below="@+id/restau_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="invisible"
                         android:text="@{categorymodel.nbr}"
                         android:id="@+id/restau_nbr"/>
             </RelativeLayout>

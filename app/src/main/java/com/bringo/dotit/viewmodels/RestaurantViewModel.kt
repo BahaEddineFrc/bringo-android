@@ -28,7 +28,7 @@ class RestaurantViewModel (application: Application) : AndroidViewModel(applicat
                 if (response.isSuccessful) {
                     arrayMutableLiveData.value = response.body()
                 }else{
-                    Hell("getAllRestaurants unSuccessful:" + response.code())
+                    Hell("getAllRestaurants unSuccessful ${response.code()}, msg:" + response.errorBody())
                 }
             }
 

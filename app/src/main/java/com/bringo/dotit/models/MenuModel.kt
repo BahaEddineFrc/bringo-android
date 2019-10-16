@@ -6,7 +6,7 @@ import java.io.Serializable
 data class MenuModel(@PrimaryKey(autoGenerate = true)
                      var _id:String,
                      var  sectionTitle:String,
-                     var  sectionCategories:ArrayList<CategoryModel>):Serializable {
+                     var  sectionCategories:ArrayList<SectionCategoryModel>):Serializable {
 }
 
 

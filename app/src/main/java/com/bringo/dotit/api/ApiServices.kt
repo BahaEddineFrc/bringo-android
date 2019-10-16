@@ -27,7 +27,8 @@ import retrofit2.http.GET
 
 
 interface ApiServices {
-
+//restaus 5d86d8c2956ab02c8ce2a976 5d86d8e2956ab02c8ce2a984
+//categories 5d86d8596009992b417f553e 5da4fc52b7ba832cb091f83e
     /************************* AUTHENTIFICATION ******************/
 
     @FormUrlEncoded
@@ -113,7 +114,7 @@ interface ApiServices {
     @GET("/dish/{id}")
     fun getDishById(@Path("id") type: String): Call<DishModel>
 
-    @GET("/dish/{restauId}/{categoryId}")
+    @GET("/dishes/{restauId}/{categoryId}")
     fun getDishesByCategory(@Path("restauId") restauId: String,@Path("categoryId") categoryId: String): Call<ArrayList<DishModel>>
 
     @FormUrlEncoded //todo finish this

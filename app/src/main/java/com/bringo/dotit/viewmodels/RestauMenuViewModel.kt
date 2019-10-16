@@ -30,6 +30,7 @@ class RestauMenuViewModel : ViewModel() {
             ) {
                 if (response.isSuccessful) {
                     restaurantLiveData.value = response.body()
+
                 }else{
                     Hell("getRestauById unSuccessful:" + response.code())
                 }

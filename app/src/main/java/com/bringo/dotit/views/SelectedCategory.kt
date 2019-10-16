@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -36,16 +37,11 @@ class SelectedCategory : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // Inflate the layout for this fragment
-        var view:View= inflater.inflate(R.layout.fragment_selected_category, container, false)
-
-        //restauRecycler=view.findViewById(R.id.category_dishes_rv) as RecyclerView
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_selected_category, container, false)
+        val view = binding.root
         viewModel = ViewModelProviders.of(this).get(CategoryDishesViewModel::class.java)
         initRecyclerView()
 
-        /*view.list_item.setOnClickListener { v:View ->
-            v.findNavController().navigate(R.id.action_homeList_to_restauMenu)
-        }*/
 
         return view
     }
@@ -54,13 +50,12 @@ class SelectedCategory : Fragment() {
     fun initRecyclerView(){
 
         mAdapter = DishesRVAdapters{dish->
-            Hell("SelectedCateg: clicked dish: ${dish}")
+            Hell("SelectedCateg: clicked dish: ${dish._id}")
 
             var bundle = bundleOf("dishId" to dish._id)
             findNavController().navigate(R.id.action_selectedCategory_to_selectedDish,bundle)
         }
         val layoutManager = LinearLayoutManager(context)
-        //layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.root.category_dishes_rv.layoutManager = layoutManager
         mAdapter.setDishesList(dataList) //delete
         binding.root.category_dishes_rv.adapter = mAdapter
@@ -69,13 +64,12 @@ class SelectedCategory : Fragment() {
     }
 
     private fun subscribeDataCallBack() {
-        //listen to data changes in the ViewModel
+
         var restauId=arguments?.getString("restauId")
         var categoryId=arguments?.getString("categoryId")
         viewModel.getDishesByCategory(restauId,categoryId)
 
         viewModel.dishesList.observe(this, Observer { dishes->
-            Log.d("CategoryDishes","CategoryDishes subscribeDataCallBack ${dishes}")
             mAdapter.setDishesList(dishes)
         })
 

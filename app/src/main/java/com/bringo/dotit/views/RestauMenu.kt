@@ -48,14 +48,12 @@ class RestauMenu : Fragment(){
 
     private fun subscribeDataCallback() {
         var restauId= arguments?.getString("restauId")
-        Hell("clicked restauId : ${restauId}")
+        //Hell("clicked restauId : ${restauId}")
         if(restauId==null) return
 
         restauMenuViewModel.getRestauById(restauId)
         restauMenuViewModel.restaurantLiveData.observe(this, Observer { restaurant->
             if(restaurant!=null) {
-                Hell("restaurantLiveData :" + restaurant)
-
                 val pagerAdapter = ScreenSlidePagerAdapter(fragmentManager as FragmentManager, restaurant) // The pager adapter, which provides the pages to the view pager widget.
                 mPager.adapter = pagerAdapter
             }
