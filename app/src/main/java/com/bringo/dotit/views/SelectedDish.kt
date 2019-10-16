@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.bringo.dotit.R
 import com.bringo.dotit.api.ApiFactory.retrofit
 import com.bringo.dotit.models.DishModel
+import com.bringo.dotit.models.MenuModel
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.CategoryDishesViewModel
@@ -33,10 +34,13 @@ class SelectedDish : Fragment() {
         return inflater.inflate(R.layout.fragment_selected_dish, container, false)
     }
 
+
     private fun initViewModelListeners() {
-        var dishId=arguments?.getString("dishId")
-        if (dishId==null) return
-        viewModel.getDishById(dishId)
+        val dish = arguments!!.getSerializable("dish") as DishModel
+
+        Hell("SelectedDish: received dish: ${dish}")
+        if (dish==null) return
+        //viewModel.getDishById(dishId)
     }
 
 

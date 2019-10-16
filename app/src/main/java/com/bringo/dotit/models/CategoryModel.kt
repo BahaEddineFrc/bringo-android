@@ -1,9 +1,10 @@
 package com.bringo.dotit.models
 
 import androidx.room.Entity
+import java.io.Serializable
 
 @Entity
-class CategoryModel {
+class CategoryModel : Serializable{
 
      var  _id:String= ""
      var  name:String= ""

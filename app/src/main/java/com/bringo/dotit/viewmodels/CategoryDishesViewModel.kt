@@ -1,8 +1,11 @@
 package com.bringo.dotit.viewmodels
 
+import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bringo.dotit.api.ApiFactory
+import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.DishModel
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.repositories.Repository
@@ -15,22 +18,38 @@ import retrofit2.Response
 
 class CategoryDishesViewModel : ViewModel(){
 
-    var catName : String = ""
+    var catName : String = "namee"
+    var catNameLV : MutableLiveData<String> =MutableLiveData<String>()
     var deliveryTime : String = ""
     var restauName : String = ""
+    var categoryId : String = ""
+    var listSize : Int = 0
 
     var dishesList : MutableLiveData<ArrayList<DishModel>> = MutableLiveData<ArrayList<DishModel>>()
 
 
     private val scope = CoroutineScope(GlobalScope.coroutineContext) //used to execute functions in Async mode
 
-    fun getDishesByCategory(restauId: String?, categoryId: String?) {
+    fun setUpCategory(category: CategoryModel) {
+        catName=category.name
+        deliveryTime=category.waitTime
+        categoryId=category._id
+    }
+
+    fun isDishListEmpty(): Int{
+        return if (listSize==0) View.VISIBLE else View.GONE
+    }
+
+    fun getDishesByCategory(restauId: String?) {
         if(restauId!=null && categoryId!=null)
         ApiFactory.retrofit.getDishesByCategory(restauId,categoryId).enqueue(object : Callback<ArrayList<DishModel>> {
             override fun onResponse(
                 call: Call<ArrayList<DishModel>>, response: Response<ArrayList<DishModel>> ) {
                 if (response.isSuccessful) {
                     dishesList.value = response.body()
+                    listSize=response.body()!!.size
+                    Hell("getDishesByCategory Successful ${response.body()} with ${restauId} and ${categoryId}" )
+
                 }else{
                     Hell("getDishesByCategory unSuccessful ${response.code()}, msg:" + response.errorBody())
                 }
@@ -42,5 +61,7 @@ class CategoryDishesViewModel : ViewModel(){
         })
 
     }
+
+
 
 }

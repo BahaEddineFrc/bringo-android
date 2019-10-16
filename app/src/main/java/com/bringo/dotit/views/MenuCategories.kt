@@ -65,9 +65,9 @@ class MenuCategories : Fragment() {
             //Hell("sectionCategories in MenuCategoriesFrgmnt = ${menuPerTitle.sectionCategories}")
 
             mAdapter = CategoriesRVAdapter { category ->
-                Hell("MenuCategories: clicked category: ${category._id} and sending restauId ${restauId}")
+                //Hell("MenuCategories: clicked category: ${category._id} and sending restauId ${restauId}")
 
-                var bundle = bundleOf("categoryId" to category._id, "restauId" to restauId)
+                var bundle = bundleOf("category" to category, "restauId" to restauId)
                 findNavController().navigate(R.id.action_restauMenu_to_selectedCategory, bundle)
             }
 
