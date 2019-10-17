@@ -2,7 +2,6 @@ package com.bringo.dotit.views
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,10 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bringo.dotit.R
 import com.bringo.dotit.adapters.DishesRVAdapters
-import com.bringo.dotit.databinding.CategoryBinding
+import com.bringo.dotit.databinding.FragmentSelectedCategoryBinding
 import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.DishModel
-import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.CategoryDishesViewModel
 import kotlinx.android.synthetic.main.fragment_selected_category.view.*
 import java.io.Serializable
@@ -31,7 +29,7 @@ class SelectedCategory : Fragment() {
     var restauRecycler : RecyclerView?=null
 
     private lateinit var mAdapter: DishesRVAdapters
-    private lateinit var binding : CategoryBinding
+    private lateinit var binding : FragmentSelectedCategoryBinding
     var dataList: ArrayList<DishModel> = ArrayList()
 
     override fun onCreateView(
@@ -40,12 +38,13 @@ class SelectedCategory : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_selected_category, container, false)
-        val view = binding.root
         viewModel = ViewModelProviders.of(this).get(CategoryDishesViewModel::class.java)
+        binding.categoryviewmodel=viewModel
+
         initRecyclerView()
 
 
-        return view
+        return binding.root
     }
 
 
@@ -68,11 +67,11 @@ class SelectedCategory : Fragment() {
     private fun subscribeDataCallBack() {
 
         var restauId=arguments?.getString("restauId")
+        var restauName=arguments?.getString("restauName")
         var category=arguments?.getSerializable("category") as CategoryModel
 
-        //Hell("received ${restauId} and ${category}")
 
-        viewModel.setUpCategory(category)
+        viewModel.setUpCategory(category,restauName)
         viewModel.getDishesByCategory(restauId)
 
         viewModel.dishesList.observe(this, Observer { dishes->

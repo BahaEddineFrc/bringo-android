@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bringo.dotit.R
 import com.bringo.dotit.adapters.DishesRVAdapters.DishesViewHolder
-import com.bringo.dotit.databinding.CategoryBinding
-import com.bringo.dotit.databinding.CategoryCardBinding
 import com.bringo.dotit.databinding.DishCardBinding
 import com.bringo.dotit.databinding.RestaurantBinding
 import com.bringo.dotit.models.DishModel
@@ -19,9 +17,9 @@ class DishesRVAdapters (private val callback : (DishModel)->Unit) : RecyclerView
 
     private val dishesArray: ArrayList<DishModel> =ArrayList()
 
-    fun setDishesList(dishesArray: ArrayList<DishModel> ){
+    fun setDishesList(dishes: ArrayList<DishModel> ){
         dishesArray.clear()
-        dishesArray.addAll(dishesArray)
+        dishesArray.addAll(dishes)
         notifyDataSetChanged()
     }
 

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" >
 
-    <data class="CategoryBinding">
+    <data>
         <variable
                 name="categoryviewmodel"
                 type="com.bringo.dotit.viewmodels.CategoryDishesViewModel" />
@@ -15,13 +15,12 @@
              android:orientation="vertical">
 
     <TextView
-            android:id="@+id/cat_name"
+            android:text="@{categoryviewmodel.catName}"
             android:textAlignment="center"
             android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Category name"
-            android:text="@{categoryviewmodel.catName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <View
@@ -41,8 +40,9 @@
             android:layout_below="@+id/cat_separator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
             android:hint="deliveryTime from restauName"
-            android:text="@{categoryviewmodel.deliveryTime +` from `+ categoryviewmodel.restauName}"
+            android:text="@{categoryviewmodel.deliveryTime +` mn from `+ categoryviewmodel.restauName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     <TextView
             android:id="@+id/dishes_exist"
@@ -50,7 +50,7 @@
             android:padding="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{categoryviewmodel.isDishListEmpty()}"
+            android:visibility="@{categoryviewmodel.isDishListEmpty}"
             android:hint="There are no dishes in this category"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 

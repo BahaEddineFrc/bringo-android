@@ -1,14 +1,13 @@
 package com.bringo.dotit.viewmodels
 
 import android.view.View
-import androidx.lifecycle.LiveData
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.DishModel
-import com.bringo.dotit.models.Restaurant
-import com.bringo.dotit.repositories.Repository
 import com.bringo.dotit.utils.Hell
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
@@ -18,26 +17,28 @@ import retrofit2.Response
 
 class CategoryDishesViewModel : ViewModel(){
 
-    var catName : String = "namee"
-    var catNameLV : MutableLiveData<String> =MutableLiveData<String>()
-    var deliveryTime : String = ""
-    var restauName : String = ""
+    var dishesList = MutableLiveData<ArrayList<DishModel>>()
+
+    val catName = ObservableField<String>()
+    val deliveryTime = ObservableField<String>()
+    var restauName = ObservableField<String>()
+    var isDishListEmpty = ObservableInt(0)
     var categoryId : String = ""
     var listSize : Int = 0
-
-    var dishesList : MutableLiveData<ArrayList<DishModel>> = MutableLiveData<ArrayList<DishModel>>()
 
 
     private val scope = CoroutineScope(GlobalScope.coroutineContext) //used to execute functions in Async mode
 
-    fun setUpCategory(category: CategoryModel) {
-        catName=category.name
-        deliveryTime=category.waitTime
+    fun setUpCategory(category: CategoryModel, restauName: String?) {
+        catName.set(category.name)
+        deliveryTime.set(category.waitTime)
+        this.restauName.set(restauName)
         categoryId=category._id
+        Hell("setUpCategory name : ${category.name}")
     }
 
-    fun isDishListEmpty(): Int{
-        return if (listSize==0) View.VISIBLE else View.GONE
+    fun isDishListEmpty(){
+        if (listSize==0) isDishListEmpty.set(View.VISIBLE) else isDishListEmpty.set(View.GONE)
     }
 
     fun getDishesByCategory(restauId: String?) {
@@ -45,10 +46,12 @@ class CategoryDishesViewModel : ViewModel(){
         ApiFactory.retrofit.getDishesByCategory(restauId,categoryId).enqueue(object : Callback<ArrayList<DishModel>> {
             override fun onResponse(
                 call: Call<ArrayList<DishModel>>, response: Response<ArrayList<DishModel>> ) {
+
                 if (response.isSuccessful) {
+                    //Hell("getDishesByCategory Successful ${response.body()!!.size} with ${restauId} and ${categoryId}" )
                     dishesList.value = response.body()
                     listSize=response.body()!!.size
-                    Hell("getDishesByCategory Successful ${response.body()} with ${restauId} and ${categoryId}" )
+                    isDishListEmpty()
 
                 }else{
                     Hell("getDishesByCategory unSuccessful ${response.code()}, msg:" + response.errorBody())

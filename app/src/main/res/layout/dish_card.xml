@@ -42,8 +42,9 @@
 
                 <TextView
                         android:id="@+id/dish_price"
-                        android:text="@{dishmodel.price"
+                        android:text="@{dishmodel.price}"
                         android:layout_below="@+id/restau_name"
+                        android:layout_alignParentEnd="true"
                         style="@style/TextAppearance.AppCompat.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

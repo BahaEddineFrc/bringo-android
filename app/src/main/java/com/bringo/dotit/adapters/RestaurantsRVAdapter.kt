@@ -37,7 +37,7 @@ class RestaurantsRVAdapter(private val callback: (Restaurant) -> Unit)
     }
 
     override fun getItemCount(): Int {
-        Log.d("LIST_SIZE"," " + restaurantsArray.size)
+        //Log.d("LIST_SIZE"," " + restaurantsArray.size)
         return restaurantsArray.size
     }
 

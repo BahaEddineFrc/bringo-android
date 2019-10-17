@@ -83,6 +83,7 @@ class RestauMenu : Fragment(){
             val fragment = MenuCategories()
             val bundle = Bundle()
             bundle.putString("restauId", restau._id)
+            bundle.putString("restauName", restau.name)
             bundle.putSerializable("menuPerTitle", restau.menu[position] as Serializable)
             fragment.arguments = bundle
             return fragment

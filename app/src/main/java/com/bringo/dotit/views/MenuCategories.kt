@@ -59,7 +59,8 @@ class MenuCategories : Fragment() {
 
         val bundle = this.arguments
         if (bundle != null) {
-            val restauId = bundle.getString("restauId", "0")
+            val restauId = bundle.getString("restauId")
+            val restauName = bundle.getString("restauName")
             val menuPerTitle = bundle.getSerializable("menuPerTitle") as MenuModel
 
             //Hell("sectionCategories in MenuCategoriesFrgmnt = ${menuPerTitle.sectionCategories}")
@@ -67,7 +68,7 @@ class MenuCategories : Fragment() {
             mAdapter = CategoriesRVAdapter { category ->
                 //Hell("MenuCategories: clicked category: ${category._id} and sending restauId ${restauId}")
 
-                var bundle = bundleOf("category" to category, "restauId" to restauId)
+                var bundle = bundleOf("category" to category, "restauId" to restauId, "restauName" to restauName)
                 findNavController().navigate(R.id.action_restauMenu_to_selectedCategory, bundle)
             }
 
