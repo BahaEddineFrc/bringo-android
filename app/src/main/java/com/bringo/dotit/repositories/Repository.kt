@@ -86,7 +86,7 @@ class Repository (private val api : ApiServices) : BaseRepository() {
         }
 
     fun getConnectedUser(): MutableLiveData<User> {
-        var user= User("repository","test")
+        var user= User()
         lateinit var livedataUser:MutableLiveData<User>
         livedataUser.postValue(user)
         return livedataUser

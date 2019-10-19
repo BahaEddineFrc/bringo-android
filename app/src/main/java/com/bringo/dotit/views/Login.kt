@@ -15,7 +15,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bringo.dotit.R
+import com.bringo.dotit.databinding.FragmentSelectedCategoryBinding
+import com.bringo.dotit.databinding.LoginBinding
+import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.utils.handleButtonFinishedLoading
 import com.bringo.dotit.utils.handleButtonLoading
 import com.bringo.dotit.viewmodels.LoginViewModel
@@ -33,14 +37,16 @@ class Login : Fragment() {
     lateinit var btnLogin:Button
     var loginScreenEnabled:Boolean =true
 
+    private lateinit var binding : LoginBinding
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view:View=inflater.inflate(R.layout.fragment_login, container, false)
-        //binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         val model = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        //val view:View = binding.root
+        binding.loginviewmodel=model
 
         /*var registerLayout =view.findViewById<View>(R.id.register_fields)
 
@@ -58,16 +64,12 @@ class Login : Fragment() {
             }
         }*/
 
-        model.getUser()
-        model.userLiveData?.observe(this, Observer { user->
+
+        model.userLiveData.observe(this, Observer { user->
             //handleButtonFinishedLoading(spin_kit,btnLogin)
+            findNavController().navigate(R.id.action_login_to_profile)
         })
 
-        view.button_bottom_long.setOnClickListener { v:View ->
-            Log.d("Login","onClicked no_account_btn")
-            v.findNavController().navigate(R.id.action_login_to_profile)
-        }
-
-        return view
+        return binding.root
     }
 }

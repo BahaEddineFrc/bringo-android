@@ -32,7 +32,7 @@ interface ApiServices {
     /************************* AUTHENTIFICATION ******************/
 
     @FormUrlEncoded
-    @POST("/signin")
+    @PUT("/signin")
     fun signIn(
         @Field("email") email: String, @Field("password") password: String): Call<User>
 
@@ -41,7 +41,7 @@ interface ApiServices {
     fun signUp(
         @Field("fullname") fullname: String, @Field("email") email: String,
         @Field("password") password: String, @Field("phone") phone: String,
-        @Field("pic") pic: String, @Field("address") address: String ): Call<HashMap<String,User>>
+        @Field("pic") pic: String, @Field("address") address: String ): Call<User>
 
     @FormUrlEncoded
     @PUT("/changePassword")

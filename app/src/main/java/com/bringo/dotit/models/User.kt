@@ -6,24 +6,27 @@ import androidx.room.PrimaryKey
 
 
 @Entity
-data class User(var email: String="", var password: String=""){
+class User(){
 
     @PrimaryKey(autoGenerate = true)
-    var  id:String = ""
-    var  name:String = ""
+    var  _id:String = ""
+    var  fullname:String = ""
+    var  email:String = ""
+    var  password:String = ""
     var  address:String = ""
     var  phone:String = ""
     var  pic:String = ""
 
-    constructor(id: String, name: String, email: String, password: String, address: String, phone: String, pic: String) : this() {
-        this.id = id
-        this.name = name
+    constructor(id: String, fullname: String, email: String, password: String, address: String, phone: String, pic: String) : this() {
+        this._id = id
+        this.fullname = fullname
         this.address = address
         this.email = email
         this.password = password
         this.phone = phone
         this.pic = pic
     }
+
 
 
     fun getImageUrl():String {
@@ -40,5 +43,9 @@ data class User(var email: String="", var password: String=""){
 
     fun isPasswordLengthGreaterThan5(): Boolean {
         return password.length > 5
+    }
+
+    override fun toString(): String {
+        return "User(email='$email', password='$password', id='$_id', name='$fullname', address='$address', phone='$phone', pic='$pic')"
     }
 }

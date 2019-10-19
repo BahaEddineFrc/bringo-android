@@ -37,7 +37,7 @@ class Profile : Fragment() {
         model.userLiveData?.observe(this, Observer { user->
             //pic
             if (user!=null) {
-                fullname.text = user.name
+                fullname.text = user.fullname
                 email.text = user.email
                 phone.text = user.phone
                 address.text = user.address

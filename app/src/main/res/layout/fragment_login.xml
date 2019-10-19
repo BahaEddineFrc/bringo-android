@@ -14,14 +14,14 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
 
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp">
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp">
 
         <LinearLayout
                 android:id="@+id/register_fields"
-                android:visibility="gone"
+                android:visibility="@{loginviewmodel.isRegisterScreenOn}"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -35,7 +35,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/fullname"
                         android:hint="Fullname"
-                        android:text="@={loginviewmodel.name}"
+                        android:text="@={loginviewmodel.fullname}"
                         android:inputType="textPersonName"
                         android:fontFamily="@font/lato"
                         android:layout_width="match_parent"
@@ -76,9 +76,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
                 app:errorEnabled="true"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
             <com.google.android.material.textfield.TextInputEditText
@@ -93,16 +90,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
                 app:errorEnabled="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:hint="Password"
-                    android:text="@{loginviewmodel.password}"
+                    android:text="@={loginviewmodel.password}"
                     android:inputType="textPassword"
                     android:fontFamily="@font/lato"
                     android:layout_width="match_parent"
@@ -133,10 +126,10 @@
                     android:id="@+id/button_bottom_long"
                     android:backgroundTint="@color/colorPrimary"
                     android:fontFamily="@font/lato"
-                    android:text="login"
-                    android:onClick="@{(v)->loginviewmodel.onClicked(v)}"
+                    android:text="@{loginviewmodel.buttonText}"
                     android:clickable="true"
                     android:paddingEnd="60dp"
+                    android:onClick="@{()->loginviewmodel.onLoginClicked()}"
                     android:paddingStart="60dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -147,12 +140,12 @@
         </RelativeLayout>
 
         <com.google.android.material.button.MaterialButton
-                android:onClick="@{(v)->loginviewmodel.onClicked(v)}"
+                android:onClick="@{()->loginviewmodel.onLoginRegisterToggle()}"
                 android:id="@+id/no_account_btn"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:textColor="@color/secondary_text"
-                android:text="@{loginviewmodel.account}"
+                android:text="@={loginviewmodel.account}"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
