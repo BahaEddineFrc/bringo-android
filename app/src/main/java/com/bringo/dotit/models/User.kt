@@ -3,11 +3,12 @@ package com.bringo.dotit.models
 import android.util.Patterns
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.bringo.dotit.utils.RESTAURANT_TYPE
+import com.bringo.dotit.utils.USER_TYPE
 
 
 @Entity
 class User(){
-
     @PrimaryKey(autoGenerate = true)
     var  _id:String = ""
     var  fullname:String = ""
@@ -16,8 +17,9 @@ class User(){
     var  address:String = ""
     var  phone:String = ""
     var  pic:String = ""
+    var  type:String = ""
 
-    constructor(id: String, fullname: String, email: String, password: String, address: String, phone: String, pic: String) : this() {
+    constructor(id: String, fullname: String, email: String, password: String, address: String, phone: String, pic: String, type:String) : this() {
         this._id = id
         this.fullname = fullname
         this.address = address
@@ -25,6 +27,7 @@ class User(){
         this.password = password
         this.phone = phone
         this.pic = pic
+        this.type = type
     }
 
 
@@ -34,12 +37,17 @@ class User(){
         }
 
 
+    fun isRestaurant(): Boolean {
+        return RESTAURANT_TYPE===type
+    }
 
+    fun isCustomerUser(): Boolean {
+        return USER_TYPE===type
+    }
 
     fun isEmailValid(): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
-
 
     fun isPasswordLengthGreaterThan5(): Boolean {
         return password.length > 5

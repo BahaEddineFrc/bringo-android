@@ -67,7 +67,7 @@ class Login : Fragment() {
 
         model.userLiveData.observe(this, Observer { user->
             //handleButtonFinishedLoading(spin_kit,btnLogin)
-            findNavController().navigate(R.id.action_login_to_profile)
+            if (user.isCustomerUser()) findNavController().navigate(R.id.action_login_to_profile)
         })
 
         return binding.root

@@ -90,7 +90,6 @@ class LoginViewModel : ViewModel() {
             register(fullname.value.toString(),email.value.toString(),password.value.toString(),
             phone.value.toString(),address.value.toString())
 
-
         /*
         if (!user.isEmailValid()) {
             email.error = "Enter a Valid E-mail Address"
@@ -137,7 +136,6 @@ class LoginViewModel : ViewModel() {
         val pic="https://library.kissclipart.com/20181005/bee/kissclipart-white-person-icon-png-clipart-computer-icons-deskt-73f851694f2ebca8.jpg"
         ApiFactory.retrofit.signUp(fullname,email,password,phone,pic,address)
             .enqueue(object : Callback<User> {
-
             override fun onResponse(call: Call<User>, response: Response<User>)
             {
                 if(response.isSuccessful){
@@ -150,7 +148,6 @@ class LoginViewModel : ViewModel() {
             override fun onFailure(call: Call<User>, t: Throwable) {
                 Hell("Login -> register err:"+t.message!!)
             }
-
         })
     }
 
