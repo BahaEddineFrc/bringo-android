@@ -92,13 +92,7 @@ class Repository (private val api : ApiServices) : BaseRepository() {
         return livedataUser
     }
 
-    suspend fun getConnectedUserProfile(): MutableLiveData<User> {
-        var user= User("id_123","baha ferchichi","baha.ferchichi@aiesec.net","pass",
-            "3835 green pond Rd, bethlehem, PA","+216 99 285 120","https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/08/GettyImages-496903944-920x584.jpg")
-        var livedataUser=MutableLiveData<User>()
-        withContext(Dispatchers.Main){livedataUser!!.value=user}
-        return livedataUser
-    }
+
 
     suspend fun getCategoryDishes(): MutableLiveData<ArrayList<DishModel>> {
         var liveDishesList:MutableLiveData<ArrayList<DishModel>> = MutableLiveData<ArrayList<DishModel>>()

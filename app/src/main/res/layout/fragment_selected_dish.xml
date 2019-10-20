@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".views.RestauMenu">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data class="DishBinding">
+
         <variable
                 name="dishviewmodel"
                 type="com.bringo.dotit.viewmodels.DishViewModel" />
@@ -11,136 +12,184 @@
 
 
     <RelativeLayout
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-
-
-    <ImageView
-            android:id="@+id/dish_pic"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:img="@{dishviewmodel.imageUrl}"
-            android:background="@drawable/restau_back"/>
-
-    <TextView
-            android:text="@{dishviewmodel.dishName}"
-            android:id="@+id/dish_name"
-            android:textAlignment="center"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/dish_pic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Dish name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-    <View
-            android:id="@+id/dish_separator"
-            android:layout_below="@+id/dish_name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_width="70dp"
-            android:layout_height="2dp"
-            android:background="@color/light_gray" />
-
-    <TextView
-            android:text="@{dishviewmodel.dishDescription}"
-            android:id="@+id/dish_description"
-            android:textAlignment="center"
-            android:layout_below="@+id/dish_separator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Dish description"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:layout_height="match_parent">
 
 
-    <LinearLayout
-            android:id="@+id/instructionstext"
-            android:padding="8dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/light_gray"
-            android:layout_below="@+id/dish_description"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
-        <TextView
-                android:text="Special instuctions"
-                style="@style/TextAppearance.AppCompat.Medium"
+        <ImageView
+                android:id="@+id/dish_pic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-    </LinearLayout>
+                android:layout_height="230dp"
+                android:background="@drawable/restau_back"
+                android:img="@{dishviewmodel.imageUrl}" />
 
-    <com.google.android.material.textfield.TextInputEditText
-            android:text="@{dishviewmodel.dishNote}"
-            android:id="@+id/order_note"
-            android:layout_below="@id/instructionstext"
-            android:hint="Add a note (extra sauce, no onions, etc..)"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="50dp"/>
-    <LinearLayout
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/order_note"
-            android:orientation="horizontal"
-            android:id="@+id/plusminuslayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/order_plus"
-                app:icon="@drawable/ic_minus_black"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
         <TextView
-                android:text="@{dishviewmodel.nbr}"
-                android:hint="1"
-                android:textColor="@color/primary_text"
+                android:id="@+id/dish_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dish_pic"
+                android:layout_marginTop="20dp"
+                android:hint="Dish name"
+                android:text="@{dishviewmodel.dishName}"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <View
+                android:id="@+id/dish_separator"
+                android:layout_width="70dp"
+                android:layout_height="2dp"
+                android:layout_below="@+id/dish_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/light_gray" />
+
+        <TextView
+                android:id="@+id/dish_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dish_separator"
+                android:hint="Dish description"
+                android:text="@{dishviewmodel.dishDescription}"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+        <LinearLayout
+                android:id="@+id/instructionstext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dish_description"
+                android:layout_marginTop="10dp"
+                android:background="@color/light_gray"
+                android:padding="8dp">
+
+            <TextView
+                    style="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Special instuctions" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/order_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/instructionstext"
+                android:hint="Add a note (extra sauce, no onions, etc..)"
+                android:minHeight="50dp"
+                android:text="@{dishviewmodel.dishNote}" />
+
+        <LinearLayout
+                android:id="@+id/plusminuslayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/order_minus"
-                app:icon="@drawable/ic_plus_black"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/order_note"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/order_plus"
+                    android:clickable="@{dishviewmodel.nbr &gt; 1}"
+                    android:onClick="@{()->dishviewmodel.decNbr()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_prev" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="1"
+                    android:padding="20dp"
+                    android:text="@{``+dishviewmodel.nbr}"
+                    android:textColor="@color/primary_text" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/order_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="@{dishviewmodel.nbr &lt; 20}"
+                    android:onClick="@{()->dishviewmodel.incNbr()}"
+                    android:src="@drawable/ic_next" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/prevnextlayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-    </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/plusminuslayout"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/order_prev"
+                    android:onClick="@{()->dishviewmodel.toPrevSize()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_prev" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Small"
+                    android:padding="20dp"
+                    android:text="@{``+dishviewmodel.size}"
+                    android:textColor="@color/primary_text" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/order_next"
+                    android:onClick="@{()->dishviewmodel.toNextSize()}"
+                    android:clickable="@{dishviewmodel.sizeIndex &lt; dishviewmodel.sizes.size()-1}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_next" />
+        </LinearLayout>
+
+        <RatingBar
+                android:id="@+id/dish_rating"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prevnextlayout"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:isIndicator="false"
+                android:numStars="@{dishviewmodel.rate}"
+                android:stepSize="0.5" />
 
 
-    <RatingBar
-            android:layout_centerHorizontal="true"
-            android:layout_margin="20dp"
-            android:id="@+id/dish_rating"
-            android:numStars="@{dishviewmodel.rate}"
-            style="?android:attr/ratingBarStyleSmall"
-            android:stepSize="0.5"
-            android:isIndicator="false"
-            android:layout_below="@+id/plusminuslayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <RelativeLayout
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <TextView
-            android:hint="price"
-            android:text="@{dishviewmodel.price}"
-            android:id="@+id/dish_price"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/dish_rating"
-            android:textColor="@color/primary_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    <Button
-            android:id="@+id/button_bottom_long"
-            android:backgroundTint="@color/colorPrimary"
-            android:fontFamily="@font/lato"
-            android:text="order"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_alignParentBottom="true"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/dish_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:textSize="18sp"
+                    android:elevation="3dp"
+                    android:hint="price"
+                    android:text="@{dishviewmodel.totalPrice+`d`}"
+                    android:textColor="@color/white" />
+            <Button
+                    android:id="@+id/button_bottom_long"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/lato"
+                    android:text="order"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
 
-</RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </layout>

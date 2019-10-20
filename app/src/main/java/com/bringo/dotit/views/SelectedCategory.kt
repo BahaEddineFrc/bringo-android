@@ -18,6 +18,7 @@ import com.bringo.dotit.adapters.DishesRVAdapters
 import com.bringo.dotit.databinding.FragmentSelectedCategoryBinding
 import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.DishModel
+import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.CategoryDishesViewModel
 import kotlinx.android.synthetic.main.fragment_selected_category.view.*
 import java.io.Serializable
@@ -51,7 +52,7 @@ class SelectedCategory : Fragment() {
     fun initRecyclerView(){
 
         mAdapter = DishesRVAdapters{dish->
-            //Hell("SelectedCateg: clicked dish: ${dish._id}")
+            Hell("SelectedCateg: clicked dish: ${dish._id}")
 
             var bundle = bundleOf("dish" to dish as Serializable)
             findNavController().navigate(R.id.action_selectedCategory_to_selectedDish,bundle)

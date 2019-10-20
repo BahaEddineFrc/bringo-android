@@ -42,7 +42,7 @@
 
                 <TextView
                         android:id="@+id/dish_price"
-                        android:text="@{dishmodel.price}"
+                        android:text="@{``+dishmodel.sizes[0].price}"
                         android:layout_below="@+id/restau_name"
                         android:layout_alignParentEnd="true"
                         style="@style/TextAppearance.AppCompat.Small"

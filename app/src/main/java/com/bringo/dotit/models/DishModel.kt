@@ -10,13 +10,20 @@ data class DishModel (@PrimaryKey(autoGenerate = true)
                       var  name:String,
                       var  description:String,
                       var  category:CategoryModel,
-                      var  price:String,
                       var  stars:Int,
                       var  pic:String,
                       var  sizes:ArrayList<DishSizes>):Serializable {
 
 
+
     fun getImageUrl():String {
+        return pic
+    }
+
+    fun getMinPrice():String {
+        return pic
+    }
+    fun getMinSize():String {
         return pic
     }
 }
