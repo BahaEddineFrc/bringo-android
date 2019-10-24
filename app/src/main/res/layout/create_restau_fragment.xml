@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.bringo.dotit.viewmodels.CreateRestauViewModel" />
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp">
+
+        <ImageView
+                android:background="@drawable/restau_back"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
+        
+        <LinearLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/fields"
+                android:visibility="@{viewmodel.isRegisterScreenOn}"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:errorEnabled="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fullname"
+                        android:hint="Restaurant name"
+                        android:text="@={viewmodel.restauName}"
+                        android:inputType="textPersonName"
+                        android:fontFamily="@font/lato"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                    app:errorEnabled="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone"
+                        android:hint="Restaurant phone number"
+                        android:text="@={viewmodel.phone}"
+                        android:inputType="number"
+                        android:fontFamily="@font/lato"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    app:errorEnabled="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/address"
+                        android:hint="Restaurant address"
+                        android:text="@={viewmodel.address}"
+                        android:inputType="text"
+                        android:fontFamily="@font/lato"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                    app:errorEnabled="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email"
+                        android:hint="Email"
+                        android:text="@={viewmodel.email}"
+                        android:inputType="textEmailAddress"
+                        android:fontFamily="@font/lato"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp">
+
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                    android:id="@+id/spin_kit"
+                    android:layout_marginStart="220dp"
+                    android:elevation="10dp"
+                    style="@style/SpinKitView.Small.FadingCircle"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    app:SpinKit_Color="@color/white" />
+
+
+            <Button
+                    android:id="@+id/button_bottom_long"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/lato"
+                    android:text="Save and proceed"
+                    android:clickable="true"
+                    android:paddingEnd="60dp"
+                    android:onClick="@{()->viewmodel.onRestauSave()}"
+                    android:paddingStart="60dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

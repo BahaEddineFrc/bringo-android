@@ -33,7 +33,6 @@
             android:layout_marginEnd="10dp">
 
 
-
         <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
@@ -124,6 +123,21 @@
                         android:text="@{profileviewmodel.address}" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <Button
+                android:id="@+id/button_bottom_long"
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_height="50dp"
+                android:visibility="@{profileviewmodel.isRestaurantOwner()}"
+                android:onClick="@{(v)->profileviewmodel.myRestauClicked(v)}"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/lato"
+                android:text="My restaurant information"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
     </LinearLayout>
     </LinearLayout>
 </layout>

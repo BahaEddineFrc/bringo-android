@@ -80,10 +80,14 @@ interface ApiServices {
     @GET("/restaurant/{id}")
     fun getRestauById(@Path("id") type: String): Call<Restaurant>
 
-    @FormUrlEncoded //todo finish this
+    @FormUrlEncoded
     @POST("/restaurant")
     fun createRestau(
-        @Field("name") fullname: String, @Field("email") email: String ): Call<HashMap<String,User>>
+        @Field("name") name: String,
+        @Field("address") address: String,
+        @Field("phone") phone: String,
+        @Field("email") email: String,
+        @Field("pic") pic: String ): Call<Restaurant>
 
     @DELETE("/restaurant/{id}")
     fun deleteRestau(@Path("id") type: String): Call<HashMap<String,String>>

@@ -5,10 +5,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.bringo.dotit.utils.RESTAURANT_TYPE
 import com.bringo.dotit.utils.USER_TYPE
+import java.io.Serializable
 
 
 @Entity
-class User(){
+class User():Serializable{
     @PrimaryKey(autoGenerate = true)
     var  _id:String = ""
     var  fullname:String = ""

@@ -13,6 +13,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bringo.dotit.R
+import com.bringo.dotit.databinding.ProfileBinding
+import com.bringo.dotit.models.User
+import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.utils.handleButtonFinishedLoading
 import com.bringo.dotit.utils.handleButtonLoading
 import com.bringo.dotit.viewmodels.LoginViewModel
@@ -24,28 +27,27 @@ import java.util.*
 
 class Profile : Fragment() {
 
+    lateinit var binding : ProfileBinding
+    lateinit var viewModel:ProfileViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view:View=inflater.inflate(R.layout.fragment_profile, container, false)
-        //binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
-        val model = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
 
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        binding.profileviewmodel=viewModel
 
-        model.getProfileInfo()
-        model.userLiveData?.observe(this, Observer { user->
-            //pic
-            if (user!=null) {
-                fullname.text = user.fullname
-                email.text = user.email
-                phone.text = user.phone
-                address.text = user.address
-            }
-        })
+        initViewModelListeners()
 
-        return view
+        return binding.root
     }
 
+    private fun initViewModelListeners() {
+        val user = arguments!!.getSerializable("user") as User
+        viewModel.intitializeProfile(user)
+        viewModel.getProfileInfo()
+    }
 
 }

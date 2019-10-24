@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -28,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import java.io.Serializable
 import java.util.*
 
 
@@ -67,7 +69,8 @@ class Login : Fragment() {
 
         model.userLiveData.observe(this, Observer { user->
             //handleButtonFinishedLoading(spin_kit,btnLogin)
-            if (user.isCustomerUser()) findNavController().navigate(R.id.action_login_to_profile)
+            var bundle = bundleOf("user" to user)
+            if (user.isCustomerUser()) findNavController().navigate(R.id.action_login_to_profile,bundle)
         })
 
         return binding.root

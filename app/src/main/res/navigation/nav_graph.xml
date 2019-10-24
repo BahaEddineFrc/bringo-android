@@ -3,7 +3,11 @@
             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav_graph" app:startDestination="@id/homeList">
     <fragment android:id="@+id/profile" android:name="com.bringo.dotit.views.Profile" android:label="fragment_profile"
-              tools:layout="@layout/fragment_profile"/>
+              tools:layout="@layout/fragment_profile">
+        <action
+                android:id="@+id/action_profile_to_myRestau"
+                app:destination="@id/myRestau" />
+    </fragment>
     <fragment android:id="@+id/homeList" android:name="com.bringo.dotit.views.HomeList" android:label="fragment_home_list"
               tools:layout="@layout/fragment_home_list">
         <action android:id="@+id/action_homeList_to_restauMenu" app:destination="@id/restauMenu"/>
@@ -46,4 +50,13 @@
             android:name="com.bringo.dotit.views.MenuCategories"
             android:label="restau_menu_items_fragment"
             tools:layout="@layout/menu_categories_fragment" />
+    <fragment
+            android:id="@+id/myRestau"
+            android:name="com.bringo.dotit.views.CreateRestau"
+            android:label="my_restau_fragment"
+            tools:layout="@layout/create_restau_fragment" >
+        <action
+                android:id="@+id/action_myRestau_to_restauMenu"
+                app:destination="@id/restauMenu" />
+    </fragment>
 </navigation>
