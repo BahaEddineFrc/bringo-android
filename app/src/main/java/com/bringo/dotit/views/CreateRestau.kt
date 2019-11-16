@@ -46,8 +46,7 @@ class CreateRestau : Fragment() {
     private fun initViewModelListeners() {
         viewModel.restauLiveData.observe(this, Observer{restau->
             var bundle = bundleOf("restauId" to restau._id)
-            findNavController().navigate(R.id.action_myRestau_to_restauMenu,bundle)
+            findNavController().navigate(R.id.action_createRestau_to_restauMenu,bundle)
         })
     }
-
 }

@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="30dp"
                 android:layout_height="50dp"
-                android:visibility="@{profileviewmodel.isRestaurantOwner()}"
+                android:visibility="@{profileviewmodel.fabIsVisible}"
                 android:onClick="@{(v)->profileviewmodel.myRestauClicked(v)}"
                 android:backgroundTint="@color/colorPrimary"
                 android:fontFamily="@font/lato"

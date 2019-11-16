@@ -1,8 +1,11 @@
 package com.bringo.dotit.viewmodels
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import com.bringo.dotit.R
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.utils.Hell
@@ -18,6 +21,10 @@ class RestauMenuViewModel : ViewModel() {
 
     fun getImageUrl():String {
         return img
+    }
+
+    fun createDish(v: View) {
+        v.findNavController().navigate(R.id.action_profile_to_createRestau)
     }
 
     var restaurantLiveData = MutableLiveData<Restaurant>()

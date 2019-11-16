@@ -70,7 +70,7 @@ class Login : Fragment() {
         model.userLiveData.observe(this, Observer { user->
             //handleButtonFinishedLoading(spin_kit,btnLogin)
             var bundle = bundleOf("user" to user)
-            if (user.isCustomerUser()) findNavController().navigate(R.id.action_login_to_profile,bundle)
+            findNavController().navigate(R.id.action_login_to_profile,bundle)
         })
 
         return binding.root

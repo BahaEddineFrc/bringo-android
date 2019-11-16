@@ -5,8 +5,8 @@
     <fragment android:id="@+id/profile" android:name="com.bringo.dotit.views.Profile" android:label="fragment_profile"
               tools:layout="@layout/fragment_profile">
         <action
-                android:id="@+id/action_profile_to_myRestau"
-                app:destination="@id/myRestau" />
+                android:id="@+id/action_profile_to_createRestau"
+                app:destination="@id/createRestau" />
     </fragment>
     <fragment android:id="@+id/homeList" android:name="com.bringo.dotit.views.HomeList" android:label="fragment_home_list"
               tools:layout="@layout/fragment_home_list">
@@ -18,6 +18,9 @@
     <fragment android:id="@+id/restauMenu" android:name="com.bringo.dotit.views.RestauMenu"
               android:label="fragment_restau_menu" tools:layout="@layout/fragment_restau_menu">
         <action android:id="@+id/action_restauMenu_to_selectedCategory" app:destination="@id/selectedCategory"/>
+        <action
+                android:id="@+id/action_restauMenu_to_createDish"
+                app:destination="@id/createDish" />
     </fragment>
     <fragment android:id="@+id/selectedCategory" android:name="com.bringo.dotit.views.SelectedCategory"
               android:label="fragment_selected_category" tools:layout="@layout/fragment_selected_category">
@@ -51,12 +54,17 @@
             android:label="restau_menu_items_fragment"
             tools:layout="@layout/menu_categories_fragment" />
     <fragment
-            android:id="@+id/myRestau"
+            android:id="@+id/createRestau"
             android:name="com.bringo.dotit.views.CreateRestau"
             android:label="my_restau_fragment"
             tools:layout="@layout/create_restau_fragment" >
         <action
-                android:id="@+id/action_myRestau_to_restauMenu"
+                android:id="@+id/action_createRestau_to_restauMenu"
                 app:destination="@id/restauMenu" />
     </fragment>
+    <fragment
+            android:id="@+id/createDish"
+            android:name="com.bringo.dotit.views.CreateDish"
+            android:label="fragment_create_dish"
+            tools:layout="@layout/fragment_create_dish" />
 </navigation>

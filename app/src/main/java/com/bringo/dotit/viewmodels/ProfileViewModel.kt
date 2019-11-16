@@ -11,6 +11,7 @@ import com.bringo.dotit.R
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.User
 import com.bringo.dotit.repositories.Repository
+import com.bringo.dotit.utils.Hell
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,6 +24,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application) 
     val address = ObservableField<String>()
     val phone = ObservableField<String>()
     val pic = ObservableField<String>()
+    val fabIsVisible = ObservableField<Int>()
     var type = String()
 
     var userLiveData = MutableLiveData<User>()
@@ -36,12 +38,8 @@ class ProfileViewModel(application: Application): AndroidViewModel(application) 
 
     }
 
-    fun isRestaurantOwner():Int{
-        return if (type==="restaurant") View.VISIBLE else View.GONE
-    }
-
     fun myRestauClicked(v: View) {
-        v.findNavController().navigate(R.id.action_profile_to_myRestau)
+        v.findNavController().navigate(R.id.action_profile_to_createRestau)
     }
 
     fun intitializeProfile(user: User) {
@@ -51,6 +49,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application) 
         phone.set(user.phone)
         pic.set(user.pic)
         type=user.type
+        if (type=="restaurant") fabIsVisible.set(View.VISIBLE) else fabIsVisible.set(View.GONE)
     }
 
 

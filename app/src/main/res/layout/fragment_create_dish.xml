@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
 
     <data>
         <variable
                 name="viewmodel"
-                type="com.bringo.dotit.viewmodels.CreateRestauViewModel" />
+                type="com.bringo.dotit.viewmodels.CreateDishViewModel" />
     </data>
 
     <LinearLayout
@@ -22,8 +23,8 @@
         <ImageView
                 android:background="@drawable/restau_back"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"/>
-        
+                android:layout_height="140dp"/>
+
         <LinearLayout
                 android:layout_marginTop="20dp"
                 android:id="@+id/fields"
@@ -38,9 +39,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/fullname"
-                        android:hint="Restaurant name"
-                        android:text="@={viewmodel.restauName}"
+                        android:id="@+id/name"
+                        android:hint="Dish name"
+                        android:text="@={viewmodel.name}"
                         android:inputType="textPersonName"
                         android:fontFamily="@font/lato"
                         android:layout_width="match_parent"
@@ -53,15 +54,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/phone"
-                        android:hint="Restaurant phone number"
-                        android:text="@={viewmodel.phone}"
+                        android:id="@+id/description"
+                        android:hint="description (contents..)"
+                        android:text="@={viewmodel.description}"
                         android:inputType="number"
                         android:fontFamily="@font/lato"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                    android:id="@+id/categories_spinner"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
             <com.google.android.material.textfield.TextInputLayout
                     app:errorEnabled="true"
                     android:layout_marginTop="5dp"
@@ -69,27 +76,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
                 <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/address"
-                        android:hint="Restaurant address"
-                        android:text="@={viewmodel.address}"
+                        android:id="@+id/category"
+                        android:hint="category (dinner, desserts..)"
+                        android:text="@={viewmodel.category}"
                         android:inputType="text"
                         android:fontFamily="@font/lato"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                    app:errorEnabled="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-                <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/email"
-                        android:hint="Email"
-                        android:text="@={viewmodel.email}"
-                        android:inputType="textEmailAddress"
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                <Spinner
                         android:fontFamily="@font/lato"
+                        android:id="@+id/size_spinner"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                        app:errorEnabled="true"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content" >
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/price"
+                            android:hint="price"
+                            android:text="@={viewmodel.price}"
+                            android:inputType="textEmailAddress"
+                            android:fontFamily="@font/lato"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
 
@@ -118,7 +140,7 @@
                     android:text="Save and proceed"
                     android:clickable="true"
                     android:paddingEnd="60dp"
-                    android:onClick="@{()->viewmodel.onRestauSave()}"
+                    android:onClick="@{()->viewmodel.onDishSave()}"
                     android:paddingStart="60dp"
                     android:textSize="18sp"
                     android:textStyle="bold"

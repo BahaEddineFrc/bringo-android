@@ -55,6 +55,8 @@ class User():Serializable{
     }
 
     override fun toString(): String {
-        return "User(email='$email', password='$password', id='$_id', name='$fullname', address='$address', phone='$phone', pic='$pic')"
+        return "User(_id='$_id', fullname='$fullname', email='$email', password='$password', address='$address', phone='$phone', pic='$pic', type='$type')"
     }
+
+
 }

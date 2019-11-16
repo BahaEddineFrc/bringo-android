@@ -29,13 +29,13 @@ class CreateRestauViewModel : ViewModel() {
     }
 
 
-    fun onRestauSave(v: View) {
+    fun onRestauSave() {
         createNewRestaurant()
     }
 
     private fun createNewRestaurant() {
-
-        ApiFactory.retrofit.createRestau(restauName.get().toString(),address.get().toString(),
+        ApiFactory.retrofit.createRestau(restauName.get().
+            toString(),address.get().toString(),
             phone.get().toString(),email.get().toString(),pic.get().toString())
             .enqueue(object : Callback<Restaurant> {
 
@@ -51,8 +51,6 @@ class CreateRestauViewModel : ViewModel() {
             override fun onFailure(call: Call<Restaurant>, t: Throwable) {
                 Hell("createRestau onFailure:"+t.message!!)
             }
-
         })
-
     }
 }
