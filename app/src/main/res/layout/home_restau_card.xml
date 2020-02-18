@@ -5,58 +5,122 @@
 
     <data class="RestaurantBinding">
         <!--  <variable name="restaurantmodel" type="com.bringo.dotit.viewmodels.RestaurantViewModel"/> -->
-        <variable name="restaurantmodel" type="com.bringo.dotit.models.Restaurant"/>
+        <variable
+                name="restaurantmodel"
+                type="com.bringo.dotit.models.Restaurant" />
     </data>
 
 
     <androidx.cardview.widget.CardView
-            android:layout_margin="3dp"
-            app:cardCornerRadius="7dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:cardCornerRadius="7dp">
+
         <LinearLayout
                 android:id="@+id/card_layout"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:img="@{restaurantmodel.imageUrl}"
-                    android:src="@color/colorPrimary"
-                    android:layout_marginBottom="5dp"/>
-            <RelativeLayout
-                    android:layout_margin="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                <TextView
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:hint="Restau name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{restaurantmodel.name}"
-                        android:id="@+id/restau_name"/>
-                <TextView
-                        style="@style/TextAppearance.AppCompat.Small"
-                        android:hint="Restau address"
-                        android:layout_below="@+id/restau_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{restaurantmodel.address}"
-                        android:id="@+id/restau_distance"/>
-                <RatingBar
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@+id/restau_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        style="?android:attr/ratingBarStyleSmall"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                        android:id="@+id/restau_stars"
-                        android:stepSize="0.5"
-                        android:isIndicator="false"
-                        android:numStars="5" />
+            <RelativeLayout
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="170dp"
+                    android:layout_height="150dp">
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:img="@{restaurantmodel.imageUrl}"
+                        android:src="@color/colorPrimary" />
+
+                <com.varunest.sparkbutton.SparkButton
+                        android:id="@+id/spark_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_margin="10dp"
+                        app:sparkbutton_activeImage="@drawable/heart_red"
+                        app:sparkbutton_iconSize="30dp"
+                        app:sparkbutton_inActiveImage="@drawable/heart_gray"
+                        app:sparkbutton_primaryColor="@color/red"
+                        app:sparkbutton_secondaryColor="@color/colorAccent" />
             </RelativeLayout>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/restau_name"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:hint="Restau name"
+                        android:text="@{restaurantmodel.name}"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold|italic" />
+
+                <view
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/restau_name"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/colorAccent" />
+
+                <TextView
+                        android:id="@+id/restau_distance"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/line"
+                        android:layout_margin="5dp"
+                        android:hint="Restau address"
+                        android:text="@{restaurantmodel.address}" />
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <RatingBar
+                            android:id="@+id/restau_stars"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="5dp"
+                            android:layout_marginTop="3dp"
+                            android:isIndicator="false"
+                            android:numStars="5"
+                            android:stepSize="0.5" />
+
+                    <TextView
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="5dp"
+                            android:text="30 min" />
+
+                    <ImageView
+                            android:id="@+id/clock"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/time"
+                            android:src="@mipmap/clock" />
+                </RelativeLayout>
+
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

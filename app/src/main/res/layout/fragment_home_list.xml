@@ -27,8 +27,8 @@
                     android:layout_margin="12dp"
                     android:elevation="8dp"
                     android:background="@color/cardview_light_background"
-                    android:queryHint="Search"
-                    android:id="@+id/searchbar"
+                    android:queryHint="Search restaurants"
+                    android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
         </LinearLayout>

@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.inflate
@@ -84,16 +87,42 @@ class HomeList : Fragment() {
         binding.root.restaurants_rv.adapter = mAdapter
 
         subscribeDataCallBack()
+
     }
+
+
 
     private fun subscribeDataCallBack() {
         //listen to data changes in the ViewModel
         restauViewModel.getAllRestaurants()
         restauViewModel.arrayMutableLiveData.observe(this, Observer { restaurants->
             if(restaurants!=null) {
-                mAdapter.setRestauList(restaurants)
+                dataList.addAll(restaurants)
+                setupSearchView()
+                //todo check validity; mAdapter.setRestauList(restaurants)
             }
         })
     }
 
+    private fun setupSearchView() {
+
+        searchView.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                if(query.isEmpty()) mAdapter.setRestauList(dataList)
+                else {
+                    val dataListSearch: ArrayList<Restaurant> = ArrayList()
+                    dataList.forEach { r ->
+                        if (r.name.contains(query)) dataListSearch.add(r)
+                    }
+                    mAdapter.setRestauList(dataListSearch)
+                }
+                return true
+            }
+
+        })
+    }
 }
