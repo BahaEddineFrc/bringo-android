@@ -24,12 +24,13 @@ class RestauMenuViewModel : ViewModel() {
     }
 
     fun createDish(v: View) {
-        v.findNavController().navigate(R.id.action_profile_to_createRestau)
+        //v.findNavController().navigate(R.id.action_profile_to_createRestau)
     }
 
     var restaurantLiveData = MutableLiveData<Restaurant>()
 
-    fun getRestauById(id:String) {
+    fun getRestauById(id:String?) {
+        if (id!=null)
         ApiFactory.retrofit.getRestauById(id).enqueue(object : Callback<Restaurant> {
             override fun onResponse(
                 call: Call<Restaurant>,

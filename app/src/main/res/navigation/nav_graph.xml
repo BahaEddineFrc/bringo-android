@@ -7,6 +7,9 @@
         <action
                 android:id="@+id/action_profile_to_createRestau"
                 app:destination="@id/createRestau" />
+        <action
+                android:id="@+id/action_profile_to_restauMenu"
+                app:destination="@id/restauMenu" />
     </fragment>
     <fragment android:id="@+id/homeList" android:name="com.bringo.dotit.views.HomeList" android:label="fragment_home_list"
               tools:layout="@layout/fragment_home_list">

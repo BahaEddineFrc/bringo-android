@@ -181,6 +181,7 @@
                     android:layout_height="50dp"
                     android:backgroundTint="@color/colorPrimary"
                     android:fontFamily="@font/lato"
+                    android:onClick="@{()->dishviewmodel.order()}"
                     android:text="order"
                     android:textColor="@color/white"
                     android:textSize="18sp"

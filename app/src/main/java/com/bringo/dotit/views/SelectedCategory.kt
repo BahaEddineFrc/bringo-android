@@ -52,11 +52,11 @@ class SelectedCategory : Fragment() {
     fun initRecyclerView(){
 
         mAdapter = DishesRVAdapters{dish->
-            Hell("SelectedCateg: clicked dish: ${dish._id}")
-
-            var bundle = bundleOf("dish" to dish as Serializable)
+            //Hell("SelectedCateg: clicked dish: ${dish._id}")
+            val bundle = bundleOf("dish" to dish as Serializable)
             findNavController().navigate(R.id.action_selectedCategory_to_selectedDish,bundle)
         }
+
         val layoutManager = LinearLayoutManager(context)
         binding.root.category_dishes_rv.layoutManager = layoutManager
         mAdapter.setDishesList(dataList) //delete

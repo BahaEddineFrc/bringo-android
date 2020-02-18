@@ -53,7 +53,7 @@ class HomeList : Fragment() {
 
             restauRecycler=view.findViewById(R.id.restaurants_rv) as RecyclerView
             progressBar=view.findViewById(R.id.home_progressbar)
-            floatingActionButton=view.findViewById(R.id.fab_home)
+            //floatingActionButton=view.findViewById(R.id.fab_home)
 
 
             //load viewModel

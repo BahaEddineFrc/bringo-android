@@ -28,12 +28,7 @@ class CreateRestauViewModel : ViewModel() {
         return pic.get() as String
     }
 
-
-    fun onRestauSave() {
-        createNewRestaurant()
-    }
-
-    private fun createNewRestaurant() {
+    fun createNewRestaurant() {
         ApiFactory.retrofit.createRestau(restauName.get().
             toString(),address.get().toString(),
             phone.get().toString(),email.get().toString(),pic.get().toString())

@@ -19,8 +19,9 @@ class User():Serializable{
     var  phone:String = ""
     var  pic:String = ""
     var  type:String = ""
+    var  ownedRestau:String? = null
 
-    constructor(id: String, fullname: String, email: String, password: String, address: String, phone: String, pic: String, type:String) : this() {
+    constructor(id: String, fullname: String, email: String, password: String, address: String, phone: String, pic: String, type:String, ownedRestau:String?) : this() {
         this._id = id
         this.fullname = fullname
         this.address = address
@@ -29,6 +30,7 @@ class User():Serializable{
         this.phone = phone
         this.pic = pic
         this.type = type
+        this.ownedRestau = ownedRestau
     }
 
 

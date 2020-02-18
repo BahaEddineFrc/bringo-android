@@ -118,7 +118,7 @@
                     android:text="Save and proceed"
                     android:clickable="true"
                     android:paddingEnd="60dp"
-                    android:onClick="@{()->viewmodel.onRestauSave()}"
+                    android:onClick="@{()->viewmodel.createNewRestaurant()}"
                     android:paddingStart="60dp"
                     android:textSize="18sp"
                     android:textStyle="bold"

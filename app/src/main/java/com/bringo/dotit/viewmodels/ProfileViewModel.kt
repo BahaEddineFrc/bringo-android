@@ -3,6 +3,7 @@ package com.bringo.dotit.viewmodels
 import android.app.Application
 import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +13,7 @@ import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.User
 import com.bringo.dotit.repositories.Repository
 import com.bringo.dotit.utils.Hell
+import com.bringo.dotit.utils.RESTAURANT_TYPE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,6 +28,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application) 
     val pic = ObservableField<String>()
     val fabIsVisible = ObservableField<Int>()
     var type = String()
+    var ownedRestau: String? = null
 
     var userLiveData = MutableLiveData<User>()
 
@@ -39,6 +42,12 @@ class ProfileViewModel(application: Application): AndroidViewModel(application) 
     }
 
     fun myRestauClicked(v: View) {
+        if(ownedRestau!=null){
+            //todo add ownedRestau in server side to not be always null
+            var bundle = bundleOf("restauId" to ownedRestau)
+            v.findNavController().navigate(R.id.action_profile_to_restauMenu,bundle)
+        }
+        else
         v.findNavController().navigate(R.id.action_profile_to_createRestau)
     }
 
@@ -49,7 +58,8 @@ class ProfileViewModel(application: Application): AndroidViewModel(application) 
         phone.set(user.phone)
         pic.set(user.pic)
         type=user.type
-        if (type=="restaurant") fabIsVisible.set(View.VISIBLE) else fabIsVisible.set(View.GONE)
+        ownedRestau=user.ownedRestau
+        if (type== RESTAURANT_TYPE) fabIsVisible.set(View.VISIBLE) else fabIsVisible.set(View.GONE)
     }
 
 

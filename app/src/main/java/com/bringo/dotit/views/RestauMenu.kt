@@ -26,7 +26,7 @@ class RestauMenu : Fragment(){
     private lateinit var restauMenuViewModel: RestauMenuViewModel
     private lateinit var mPager: ViewPager
 
-    private var tabs : List<String> = listOf("Breakfast", "Lunch", "Dinner")
+    //private var tabs : List<String> = listOf("Breakfast", "Lunch", "Dinner")
 
      override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -47,14 +47,14 @@ class RestauMenu : Fragment(){
     }
 
     private fun subscribeDataCallback() {
-        var restauId= arguments?.getString("restauId")
+        var restauId: String? = arguments?.getString("restauId")
         //Hell("clicked restauId : ${restauId}")
-        if(restauId==null) return
 
         restauMenuViewModel.getRestauById(restauId)
         restauMenuViewModel.restaurantLiveData.observe(this, Observer { restaurant->
             if(restaurant!=null) {
-                val pagerAdapter = ScreenSlidePagerAdapter(fragmentManager as FragmentManager, restaurant) // The pager adapter, which provides the pages to the view pager widget.
+                val pagerAdapter = ScreenSlidePagerAdapter(fragmentManager as FragmentManager, restaurant)
+                // The pager adapter, which provides the pages to the view pager widget.
                 mPager.adapter = pagerAdapter
             }
         })

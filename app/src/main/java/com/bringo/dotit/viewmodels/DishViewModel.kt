@@ -86,10 +86,14 @@ class DishViewModel : ViewModel(){
         totalPrice.set(nbr.get().times(price.get()!!.toFloat()))
     }
 
-
+    fun order() {
+        //todo act upon it
+       Hell("ORDERING $dishName FOR ${totalPrice.get()} Dinars")
+    }
 
     private val repository : Repository = Repository(ApiFactory.retrofit)
-    private val scope = CoroutineScope(GlobalScope.coroutineContext) //used to execute functions in Async mode
+    private val scope = CoroutineScope(GlobalScope.coroutineContext)
+    //used to execute functions in Async mode
 
     fun getDishById(id: String) {
         ApiFactory.retrofit.getDishById(id).enqueue(object : Callback<DishModel> {

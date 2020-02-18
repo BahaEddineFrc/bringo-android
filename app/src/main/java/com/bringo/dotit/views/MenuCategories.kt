@@ -25,16 +25,17 @@ import kotlinx.android.synthetic.main.menu_categories_fragment.view.*
 
 class MenuCategories : Fragment() {
 
-    companion object {
+    companion object { //todo delete
         fun newInstance() = MenuCategories()
     }
 
     private lateinit var viewModel: CategoriesViewModel
-    var restauRecycler: RecyclerView? = null
 
     private lateinit var mAdapter: CategoriesRVAdapter
     private lateinit var binding: RestauMenuBinding
+
     var dataList: ArrayList<CategoryModel> = ArrayList()
+    var restauRecycler: RecyclerView? = null
 
 
     override fun onCreateView(
@@ -63,12 +64,11 @@ class MenuCategories : Fragment() {
             val restauName = bundle.getString("restauName")
             val menuPerTitle = bundle.getSerializable("menuPerTitle") as MenuModel
 
-            //Hell("sectionCategories in MenuCategoriesFrgmnt = ${menuPerTitle.sectionCategories}")
-
             mAdapter = CategoriesRVAdapter { category ->
                 //Hell("MenuCategories: clicked category: ${category._id} and sending restauId ${restauId}")
 
-                var bundle = bundleOf("category" to category, "restauId" to restauId, "restauName" to restauName)
+                val bundle = bundleOf("category" to category,
+                    "restauId" to restauId, "restauName" to restauName)
                 findNavController().navigate(R.id.action_restauMenu_to_selectedCategory, bundle)
             }
 
@@ -79,17 +79,5 @@ class MenuCategories : Fragment() {
                 binding.root.categories_rv.adapter = mAdapter
 
         }
-        //subscribeDataCallBack()
     }
-
-    private fun subscribeDataCallBack() {
-        viewModel.getCategories()
-        viewModel.categoriesList.observe(this, Observer { categories ->
-            //mAdapter.setRestauList(categories)
-
-        })
-
-    }
-
-
 }
