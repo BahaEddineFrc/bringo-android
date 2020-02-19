@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.bringo.dotit.R
 import com.bringo.dotit.adapters.CategoriesRVAdapter
-import com.bringo.dotit.databinding.RestauMenuBinding
+import com.bringo.dotit.databinding.MenuCategoriesFragmentBinding
 import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.MenuModel
 import com.bringo.dotit.utils.Hell
@@ -32,7 +32,7 @@ class MenuCategories : Fragment() {
     private lateinit var viewModel: CategoriesViewModel
 
     private lateinit var mAdapter: CategoriesRVAdapter
-    private lateinit var binding: RestauMenuBinding
+    private lateinit var binding: MenuCategoriesFragmentBinding
 
     var dataList: ArrayList<CategoryModel> = ArrayList()
     var restauRecycler: RecyclerView? = null
