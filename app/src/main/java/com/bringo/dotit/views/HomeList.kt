@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.appcompat.widget.SearchView.*
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.inflate
@@ -80,9 +80,8 @@ class HomeList : Fragment() {
             findNavController().navigate(R.id.action_homeList_to_restauMenu,bundle)
         }
 
-        val layoutManager = GridLayoutManager(context,2)
         //layoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding.root.restaurants_rv.layoutManager = layoutManager
+        binding.root.restaurants_rv.layoutManager = LinearLayoutManager(context)
         mAdapter.setRestauList(dataList) //delete
         binding.root.restaurants_rv.adapter = mAdapter
 
@@ -99,25 +98,32 @@ class HomeList : Fragment() {
             if(restaurants!=null) {
                 dataList.addAll(restaurants)
                 setupSearchView()
-                //todo check validity; mAdapter.setRestauList(restaurants)
+                mAdapter.setRestauList(restaurants)
             }
         })
     }
 
     private fun setupSearchView() {
-
+        searchView.setOnCloseListener ( object: OnCloseListener{
+            override fun onClose(): Boolean {
+                mAdapter.setRestauList(dataList)
+              return true
+            }
+        } )
         searchView.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
                 return false
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                if(query.isEmpty()) mAdapter.setRestauList(dataList)
+                if(query.isEmpty()) return false
                 else {
                     val dataListSearch: ArrayList<Restaurant> = ArrayList()
                     dataList.forEach { r ->
-                        if (r.name.contains(query)) dataListSearch.add(r)
+                        if (r.name.toLowerCase().contains(query.toLowerCase()))
+                            dataListSearch.add(r)
                     }
+
                     mAdapter.setRestauList(dataListSearch)
                 }
                 return true

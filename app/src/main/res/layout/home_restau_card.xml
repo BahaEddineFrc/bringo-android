@@ -14,17 +14,21 @@
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="5dp"
             app:cardCornerRadius="7dp">
 
         <LinearLayout
                 android:id="@+id/card_layout"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
             <RelativeLayout
-                    android:layout_marginBottom="5dp"
                     android:layout_width="170dp"
                     android:layout_height="150dp">
 
@@ -32,16 +36,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:img="@{restaurantmodel.imageUrl}"
-                        android:src="@color/colorPrimary" />
+                        android:foreground="@drawable/black_gradient_mask"
+                        android:scaleType="centerCrop" />
 
                 <com.varunest.sparkbutton.SparkButton
                         android:id="@+id/spark_button"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="10dp"
+                        android:layout_margin="5dp"
                         app:sparkbutton_activeImage="@drawable/heart_red"
-                        app:sparkbutton_iconSize="30dp"
+                        app:sparkbutton_iconSize="25dp"
                         app:sparkbutton_inActiveImage="@drawable/heart_gray"
                         app:sparkbutton_primaryColor="@color/red"
                         app:sparkbutton_secondaryColor="@color/colorAccent" />
@@ -66,7 +71,7 @@
                         android:textColor="@android:color/black"
                         android:textStyle="bold|italic" />
 
-                <view
+                <View
                         android:id="@+id/line"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -74,7 +79,7 @@
                         android:layout_marginStart="50dp"
                         android:layout_marginEnd="50dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@color/colorAccent" />
+                        android:background="@color/colorPrimaryDark" />
 
                 <TextView
                         android:id="@+id/restau_distance"
