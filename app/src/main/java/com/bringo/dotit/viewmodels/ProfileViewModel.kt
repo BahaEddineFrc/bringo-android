@@ -1,8 +1,12 @@
 package com.bringo.dotit.viewmodels
 
 import android.app.Application
+import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
@@ -14,6 +18,7 @@ import com.bringo.dotit.models.User
 import com.bringo.dotit.repositories.Repository
 import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.utils.RESTAURANT_TYPE
+import com.bringo.dotit.views.CreateCategoryDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -38,7 +43,7 @@ class ProfileViewModel(application: Application): AndroidViewModel(application) 
 
 
     fun getProfileInfo() {
-
+        CreateCategoryDialog() //hooooow
     }
 
     fun myRestauClicked(v: View) {

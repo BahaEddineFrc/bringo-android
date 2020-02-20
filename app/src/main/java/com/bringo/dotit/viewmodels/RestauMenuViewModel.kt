@@ -2,6 +2,7 @@ package com.bringo.dotit.viewmodels
 
 import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,21 +17,22 @@ import retrofit2.Response
 
 class RestauMenuViewModel : ViewModel() {
 
-    private var tabs : List<String> = listOf("Breakfast", "Lunch", "Dinner")
-
     var imageUrl = ObservableField<String>()
     var name = ObservableField<String>()
     var rating = ObservableField<Float>()
     var description = ObservableField<String>()
+    var restauId:String?=null
 
 
     fun createDish(v: View) {
+        val bundle = bundleOf("restauId" to restauId)
         //v.findNavController().navigate(R.id.action_profile_to_createRestau)
     }
 
     var restaurantLiveData = MutableLiveData<Restaurant>()
 
     fun getRestauById(id:String?) {
+        restauId=id
         if (id!=null)
         ApiFactory.retrofit.getRestauById(id).enqueue(object : Callback<Restaurant> {
             override fun onResponse(
