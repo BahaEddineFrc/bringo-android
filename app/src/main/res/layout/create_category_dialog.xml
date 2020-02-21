@@ -1,34 +1,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <ImageView
-            android:src="@drawable/header_logo"
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:scaleType="center"
-            android:background="#FFFFBB33"
-            android:contentDescription="@string/app_name" />
-    <EditText
-            android:id="@+id/username"
-            android:inputType="textEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:background="#FFFFBB33"
+                android:contentDescription="@string/app_name" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:text="Add a new category of dishes"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+    </RelativeLayout>
+
+    <Spinner
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:hint="@string/username" />
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     <EditText
-            android:id="@+id/password"
-            android:inputType="textPassword"
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:hint="name (ex: pizzas..)" />
+    <EditText
+            android:id="@+id/average_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:inputType="numberDecimal"
+            android:hint="average price in dinars"/>
+    <EditText
+            android:id="@+id/wait_time"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="16dp"
-            android:fontFamily="sans-serif"
-            android:hint="@string/password"/>
+            android:hint="wait time in minutes"/>
 </LinearLayout>

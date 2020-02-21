@@ -47,7 +47,6 @@ class Profile : Fragment() {
     private fun initViewModelListeners() {
         val user = arguments!!.getSerializable("user") as User
         viewModel.intitializeProfile(user)
-        viewModel.getProfileInfo()
     }
 
 }

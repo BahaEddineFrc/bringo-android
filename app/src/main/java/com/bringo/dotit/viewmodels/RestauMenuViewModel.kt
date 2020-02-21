@@ -22,11 +22,10 @@ class RestauMenuViewModel : ViewModel() {
     var rating = ObservableField<Float>()
     var description = ObservableField<String>()
     var restauId:String?=null
-
+    var showDialog = MutableLiveData<Int>()
 
     fun createDish(v: View) {
-        val bundle = bundleOf("restauId" to restauId)
-        //v.findNavController().navigate(R.id.action_profile_to_createRestau)
+        showDialog.value=1
     }
 
     var restaurantLiveData = MutableLiveData<Restaurant>()
