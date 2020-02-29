@@ -26,12 +26,8 @@ class CreateDishViewModel : ViewModel() {
         return pic.get() as String
     }
 
-
-    fun onDishSave() {
-        createNewDish()
-    }
-
     private fun createNewDish() {
+        //todo add method
         /*ApiFactory.retrofit.createRestau(restauName.get().
             toString(),address.get().toString(),
             phone.get().toString(),email.get().toString(),pic.get().toString())

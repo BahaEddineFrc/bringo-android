@@ -1,10 +1,15 @@
 package com.bringo.dotit.viewmodels
 
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.bringo.dotit.R
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.DishModel
@@ -14,6 +19,7 @@ import kotlinx.coroutines.GlobalScope
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.Serializable
 
 class CategoryDishesViewModel : ViewModel(){
 
@@ -35,6 +41,11 @@ class CategoryDishesViewModel : ViewModel(){
         this.restauName.set(restauName)
         categoryId=category._id
         Hell("setUpCategory name : ${category.name}")
+    }
+
+    fun createDish(v: View) {
+        val bundle = bundleOf("catName" to catName, "categoryId" to categoryId)
+        v.findNavController().navigate(R.id.action_selectedCategory_to_createDish,bundle)
     }
 
     fun isDishListEmpty(){

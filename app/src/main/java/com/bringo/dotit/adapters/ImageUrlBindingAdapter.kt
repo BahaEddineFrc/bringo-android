@@ -13,7 +13,7 @@ object ImageUrlBindingAdapter{
     @BindingAdapter("android:img")
     fun setImageUrl(view: ImageView, url:String?){
         if(url!=null)
-        Picasso.get().load(url).error(R.drawable.home)
+        Picasso.get().load(url).error(R.drawable.pizza)
             .into(view, object :Callback{
             override fun onSuccess() {
                 Log.d("ImageUrlBindingAdapter", "success")
@@ -23,6 +23,7 @@ object ImageUrlBindingAdapter{
                 Log.d("ImageUrlBindingAdapter", "error ${e?.message}")
             }
         })
+        else view.setImageResource(R.drawable.pizza)
 
     }
 

@@ -21,13 +21,13 @@
     <fragment android:id="@+id/restauMenu" android:name="com.bringo.dotit.views.RestauMenu"
               android:label="fragment_restau_menu" tools:layout="@layout/fragment_restau_menu">
         <action android:id="@+id/action_restauMenu_to_selectedCategory" app:destination="@id/selectedCategory"/>
-        <action
-                android:id="@+id/action_restauMenu_to_createDish"
-                app:destination="@id/createDish" />
     </fragment>
     <fragment android:id="@+id/selectedCategory" android:name="com.bringo.dotit.views.SelectedCategory"
               android:label="fragment_selected_category" tools:layout="@layout/fragment_selected_category">
         <action android:id="@+id/action_selectedCategory_to_selectedDish" app:destination="@id/selectedDish"/>
+        <action
+                android:id="@+id/action_selectedCategory_to_createDish"
+                app:destination="@id/createDish" />
     </fragment>
     <fragment android:id="@+id/selectedDish" android:name="com.bringo.dotit.views.SelectedDish"
               android:label="fragment_selected_dish" tools:layout="@layout/fragment_selected_dish">
