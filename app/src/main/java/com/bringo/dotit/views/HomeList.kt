@@ -33,7 +33,6 @@ import com.bringo.dotit.viewmodels.RestaurantViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_home_list.*
 import kotlinx.android.synthetic.main.fragment_home_list.view.*
-import kotlinx.android.synthetic.main.fragment_home_list.view.home_logo
 
 
 class HomeList : Fragment() {
@@ -63,10 +62,6 @@ class HomeList : Fragment() {
             restauViewModel = ViewModelProviders.of(this).get(RestaurantViewModel::class.java)
 
             initRecyclerView()
-
-            view.home_logo.setOnClickListener { v:View ->
-                v.findNavController().navigate(R.id.action_homeList_to_restauMenu)
-            }
 
             return view
     }

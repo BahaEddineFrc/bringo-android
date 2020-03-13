@@ -1,16 +1,21 @@
 package com.bringo.dotit.viewmodels
 
+import android.R
+import android.app.Application
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.databinding.ObservableField
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.utils.Hell
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class CreateDishViewModel : ViewModel() {
+
+class CreateDishViewModel(application: Application) : AndroidViewModel(application) {
 
     val name = ObservableField<String>()
     val description = ObservableField<String>()
@@ -26,8 +31,27 @@ class CreateDishViewModel : ViewModel() {
         return pic.get() as String
     }
 
-    private fun createNewDish() {
+
+    fun addPriceLayer(v: View) {
+        val pricesLayout = v.parent.parent as LinearLayout
+        val newBlock: View = LayoutInflater
+            .from(v.context).inflate(com.bringo.dotit.R.layout.dish_price_btn, null)
+        Hell("parent: "+pricesLayout)
+        //val newBlock = Button(v.context)
+        pricesLayout.addView(newBlock)
+    }
+
+    fun deletePriceLayer(v: View) {
+        var pricesLayout = v.parent as RelativeLayout
+        Hell("parent: "+pricesLayout)
+
+        //val newBlock = Button(v.context)
+        pricesLayout=RelativeLayout(v.context)
+    }
+    fun createNewDish() {
         //todo add method
+        dishLiveData.value= Restaurant("er","name","mail",
+            "add","phone",3.0f,ArrayList(),"pic")
         /*ApiFactory.retrofit.createRestau(restauName.get().
             toString(),address.get().toString(),
             phone.get().toString(),email.get().toString(),pic.get().toString())

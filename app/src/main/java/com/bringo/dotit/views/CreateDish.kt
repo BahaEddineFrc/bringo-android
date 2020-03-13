@@ -37,6 +37,7 @@ class CreateDish : Fragment() {
     private fun initViewModelListeners() {
             viewModel.dishLiveData.observe(this, Observer {
                 Toast.makeText(context!!,"the Dish has been successfully added!",Toast.LENGTH_LONG).show()
+                activity?.onBackPressed()
             })
 
     }

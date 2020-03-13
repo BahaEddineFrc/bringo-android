@@ -17,9 +17,16 @@
 
             <RelativeLayout
                     android:id="@+id/card_layout"
-                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp">
+
+
+                <ImageView
+                        android:foreground="@drawable/black_gradient_full"
+                        android:img="@{dishmodel.pic}"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
                 <TextView
                         android:id="@+id/restau_name"
@@ -29,20 +36,20 @@
                         android:layout_above="@+id/restau_desc"
                         android:fontFamily="@font/lato"
                         android:hint="Dish name"
-                        android:layout_marginStart="20dp"
-                        android:padding="5dp"
+                        android:layout_marginStart="10dp"
+                        android:padding="2dp"
                         android:text="@{dishmodel.name}"
                         android:textColor="@color/white"
-                        android:textSize="24sp"
                         android:textStyle="italic" />
 
                 <TextView
-                        style="@style/TextAppearance.AppCompat.Medium"
+                        style="@style/TextAppearance.AppCompat.Small"
                         android:hint="Dish description"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="5dp"
                         android:textColor="@color/light_gray"
-                        android:padding="5dp"
+                        android:padding="2dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{dishmodel.description}"
@@ -56,14 +63,6 @@
                         style="@style/TextAppearance.AppCompat.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-
-                <ImageView
-                        android:foreground="@drawable/black_gradient_full"
-                        android:img="@{dishmodel.pic}"
-                        android:scaleType="centerCrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
             </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>
