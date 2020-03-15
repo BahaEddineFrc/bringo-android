@@ -3,9 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-
     <data>
-
         <variable
                 name="viewmodel"
                 type="com.bringo.dotit.viewmodels.CreateDishViewModel" />
@@ -16,7 +14,23 @@
             android:layout_height="match_parent"
             android:layout_gravity="center">
 
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+            <androidx.appcompat.widget.Toolbar
+                    app:navigationIcon="?attr/homeAsUpIndicator"
+                    app:title="Add a new dish"
+                    android:id="@+id/toolBar"
+                    app:titleTextColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <LinearLayout
+                android:layout_below="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -32,138 +46,179 @@
                     android:background="@drawable/restau_back" />
 
             <ScrollView
+                    android:overScrollMode="never"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-                <LinearLayout
-                        android:id="@+id/fields"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:orientation="vertical">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <LinearLayout
+                            android:id="@+id/fields"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:errorEnabled="true">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/lato"
-                                android:hint="Dish name"
-                                android:inputType="textPersonName"
-                                android:text="@={viewmodel.name}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:errorEnabled="true">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/description"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/lato"
-                                android:hint="description (contents..)"
-                                android:inputType="number"
-                                android:text="@={viewmodel.description}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <RelativeLayout
-                            android:id="@+id/sizes"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/layout_border"
-                            android:padding="4dp">
-
-                        <Spinner
-                                android:id="@+id/spinner_size"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="4dp" />
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
 
                         <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/spinner_size"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
                                 app:errorEnabled="true">
 
-                            <EditText
-                                    android:id="@+id/price"
-                                    android:layout_width="200dp"
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/name"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@+id/spinner_size"
-                                    android:layout_margin="4dp"
                                     android:fontFamily="@font/lato"
-                                    android:hint="price"
-                                    android:inputType="numberDecimal"
-
-                                    android:text="@={viewmodel.price}" />
+                                    android:hint="Dish name"
+                                    android:inputType="textPersonName"
+                                    android:text="@={viewmodel.name}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:errorEnabled="true">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/description"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lato"
+                                    android:hint="description (contents..)"
+                                    android:inputType="number"
+                                    android:text="@={viewmodel.description}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                        <RelativeLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                        <TextView
+                                android:layout_centerVertical="true"
+                                android:textColor="@color/primary_text"
+                                style="@style/TextAppearance.AppCompat.Medium"
+                                android:text="Size and Price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
                         <ImageButton
+                                android:id="@+id/minus"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:layout_marginEnd="20dp"
+                                android:layout_marginEnd="15dp"
                                 android:background="@drawable/rounded_btn_back"
                                 android:onClick="@{(v)->viewmodel.addPriceLayer(v)}"
                                 android:src="@drawable/ic_plus" />
+                        <ImageButton
+                                android:id="@+id/plus"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:visibility="gone"
+                                android:layout_toStartOf="@+id/minus"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="10dp"
+                                android:background="@drawable/rounded_btn_back_red"
+                                android:onClick="@{(v)->viewmodel.deletePriceLayer(v)}"
+                                android:src="@drawable/ic_minus" />
+                        </RelativeLayout>
 
+                        <LinearLayout
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="2dp"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                android:gravity="center_vertical"
+                                android:id="@+id/sizes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/layout_border"
+                                android:padding="5dp">
+
+                            <androidx.appcompat.widget.AppCompatSpinner
+                                    android:layout_weight="1"
+                                    android:id="@+id/spinner_size"
+                                    android:entries="@array/sizes_array"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/spinner_size"
+                                    app:errorEnabled="true">
+
+                                <EditText
+                                        android:id="@+id/price"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/spinner_size"
+                                        android:layout_margin="4dp"
+                                        android:fontFamily="@font/lato"
+                                        android:hint="price"
+                                        android:inputType="numberDecimal"
+                                        android:text="@={viewmodel.price}" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                            android:id="@+id/button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="30dp"
+                            android:gravity="center_horizontal">
+
+                        <com.github.ybq.android.spinkit.SpinKitView
+                                android:id="@+id/spin_kit"
+                                style="@style/SpinKitView.Small.FadingCircle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="220dp"
+                                android:elevation="10dp"
+                                android:visibility="gone"
+                                app:SpinKit_Color="@color/white" />
+
+                        <Button
+                                android:id="@+id/button_bottom_long"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:clickable="true"
+                                android:fontFamily="@font/lato"
+                                android:onClick="@{()->viewmodel.createNewDish()}"
+                                android:paddingStart="60dp"
+                                android:paddingEnd="60dp"
+                                android:text="Save and proceed"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
                     </RelativeLayout>
-
                 </LinearLayout>
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal">
-
-
-                <com.github.ybq.android.spinkit.SpinKitView
-                        android:id="@+id/spin_kit"
-                        style="@style/SpinKitView.Small.FadingCircle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="220dp"
-                        android:elevation="10dp"
-                        android:visibility="gone"
-                        app:SpinKit_Color="@color/white" />
-
-                <Button
-                        android:id="@+id/button_bottom_long"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:clickable="true"
-                        android:fontFamily="@font/lato"
-                        android:onClick="@{()->viewmodel.createNewDish()}"
-                        android:paddingStart="60dp"
-                        android:paddingEnd="60dp"
-                        android:text="Save and proceed"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-            </RelativeLayout>
-                </LinearLayout>
-
             </ScrollView>
-
         </LinearLayout>
     </RelativeLayout>
 </layout>

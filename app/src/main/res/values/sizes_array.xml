@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sizes_array">
+        <item>XSmall</item>
+        <item>Small</item>
+        <item>Normal</item>
+        <item>Large</item>
+        <item>XLarge</item>
+        <item>XXLarge</item>
+    </string-array>
+</resources>

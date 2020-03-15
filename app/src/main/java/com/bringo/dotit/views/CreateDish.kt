@@ -39,7 +39,6 @@ class CreateDish : Fragment() {
                 Toast.makeText(context!!,"the Dish has been successfully added!",Toast.LENGTH_LONG).show()
                 activity?.onBackPressed()
             })
-
     }
 
 

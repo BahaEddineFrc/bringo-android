@@ -5,8 +5,10 @@ import android.app.Application
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.core.view.children
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -37,16 +39,17 @@ class CreateDishViewModel(application: Application) : AndroidViewModel(applicati
         val newBlock: View = LayoutInflater
             .from(v.context).inflate(com.bringo.dotit.R.layout.dish_price_btn, null)
         Hell("parent: "+pricesLayout)
-        //val newBlock = Button(v.context)
         pricesLayout.addView(newBlock)
+
+        val delBtn = (v.parent as RelativeLayout).getChildAt(2) as ImageButton
+        delBtn.visibility=View.VISIBLE
     }
 
     fun deletePriceLayer(v: View) {
-        var pricesLayout = v.parent as RelativeLayout
+        val pricesLayout = v.parent.parent as LinearLayout
         Hell("parent: "+pricesLayout)
-
-        //val newBlock = Button(v.context)
-        pricesLayout=RelativeLayout(v.context)
+        pricesLayout.removeViewAt(pricesLayout.childCount-1)
+        (v as ImageButton).visibility = if(pricesLayout.childCount>2) View.VISIBLE else View.GONE
     }
     fun createNewDish() {
         //todo add method
