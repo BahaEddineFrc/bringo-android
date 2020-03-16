@@ -1,11 +1,15 @@
 package com.bringo.dotit.viewmodels
 
+import android.view.View
+import androidx.core.os.bundleOf
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableFloat
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import com.bringo.dotit.R
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.DishModel
 import com.bringo.dotit.models.User
@@ -86,9 +90,13 @@ class DishViewModel : ViewModel(){
         totalPrice.set(nbr.get().times(price.get()!!.toFloat()))
     }
 
-    fun order() {
-        //todo act upon it
-       Hell("ORDERING $dishName FOR ${totalPrice.get()} Dinars")
+    fun order(v: View) {
+        val bundle = bundleOf("dishName" to dishName.get(),
+            "totalPrice" to totalPrice.get(),
+            "dishDescription" to dishDescription.get())
+        v.findNavController().navigate(R.id.action_selectedDish_to_dishCheckOut,bundle)
+       //Hell("ORDERING $dishName FOR ${totalPrice.get()} Dinars")
+
     }
 
     private val repository : Repository = Repository(ApiFactory.retrofit)

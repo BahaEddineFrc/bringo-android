@@ -31,11 +31,12 @@
             android:layout_marginBottom="15dp"
             android:layout_width="70dp"
             android:layout_height="2dp"
-            android:background="@color/light_gray" />
+            android:background="@color/colorPrimary" />
 
     <TextView
             android:id="@+id/dish_description"
             android:textAlignment="center"
+            android:layout_marginBottom="60dp"
             android:layout_below="@+id/dish_separator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,8 +44,19 @@
             android:hint="deliveryTime from restauName"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-    <androidx.cardview.widget.CardView
-            android:layout_below="@+id/dish_description"
+
+
+        <TextView
+                android:id="@+id/deliverto"
+                android:layout_marginStart="10dp"
+                android:layout_below="@+id/dish_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delivery address"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_below="@+id/deliverto"
             android:layout_margin="10dp"
             android:elevation="4dp"
             android:layout_width="match_parent"
@@ -60,14 +72,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name" />
-            <TextView
+            <EditText
                     android:id="@+id/email"
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/secondary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Fullname"
-                    android:text="@{checkoutviewmodel.fullname}" />
+                    android:text="@={checkoutviewmodel.fullname}" />
             <View
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
@@ -81,14 +92,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address" />
-            <TextView
+            <EditText
                     android:id="@+id/address"
                     android:textColor="@color/secondary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Address"
                     style="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@{checkoutviewmodel.address}" />
+                    android:text="@={checkoutviewmodel.address}" />
             <View
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
@@ -101,14 +111,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone number" />
-            <TextView
+            <EditText
                     android:id="@+id/phone"
                     android:textColor="@color/secondary_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Phone number"
                     style="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@{checkoutviewmodel.phone}" />
+                    android:text="@={checkoutviewmodel.phone}" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -123,10 +132,11 @@
             android:text="confirm order and pay x$"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:onClick="@{(v)->checkoutviewmodel.checkout(v)}"
             android:layout_alignParentBottom="true"
             android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="56dp"/>
 
 </RelativeLayout>
 </layout>

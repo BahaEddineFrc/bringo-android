@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".views.RestauMenu">
+        xmlns:tools="http://schemas.android.com/tools" >
 
     <data class="TrackingBinding">
         <variable
@@ -13,15 +12,16 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <com.google.android.gms.maps.MapView
-            android:id="@+id/tracking_map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+
+        <fragment android:id="@+id/mapi"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"  />
 
         <androidx.cardview.widget.CardView
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="170dp">
+                android:layout_height="180dp">
 
         <RelativeLayout
                 android:layout_margin="15dp"
@@ -32,7 +32,7 @@
 
             <TextView
                     android:id="@+id/restau_name"
-                    android:text="@{categoryviewmodel.restauName}"
+                    android:text="@{categoryviewmodel.dishName+` on the way!`}"
                     android:layout_above="@+id/estimated_time"
                     style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
             <TextView
                     android:layout_above="@id/estimated_time_text"
                     android:id="@+id/estimated_time"
-                    android:textSize="50dp"
+                    android:textSize="45dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{categoryviewmodel.restauTime}"
@@ -54,13 +54,13 @@
                     android:textSize="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{categoryviewmodel.timeZone}"
                     android:hint="PM" />
             <TextView
                     android:layout_above="@+id/progressBar"
                     android:id="@+id/estimated_time_text"
                     android:layout_width="match_parent"
                     android:textAlignment="textEnd"
+                    android:layout_marginBottom="5dp"
                     android:layout_height="wrap_content"
                     android:text="Estimated arrival" />
 
