@@ -1,142 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data class="CheckoutBinding">
+
         <variable
                 name="checkoutviewmodel"
                 type="com.bringo.dotit.viewmodels.CheckoutViewModel" />
     </data>
 
     <RelativeLayout
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical">
-
-    <TextView
-            android:text="@{checkoutviewmodel.dishName}"
-            android:id="@+id/dish_name"
-            android:textAlignment="center"
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Dish name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <View
-            android:id="@+id/dish_separator"
-            android:layout_below="@+id/dish_name"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_width="70dp"
-            android:layout_height="2dp"
-            android:background="@color/colorPrimary" />
+        <TextView
+                android:id="@+id/dish_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:hint="Dish name"
+                android:text="@{checkoutviewmodel.dishName}"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-    <TextView
-            android:id="@+id/dish_description"
-            android:textAlignment="center"
-            android:layout_marginBottom="60dp"
-            android:layout_below="@+id/dish_separator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{checkoutviewmodel.deliveryTime +` from `+ checkoutviewmodel.restauName}"
-            android:hint="deliveryTime from restauName"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        <View
+                android:id="@+id/dish_separator"
+                android:layout_width="70dp"
+                android:layout_height="2dp"
+                android:layout_below="@+id/dish_name"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/colorPrimary" />
 
+        <TextView
+                android:id="@+id/dish_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dish_separator"
+                android:layout_marginBottom="60dp"
+                android:hint="deliveryTime from restauName"
+                android:text="@{checkoutviewmodel.deliveryTime +` from `+ checkoutviewmodel.restauName}"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
         <TextView
                 android:id="@+id/deliverto"
-                android:layout_marginStart="10dp"
-                android:layout_below="@+id/dish_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/dish_description"
+                android:layout_marginStart="15dp"
                 android:text="Delivery address"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <androidx.cardview.widget.CardView
-            android:layout_below="@+id/deliverto"
-            android:layout_margin="10dp"
-            android:elevation="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <LinearLayout
-                android:padding="20dp"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:textColor="@color/secondary_text"
-                    style="@style/TextAppearance.AppCompat.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name" />
-            <EditText
-                    android:id="@+id/email"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/secondary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@={checkoutviewmodel.fullname}" />
-            <View
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/deliverto"
+                android:layout_margin="15dp"
+                android:elevation="4dp">
+
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_gray" />
-
-            <TextView
-                    style="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="@color/secondary_text"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Address" />
-            <EditText
-                    android:id="@+id/address"
-                    android:textColor="@color/secondary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@={checkoutviewmodel.address}" />
-            <View
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_gray" />
-            <TextView
-                    style="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="@color/secondary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone number" />
-            <EditText
-                    android:id="@+id/phone"
-                    android:textColor="@color/secondary_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@={checkoutviewmodel.phone}" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:hint="Fullname"
+                        android:inputType="textPersonName"
+                        android:text="@={checkoutviewmodel.fullname}" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/light_gray" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:hint="Phone number"
+                        android:inputType="textPersonName"
+                        android:text="@={checkoutviewmodel.phone}" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/light_gray" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato"
+                            android:hint="Address"
+                            android:inputType="textPersonName"
+                            android:text="@={checkoutviewmodel.address}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
 
+        <Button
+                android:id="@+id/button_bottom_long"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_alignParentBottom="true"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/lato"
+                android:onClick="@{(v)->checkoutviewmodel.checkout(v)}"
+                android:text="confirm order and pay x$"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-
-
-    <Button
-            android:id="@+id/button_bottom_long"
-            android:backgroundTint="@color/colorPrimary"
-            android:fontFamily="@font/lato"
-            android:text="confirm order and pay x$"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:onClick="@{(v)->checkoutviewmodel.checkout(v)}"
-            android:layout_alignParentBottom="true"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"/>
-
-</RelativeLayout>
+    </RelativeLayout>
 </layout>
