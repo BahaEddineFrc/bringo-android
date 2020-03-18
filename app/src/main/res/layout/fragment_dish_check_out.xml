@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data class="CheckoutBinding">
 
@@ -13,15 +14,32 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+            <androidx.appcompat.widget.Toolbar
+                    app:navigationIcon="?attr/homeAsUpIndicator"
+                    app:title="Finishing order"
+                    android:id="@+id/toolBar"
+                    app:titleTextColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <TextView
                 android:id="@+id/dish_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/appBarLayout"
                 android:layout_marginTop="40dp"
                 android:hint="Dish name"
                 android:text="@{checkoutviewmodel.dishName}"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold" />
 
         <View
                 android:id="@+id/dish_separator"
@@ -82,12 +100,6 @@
                         android:inputType="textPersonName"
                         android:text="@={checkoutviewmodel.fullname}" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@color/light_gray" />
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -103,12 +115,6 @@
                         android:inputType="textPersonName"
                         android:text="@={checkoutviewmodel.phone}" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@color/light_gray" />
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -138,10 +144,8 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:fontFamily="@font/lato"
                 android:onClick="@{(v)->checkoutviewmodel.checkout(v)}"
-                android:text="confirm order and pay x$"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:text="@{`confirm order and pay `+checkoutviewmodel.totalPrice+`d`}"
+                android:textColor="@color/white" />
 
     </RelativeLayout>
 </layout>

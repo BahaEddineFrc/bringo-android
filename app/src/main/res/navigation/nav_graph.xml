@@ -41,8 +41,6 @@
               android:label="fragment_delivery_tracking" tools:layout="@layout/fragment_delivery_tracking">
         <action android:id="@+id/action_deliveryTracking_to_homeList" app:destination="@id/homeList"/>
     </fragment>
-    <fragment android:id="@+id/register" android:name="com.bringo.dotit.views.Register" android:label="fragment_register"
-              tools:layout="@layout/fragment_register"/>
     <fragment android:id="@+id/login" android:name="com.bringo.dotit.views.Login" android:label="fragment_login"
               tools:layout="@layout/fragment_login">
         <action

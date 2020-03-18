@@ -43,6 +43,7 @@
                         android:id="@+id/spark_button"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+
                         android:layout_alignParentBottom="true"
                         android:layout_margin="5dp"
                         app:sparkbutton_activeImage="@drawable/heart_red"
@@ -103,7 +104,8 @@
                             android:layout_centerVertical="true"
                             android:layout_margin="5dp"
                             android:layout_marginTop="3dp"
-                            android:isIndicator="false"
+                            android:isIndicator="true"
+                            android:rating="@{restaurantmodel.stars}"
                             android:numStars="5"
                             android:stepSize="0.5" />
 
@@ -114,7 +116,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_margin="5dp"
-                            android:text="30 min" />
+                            android:text="@{restaurantmodel.avgTime+` min`}" />
 
                     <ImageView
                             android:id="@+id/clock"

@@ -54,7 +54,7 @@ class CreateDishViewModel(application: Application) : AndroidViewModel(applicati
     fun createNewDish() {
         //todo add method
         dishLiveData.value= Restaurant("er","name","mail",
-            "add","phone",3.0f,ArrayList(),"pic")
+            "add","phone",3.0f,20,ArrayList(),"pic")
         /*ApiFactory.retrofit.createRestau(restauName.get().
             toString(),address.get().toString(),
             phone.get().toString(),email.get().toString(),pic.get().toString())

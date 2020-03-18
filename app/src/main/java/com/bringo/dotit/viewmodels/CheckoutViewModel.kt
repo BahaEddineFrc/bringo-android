@@ -19,7 +19,7 @@ class CheckoutViewModel : ViewModel(){
     var dishDescription = ObservableField<String>()
     var totalPrice = ObservableFloat()
     var deliveryTime : String = "30m"
-    var restauName : String = ""
+    var restauName : String = "Restaurant X"
 
     var fullname : String = ""
     var address : String = ""

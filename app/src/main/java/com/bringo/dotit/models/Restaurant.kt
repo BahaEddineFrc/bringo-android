@@ -11,6 +11,7 @@ data class Restaurant(    @PrimaryKey(autoGenerate = true)
                           var  address:String,
                           var  phone:String,
                           var stars :Float, //
+                          var avgTime :Int,
                           var menu :ArrayList<MenuModel>,
                           var  pic:String)
 

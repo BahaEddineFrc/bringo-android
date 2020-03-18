@@ -64,7 +64,6 @@ class RestauMenu : Fragment() {
 
     private fun subscribeDataCallback() {
         var restauId: String? = arguments?.getString("restauId")
-        //Hell("clicked restauId : ${restauId}")
 
         restauMenuViewModel.getRestauById(restauId)
         restauMenuViewModel.restaurantLiveData.observe(this, Observer { restaurant ->
@@ -75,7 +74,6 @@ class RestauMenu : Fragment() {
                     restaurant.menu.forEach { menu ->
                         tabs!!.add(menu.sectionTitle)
                     }
-                    //Hell("tabs : $tabs")
                 }
 
                 val pagerAdapter =
@@ -128,10 +126,6 @@ class RestauMenu : Fragment() {
         }
     }
 
-    /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
-     */
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager, val restau: Restaurant) :
         FragmentStatePagerAdapter(fm) {
         override fun getCount(): Int = restau.menu.size

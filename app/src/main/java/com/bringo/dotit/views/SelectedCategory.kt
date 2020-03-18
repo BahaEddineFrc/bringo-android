@@ -71,7 +71,6 @@ class SelectedCategory : Fragment() {
         var restauName=arguments?.getString("restauName")
         var category=arguments?.getSerializable("category") as CategoryModel
 
-
         viewModel.setUpCategory(category,restauName)
         viewModel.getDishesByCategory(restauId)
 

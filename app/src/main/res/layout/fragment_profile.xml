@@ -9,20 +9,28 @@
                 type="com.bringo.dotit.viewmodels.ProfileViewModel" />
     </data>
 
-    <LinearLayout
-            android:orientation="vertical"
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-            android:elevation="8dp"
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+            <androidx.appcompat.widget.Toolbar
+                    app:navigationIcon="?attr/homeAsUpIndicator"
+                    app:title="Profile"
+                    android:id="@+id/toolBar"
+                    app:titleTextColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
+            android:layout_below="@+id/appBarLayout"
             android:orientation="vertical"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
@@ -38,21 +46,23 @@
                 android:layout_margin="10dp"
                 android:elevation="8dp"
                 android:background="@drawable/profile_pic"
-                android:src="@{profileviewmodel.imageUrl}"
+                android:img="@{profileviewmodel.imageUrl}"
                 android:id="@+id/profile_pic"
-                android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_width="120dp"
+                android:layout_height="120dp" />
 
         <TextView
                 android:id="@+id/fullname"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="30dp"
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{profileviewmodel.fullname}"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:layout_marginBottom="30dp"
                 android:hint="name lastname"
+                android:text="@{profileviewmodel.fullname}"
                 android:textColor="@color/primary_text"
-                style="@style/TextAppearance.AppCompat.Medium"/>
+                android:textStyle="bold" />
 
 
 
@@ -123,21 +133,20 @@
                         android:text="@{profileviewmodel.address}" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
         <Button
+                android:layout_alignParentBottom="true"
                 android:id="@+id/button_bottom_long"
                 android:layout_width="match_parent"
                 android:layout_marginTop="30dp"
-                android:layout_height="50dp"
+                android:layout_height="56dp"
                 android:visibility="@{profileviewmodel.fabIsVisible}"
                 android:onClick="@{(v)->profileviewmodel.myRestauClicked(v)}"
                 android:backgroundTint="@color/colorPrimary"
                 android:fontFamily="@font/lato"
                 android:text="My restaurant information"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textColor="@color/white"  />
 
-    </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

@@ -234,9 +234,7 @@
                     android:fontFamily="@font/lato"
                     android:onClick="@{(v)->dishviewmodel.order(v)}"
                     android:text="order"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/white"/>
 
 
         </RelativeLayout>

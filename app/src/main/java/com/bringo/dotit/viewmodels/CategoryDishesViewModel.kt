@@ -32,7 +32,6 @@ class CategoryDishesViewModel : ViewModel(){
     var categoryId : String = ""
     var listSize : Int = 0
 
-
     private val scope = CoroutineScope(GlobalScope.coroutineContext) //used to execute functions in Async mode
 
     fun setUpCategory(category: CategoryModel, restauName: String?) {

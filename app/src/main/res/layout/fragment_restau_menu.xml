@@ -40,7 +40,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:hint="Restau name"
                         android:elevation="4dp"
                         android:text="@{restaumenuviewmodel.name}"
                         android:textAlignment="center"
@@ -65,7 +64,6 @@
                         android:layout_margin="5dp"
                         android:textAlignment="center"
                         android:textColor="@color/light_gray"
-                        android:hint="Restau description"
                         android:text="@{restaumenuviewmodel.description}" />
             </LinearLayout>
 

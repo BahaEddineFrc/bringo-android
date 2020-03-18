@@ -1,6 +1,7 @@
 package com.bringo.dotit.viewmodels
 
 import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.Driver
@@ -8,14 +9,19 @@ import com.bringo.dotit.repositories.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TrackingViewModel : ViewModel(){
 
-    var restauName : String = "restauName empty"
-    var restauTime : String = "12:30"
-    var timeProgress : Int = 25
-    var dishName = ObservableField<String> ()
+    val deliveryTime : String
+            get() = SimpleDateFormat("HH:mm", Locale.getDefault()).format( Date())
 
+    var timePourcentage = ObservableInt()
+
+    var timeRemaining = ObservableInt()
+
+    var dishName = ObservableField<String> ()
 
     lateinit var driverInfo : Driver
 
@@ -26,6 +32,8 @@ class TrackingViewModel : ViewModel(){
 
     fun intitializeInfo(dishName: String?) {
         this.dishName.set(dishName)
+        timePourcentage.set(30)
+        timeRemaining.set(10)
     }
 
 }
