@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.bringo.dotit.R
 import com.bringo.dotit.databinding.CheckoutBinding
+import com.bringo.dotit.models.Order
 import com.bringo.dotit.viewmodels.CheckoutViewModel
 
 
@@ -32,10 +33,8 @@ class DishCheckOut : Fragment() {
     }
     private fun initViewModelListeners() {
         //val user = arguments!!.getSerializable("user") as User
-        val dishName=arguments!!.getString("dishName","error getting name")
-        val totalPrice=arguments!!.getFloat("totalPrice")
-        val dishDescription=arguments!!.getString("dishDescription","error getting descr")
-        viewModel.intitializeOrder(dishName,totalPrice,dishDescription)
+        var order=arguments!!.getSerializable("order") as Order
+        viewModel.intitializeOrder(order)
     }
 
 }

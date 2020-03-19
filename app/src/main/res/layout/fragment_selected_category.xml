@@ -19,13 +19,13 @@
                 android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 android:background="@color/colorPrimary">
 
             <androidx.appcompat.widget.Toolbar
                     app:navigationIcon="?attr/homeAsUpIndicator"
                     app:title="Available dishes"
                     android:id="@+id/toolBar"
-                    app:titleTextColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"/>
         </com.google.android.material.appbar.AppBarLayout>

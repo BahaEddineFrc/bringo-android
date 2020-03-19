@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.bringo.dotit.R
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.DishModel
+import com.bringo.dotit.models.Order
 import com.bringo.dotit.models.User
 import com.bringo.dotit.repositories.Repository
 import com.bringo.dotit.utils.Hell
@@ -40,6 +41,7 @@ class DishViewModel : ViewModel(){
     var sizeIndex : Int = 0
 
     fun intitializeDish(dish: DishModel) {
+
         for(tab in dish.sizes){
             sizes.add(tab.size)
             prices.add(tab.price)
@@ -53,6 +55,7 @@ class DishViewModel : ViewModel(){
         size.set(sizes[sizeIndex])
         updateTotal()
         pic=dish.pic
+
     }
 
     fun getImageUrl():String {
@@ -91,10 +94,16 @@ class DishViewModel : ViewModel(){
     }
 
     fun order(v: View) {
-        val bundle = bundleOf("dishName" to dishName.get(),
-            "totalPrice" to totalPrice.get(),
-            "dishDescription" to dishDescription.get())
-        v.findNavController().navigate(R.id.action_selectedDish_to_dishCheckOut,bundle)
+        dish.value?.let {
+
+            val order=Order("",restauName,restauId,it._id, size.get()!!, nbr.get(),
+                totalPrice.get(), 30, "being prepared")
+            /*val bundle = bundleOf("dishName" to dishName.get(),
+                "totalPrice" to totalPrice.get(),
+                "dishDescription" to dishDescription.get())*/
+            val bundle = bundleOf("order" to order)
+            v.findNavController().navigate(R.id.action_selectedDish_to_dishCheckOut,bundle)
+        }
        //Hell("ORDERING $dishName FOR ${totalPrice.get()} Dinars")
 
     }
@@ -103,21 +112,7 @@ class DishViewModel : ViewModel(){
     private val scope = CoroutineScope(GlobalScope.coroutineContext)
     //used to execute functions in Async mode
 
-    fun getDishById(id: String) {
-        ApiFactory.retrofit.getDishById(id).enqueue(object : Callback<DishModel> {
-            override fun onResponse(call: Call<DishModel>, response: Response<DishModel>) {
-                if (response.isSuccessful) {
-                    dish.value = response.body()
-                } else {
-                    Hell("getRestauById unSuccessful ${response.code()}, msg:" + response.errorBody())
-                }
-            }
 
-            override fun onFailure(call: Call<DishModel>, t: Throwable) {
-                Hell("getRestauById err:" + t.message!!)
-            }
-        })
-    }
 
 
 
