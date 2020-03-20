@@ -18,7 +18,6 @@ import com.bringo.dotit.adapters.DishesRVAdapters
 import com.bringo.dotit.databinding.FragmentSelectedCategoryBinding
 import com.bringo.dotit.models.CategoryModel
 import com.bringo.dotit.models.DishModel
-import com.bringo.dotit.utils.Hell
 import com.bringo.dotit.viewmodels.CategoryDishesViewModel
 import kotlinx.android.synthetic.main.fragment_selected_category.view.*
 import java.io.Serializable
@@ -32,6 +31,7 @@ class SelectedCategory : Fragment() {
     private lateinit var mAdapter: DishesRVAdapters
     private lateinit var binding : FragmentSelectedCategoryBinding
     var dataList: ArrayList<DishModel> = ArrayList()
+    var restauId = String()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +53,8 @@ class SelectedCategory : Fragment() {
 
         mAdapter = DishesRVAdapters{dish->
             //Hell("SelectedCateg: clicked dish: ${dish._id}")
-            val bundle = bundleOf("dish" to dish as Serializable)
+            val bundle = bundleOf("dish" to dish as Serializable
+                                        ,"restauId" to restauId)
             findNavController().navigate(R.id.action_selectedCategory_to_selectedDish,bundle)
         }
 
@@ -67,12 +68,13 @@ class SelectedCategory : Fragment() {
 
     private fun subscribeDataCallBack() {
 
-        var restauId=arguments?.getString("restauId")
-        var restauName=arguments?.getString("restauName")
-        var category=arguments?.getSerializable("category") as CategoryModel
+        val restauId=arguments?.getString("restauId")
+        this.restauId=restauId!!
+        val restauName=arguments?.getString("restauName")
+        val category=arguments?.getSerializable("category") as CategoryModel
 
-        viewModel.setUpCategory(category,restauName)
-        viewModel.getDishesByCategory(restauId)
+        viewModel.setUpCategory(category,restauName,restauId)
+
 
         viewModel.dishesList.observe(this, Observer { dishes->
             mAdapter.setDishesList(dishes)

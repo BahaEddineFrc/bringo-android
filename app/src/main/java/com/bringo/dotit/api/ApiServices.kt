@@ -5,7 +5,6 @@ import android.database.Observable
 import com.bringo.dotit.models.DishModel
 import retrofit2.Call
 import com.bringo.dotit.models.Restaurant
-import com.bringo.dotit.models.RestaurantsResponse
 import com.bringo.dotit.models.User
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
@@ -143,8 +142,7 @@ interface ApiServices {
     @GET("/restaurants")
     fun getRestaus(): Call<ArrayList<Restaurant>>
 
-    @GET("/restaurant/popular")
-    fun getPopularRestau(): Deferred<Response<RestaurantsResponse>>
+
 
 
     @GET("restaurant/{id}")

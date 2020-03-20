@@ -71,7 +71,7 @@ class HomeList : Fragment() {
 
         mAdapter = RestaurantsRVAdapter{restau->
             //Hell("clicked restau : ${restau}")
-            var bundle = bundleOf("restauId" to restau._id)
+            val bundle = bundleOf("restauId" to restau._id)
             findNavController().navigate(R.id.action_homeList_to_restauMenu,bundle)
         }
 

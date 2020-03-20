@@ -1,7 +1,6 @@
 package com.bringo.dotit.views
 
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.bringo.dotit.R
 import com.bringo.dotit.databinding.TrackingBinding
-import com.bringo.dotit.utils.Hell
+import com.bringo.dotit.models.Order
 import com.bringo.dotit.viewmodels.TrackingViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -20,6 +19,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import java.io.Serializable
 
 
 class DeliveryTracking : Fragment(), OnMapReadyCallback {
@@ -69,8 +69,8 @@ class DeliveryTracking : Fragment(), OnMapReadyCallback {
     }
 
     private fun initViewModelListeners() {
-        val dishName=arguments!!.getString("dishName","error getting name")
-        viewModel.intitializeInfo(dishName)
+        val order=arguments!!.getSerializable("order") as Order
+        viewModel.intitializeInfo(order)
     }
 
 

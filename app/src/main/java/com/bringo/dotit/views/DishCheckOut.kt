@@ -33,8 +33,9 @@ class DishCheckOut : Fragment() {
     }
     private fun initViewModelListeners() {
         //val user = arguments!!.getSerializable("user") as User
-        var order=arguments!!.getSerializable("order") as Order
-        viewModel.intitializeOrder(order)
+        val order=arguments!!.getSerializable("order") as Order
+        val restauId=arguments!!.getString("restauId")
+        viewModel.intitializeOrder(order,restauId)
     }
 
 }

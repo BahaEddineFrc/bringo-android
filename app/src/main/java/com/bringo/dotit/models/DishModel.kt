@@ -10,6 +10,7 @@ data class DishModel (@PrimaryKey(autoGenerate = true)
                       var  name:String,
                       var  description:String,
                       var  category:CategoryModel,
+                      var  deliveryTime:Int,
                       var  stars:Int,
                       var  pic:String,
                       var  sizes:ArrayList<DishSizes>):Serializable {

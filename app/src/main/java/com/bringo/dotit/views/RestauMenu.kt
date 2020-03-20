@@ -63,7 +63,7 @@ class RestauMenu : Fragment() {
     }
 
     private fun subscribeDataCallback() {
-        var restauId: String? = arguments?.getString("restauId")
+        val restauId: String? = arguments?.getString("restauId")
 
         restauMenuViewModel.getRestauById(restauId)
         restauMenuViewModel.restaurantLiveData.observe(this, Observer { restaurant ->

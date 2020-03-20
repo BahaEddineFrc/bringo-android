@@ -5,10 +5,11 @@ import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.Driver
+import com.bringo.dotit.models.Order
 import com.bringo.dotit.repositories.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,10 +31,10 @@ class TrackingViewModel : ViewModel(){
 
 
 
-    fun intitializeInfo(dishName: String?) {
-        this.dishName.set(dishName)
+    fun intitializeInfo(order: Order) {
+        this.dishName.set(order.dish.name)
         timePourcentage.set(30)
-        timeRemaining.set(10)
+        timeRemaining.set(order.deliveryTime)
     }
 
 }

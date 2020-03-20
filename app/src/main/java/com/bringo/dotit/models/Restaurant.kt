@@ -2,9 +2,10 @@ package com.bringo.dotit.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
-data class Restaurant(    @PrimaryKey(autoGenerate = true)
+class Restaurant(    @PrimaryKey(autoGenerate = true)
                            var _id:String,
                           var  name:String,
                           var  email:String,
@@ -13,15 +14,10 @@ data class Restaurant(    @PrimaryKey(autoGenerate = true)
                           var stars :Float, //
                           var avgTime :Int,
                           var menu :ArrayList<MenuModel>,
-                          var  pic:String)
+                          var  pic:String): Serializable
 
 {
     fun getImageUrl():String {
         return pic
     }
  }
-
-
-data class RestaurantsResponse(
-    val results: List<Restaurant>
-)

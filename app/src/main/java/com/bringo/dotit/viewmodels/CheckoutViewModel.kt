@@ -11,6 +11,7 @@ import com.bringo.dotit.R
 import com.bringo.dotit.api.ApiFactory
 import com.bringo.dotit.models.DishModel
 import com.bringo.dotit.models.Order
+import com.bringo.dotit.models.Restaurant
 import com.bringo.dotit.utils.Hell
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,41 +20,50 @@ import retrofit2.Response
 class CheckoutViewModel : ViewModel(){
 
     var dishName = ObservableField<String>()
-    var dishDescription = ObservableField<String>()
     var totalPrice = ObservableFloat()
     var deliveryTime = ObservableInt()
     var restauName = ObservableField<String>()
 
-    var fullname : String = "" //share preferences
+    var fullname : String = "" //todo get share preferences
     var address : String = ""
     var phone : String = ""
-    var dishToOrder:DishModel? = null
+
+    var order:Order? = null
+
 
     fun checkout(v: View) {
-        val bundle = bundleOf("dishName" to dishName.get())
-        v.findNavController().navigate(R.id.action_dishCheckOut_to_deliveryTracking,bundle)
+        if (order?.restau!=null) {
+            val bundle = bundleOf("order" to order)
+            v.findNavController().navigate(R.id.action_dishCheckOut_to_deliveryTracking, bundle)
+        }
     }
 
-    fun intitializeOrder(order: Order) {
+    fun intitializeOrder(order: Order, restauId: String?) {
+        this.order=order
+        this.dishName.set(order.dish.name)
         this.totalPrice.set(order.totalPrice)
-        this.restauName.set(order.restauName)
-        getDishById(order.dishId)
+        this.deliveryTime.set(order.deliveryTime)
+        getRestauById(restauId)
+
     }
 
-    fun getDishById(id: String) {
-        ApiFactory.retrofit.getDishById(id).enqueue(object : Callback<DishModel> {
-            override fun onResponse(call: Call<DishModel>, response: Response<DishModel>) {
-                if (response.isSuccessful) {
-                    dishToOrder = response.body()
-                    dishName.set(dishToOrder?.name)
-                } else {
-                    Hell("getRestauById unSuccessful ${response.code()}, msg:" + response.errorBody())
+    fun getRestauById(id:String?) {
+        if (id!=null)
+            ApiFactory.retrofit.getRestauById(id).enqueue(object : Callback<Restaurant> {
+                override fun onResponse(
+                    call: Call<Restaurant>,
+                    response: Response<Restaurant>
+                ) {
+                    if (response.isSuccessful) {
+                        order?.restau = response.body()
+                        restauName.set((response.body() as Restaurant).name)
+                    }else{
+                        Hell("getRestauById unSuccessful:" + response.code())
+                    }
                 }
-            }
-
-            override fun onFailure(call: Call<DishModel>, t: Throwable) {
-                Hell("getRestauById err:" + t.message!!)
-            }
-        })
+                override fun onFailure(call: Call<Restaurant>, t: Throwable) {
+                    Hell("getRestauById err:" + t.message!!)
+                }
+            })
     }
 }
