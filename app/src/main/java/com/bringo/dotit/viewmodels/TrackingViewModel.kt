@@ -16,11 +16,12 @@ import java.util.*
 class TrackingViewModel : ViewModel(){
 
     val deliveryTime : String
-            get() = SimpleDateFormat("HH:mm", Locale.getDefault()).format( Date())
+            get() = SimpleDateFormat("HH:mm",
+                Locale.getDefault()).format( Date().time + 60000*timeRemaining.get())
 
     var timePourcentage = ObservableInt()
 
-    var timeRemaining = ObservableInt()
+    var timeRemaining = ObservableInt(1)
 
     var dishName = ObservableField<String> ()
 
